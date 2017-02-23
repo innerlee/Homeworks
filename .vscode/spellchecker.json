@@ -5,14 +5,37 @@
         "prob2",
         "prob3",
         "prob4",
-        "medskip"
+        "medskip",
+        "natbib",
+        "nonatbib",
+        "hyperlinks",
+        "microtypography",
+        "CrossEntropy",
+        "Zhizhong",
+        "CUHK",
+        "ELEG"
     ],
     "documentTypes": [
         "markdown",
         "latex",
         "plaintext"
     ],
-    "ignoreRegExp": [],
-    "ignoreFileExtensions": [],
+    "ignoreRegExp": [
+        "/\\\\\\\\\\\\w+/g",
+        "/\\\\w+\\\\{/g",
+        "/fig:\\\\w+/g",
+        "/eq:\\\\w+/g",
+        "/tab:\\\\w+/g",
+        "/\\\\w+.png/g",
+        "/\\\\w+.jpg/g",
+        "/\\\\{\\\\w+\\\\}/g",
+        "/\\\\[\\\\w+\\\\]/g",
+        "/fig\\/\\\\w+/g",
+        "/\\\\w+.pdf/g"
+    ],
+    "ignoreFileExtensions": [
+        ".bib",
+        ".pdf"
+    ],
     "checkInterval": 5000
 }
