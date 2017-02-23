@@ -1,0 +1,18 @@
+{
+    "language": "en_US",
+    "ignoreWordsList": [
+        "prob1",
+        "prob2",
+        "prob3",
+        "prob4",
+        "medskip"
+    ],
+    "documentTypes": [
+        "markdown",
+        "latex",
+        "plaintext"
+    ],
+    "ignoreRegExp": [],
+    "ignoreFileExtensions": [],
+    "checkInterval": 5000
+}
