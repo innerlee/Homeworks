@@ -67,13 +67,25 @@ An example of $4\times 4$ square is shown if Figure~\ref{fig:4x4}.
 
 \subsection{} % 2.4
 
+
 \begin{figure}[ht]
+\begin{minipage}[b]{0.6\linewidth}
 \centering
-    \includegraphics[width=0.6\linewidth]{fig/more.png}
+    \includegraphics[width=0.9\linewidth]{fig/more.png}
     \caption{\small
     deep net.}
     \label{fig:more}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[b]{0.35\linewidth}
+\centering
+    \includegraphics[width=0.9\linewidth]{fig/one.png}
+    \caption{\small
+    shallow net.}
+    \label{fig:one}
+\end{minipage}
 \end{figure}
+
 
 The network structure is illustrated in Figure~\ref{fig:more}.
 The inserted neurons are $h_{ij}=f_{ij}(x), i=2,3,\dots,n, j=1,2$,
@@ -87,3 +99,39 @@ where
 \end{equation}
 
 \subsection{} % 2.5
+
+The network structure is shown in Figure~\ref{fig:one}.
+Definition of neurons are,
+
+\begin{equation}
+    h_{11} = f_{11}(x_1) = \begin{cases}
+            -1, \quad \text{when } (x_1\mod 1) \le 0.5, \\
+            1, \quad\quad \text{otherwise}.
+        \end{cases}
+\end{equation}
+
+\begin{equation}
+    h_{12} = f_{12}(x_2) = \begin{cases}
+            -1, \quad \text{when } (x_2\mod 1) \le 0.5, \\
+            1, \quad\quad \text{otherwise}.
+        \end{cases}
+\end{equation}
+
+\begin{equation}
+    h_{13} = f_{13}(x_1) = \begin{cases}
+            -1, \quad \text{when } (x_1\mod 2) \le 1, \\
+            1, \quad\quad \text{otherwise}.
+        \end{cases}
+\end{equation}
+
+\begin{equation}
+    h_{14} = f_{14}(x_2) = \begin{cases}
+            -1, \quad \text{when } (x_2\mod 2) \le 1, \\
+            1, \quad\quad \text{otherwise}.
+        \end{cases}
+\end{equation}
+
+\begin{equation}
+    y = g(h_{11}, h_{12}, h_{13}, h_{14}) =
+        h_{11} h_{12} h_{13} h_{14}
+\end{equation}
