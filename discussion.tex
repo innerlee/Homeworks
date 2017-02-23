@@ -1,0 +1,20 @@
+\section{Discussion}
+
+From the experiment results,
+we can see that
+\begin{itemize}
+    \item Solving the problem using LP requires lots of time.
+        and it is infeasible for large scale problems.
+        In our experiments, we were forced to truncate the dataset
+        to a small scale (20000 rows) due to this limitation.
+    \item The preparation time for the sketching is negligible in
+        experiments.
+        This is different from HW1.
+    \item The performances of the two sketching methods are similar.
+        Increasing the number of rows sampled helps imporve performance.
+        We can get a reletive error of $0.58\%$
+        by sampling $2.5\%$ of all rows.
+    \item Time consumption of sketching methods is extremely small.
+        This makes it suitable for large scale dataset.
+\end{itemize}
+Therefore sketching methods is very useful for large scale problems.

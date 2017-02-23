@@ -1,0 +1,85 @@
+\section{Sketching}
+
+Let $n=20000$ and $d=21$ as in our dataset.
+The general framework contains three steps:
+\begin{enumerate}
+    \item L1-norm subspace embedding.
+        This step can use \emph{Cauchy} or \emph{Exponential} mehtod.
+        The output is a probability vector $p$.
+        There are two parameters in this step.
+        The first is the number of rows in \emph{Cauchy} and \emph{Exponential}
+        subspace embedding.
+        Some guidance on chosing this number are
+        $\mathcal{O}(d\log(d))$ as in~\cite[Theorem 36]{woodruff2014sketching}
+        and $d \cdot \text{poly}(\log(d))$
+        as in~\cite[Theorem 41]{woodruff2014sketching}.
+        We fix this number to $21\times \log(21)\approx64$.
+        The other is the columns of Gaussian sketching which is used for
+        accelerating algorithm.
+        We fix it to be 16.
+    \item Sampling.
+        This step is similar like the Leverage score sketching.
+        After this step, we get a shirinked sized problem.
+        The number in sampling is controlled by parameter $r$.
+        We tested $r=100$ and $r=500$ for reference.
+    \item Solving small sized problem.
+        We use LP solver to get the solution.
+\end{enumerate}
+Testing results are shown in Table~\ref{tab:grand}.
+
+\begin{table}[htb]
+  \setlength{\tabcolsep}{2.6pt}
+  \caption{The performances of different Sketching techniques.
+  $r$ is the parameter in step~2.
+  time-$i$ is the average time spent on step~$i$.
+    }
+  \label{tab:grand}
+  \centering
+  {\small
+  \begin{tabular}{lllllllllllll}
+    \toprule
+    algorithm & repeat & $r$ & time1 & time2 & time3 & time & min loss & max loss & median loss & mean loss & std loss & rel err \\
+    \midrule
+    Baseline & 1 & - & - & - & - & 97.30 & 3.428 & 3.428 & 3.428 & 3.428 & - & - \\
+    Cauchy & 100 & 100 & 0.129 & 0.014 & 0.010 & 0.154 & 3.5507 & 4.7928 & 3.9607 & 3.9855 & 0.2484 & 3.56\% \\
+    Cauchy & 100 & 500 & 0.131 & 0.014 & 0.125 & 0.272 & 3.4497 & 3.5875 & 3.5023 & 3.5045 & 0.0259 & 0.62\% \\
+    Exponential & 100 & 100 & 0.012 &  0.002 & 0.011 & 0.025 & 3.6121 & 4.6369 & 3.8575 & 3.9185 & 0.2231 & 5.35\% \\
+    Exponential & 100 & 500 & 0.014 & 0.002 & 0.129 & 0.146 & 3.4486 & 3.5924 & 3.4934 & 3.4971 & 0.0251 & 0.58\% \\
+    \bottomrule
+  \end{tabular}
+  }
+\end{table}
+
+%
+\subsection{Cauchy}
+The minimum point when $r=500$ is
+{
+\def\OldComma{,}
+\catcode`\,=13
+\def,{%
+	\ifmmode%
+	\OldComma\discretionary{}{}{}%
+	\else%
+	\OldComma%
+	\fi%
+}%
+$x^* = (0.657501,0.0776499,-0.133653,-0.0633284,-0.876821,-0.759774,1.41801,0.980646,0.0688024,-0.0893941,-0.221192,0.0627549,0.0966104,0.0311747,0.359389,0.235925,-0.00986104,0.144246,-0.0530562,-0.0743144,-0.19942)$
+with loss $f(x^*) = 3.4497$.
+}
+
+%
+\subsection{Exponential}
+The minimum point when $r=500$ is
+{
+\def\OldComma{,}
+\catcode`\,=13
+\def,{%
+	\ifmmode%
+	\OldComma\discretionary{}{}{}%
+	\else%
+	\OldComma%
+	\fi%
+}%
+$x^* = (0.493382,0.42278,0.242891,-0.476517,-0.753511,-0.43696,0.680251,0.761099,0.196092,-0.137095,-0.35945,0.181037,-0.033585,-0.037471,0.506696,0.282556,-0.221777,0.00231164,0.0114419,-0.144334,-0.0618985,-1.0)$
+with loss $f(x^*) = 3.4486$.
+}
