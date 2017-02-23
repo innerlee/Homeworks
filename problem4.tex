@@ -9,8 +9,23 @@
     & = \sum_{\by\in \zz^2}\sum_{k=1}^K f_k(\by-\bt) w_k(\by-\bx)  \\
     & = \sum_{\by\in \zz^2}\sum_{k=1}^K f_k(\by) w_k(\by-(\bx-\bt))  \\
     & = [ f * w](\bx-\bt) \\
-    & = [L_\bt[ f * w]](\bx)
+    & = [L_\bt[ f * w]](\bx).
 \end{split}
 \end{equation}
 
 \subsection{} % 4.2
+
+\begin{equation}
+\begin{split}
+[[L_\bR f] * w](\bx)
+    & = \sum_{\by\in \zz^2}\sum_{k=1}^K (L_\bR f_k)(\by) w_k(\by-\bx)  \\
+    & = \sum_{\by\in \zz^2}\sum_{k=1}^K f_k(\bR^{-1} \by) w_k(\by-\bx)  \\
+    & = \sum_{\by\in \zz^2}\sum_{k=1}^K f_k(\by) w_k(\bR\by-\bx))  \\
+    & = \sum_{\by\in \zz^2}\sum_{k=1}^K f_k(\by) w_k(\bR(\by-\bR^{-1} \bx))  \\
+    & = \sum_{\by\in \zz^2}\sum_{k=1}^K f_k(\by) [L_{\bR^{-1}} w_k](\by-\bR^{-1} \bx)  \\
+    & = [ f *  [L_{\bR^{-1}} w]](\bR^{-1} \bx) \\
+    & = [L_\bR[ f * [L_{\bR^{-1}} w]]](\bx).
+\end{split}
+\end{equation}
+
+\subsection{} % 4.3
