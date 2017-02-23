@@ -66,3 +66,24 @@ that resulted from this folding process.
 An example of $4\times 4$ square is shown if Figure~\ref{fig:4x4}.
 
 \subsection{} % 2.4
+
+\begin{figure}[ht]
+\centering
+    \includegraphics[width=0.6\linewidth]{fig/more.png}
+    \caption{\small
+    deep net.}
+    \label{fig:more}
+\end{figure}
+
+The network structure is illustrated in Figure~\ref{fig:more}.
+The inserted neurons are $h_{ij}=f_{ij}(x), i=2,3,\dots,n, j=1,2$,
+where
+
+\begin{equation}
+    f_{ij}(x) = \begin{cases}
+            x, \quad\quad\quad \text{when }x\le 2^{i-1}, \\
+            2^i-x, \quad \text{otherwise}.
+        \end{cases}
+\end{equation}
+
+\subsection{} % 2.5
