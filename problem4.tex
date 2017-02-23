@@ -1,1 +1,16 @@
 \section{Problem 4}~\label{sec:prob4}
+
+\subsection{} % 4.1
+
+\begin{equation}
+\begin{split}
+[[L_\bt f] * w](\bx)
+    & = \sum_{\by\in \zz^2}\sum_{k=1}^K (L_\bt f_k)(\by) w_k(\by-\bx)  \\
+    & = \sum_{\by\in \zz^2}\sum_{k=1}^K f_k(\by-\bt) w_k(\by-\bx)  \\
+    & = \sum_{\by\in \zz^2}\sum_{k=1}^K f_k(\by) w_k(\by-(\bx-\bt))  \\
+    & = [ f * w](\bx-\bt) \\
+    & = [L_\bt[ f * w]](\bx)
+\end{split}
+\end{equation}
+
+\subsection{} % 4.2
