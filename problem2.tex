@@ -17,3 +17,30 @@
 \begin{equation}
     g(h_{11}, h_{12}) = h_{11} h_{12}.
 \end{equation}
+
+\subsection{} % 2.2
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.25\linewidth]{fig/insert.png}
+    \caption{\small
+    new layer.}
+    \label{fig:insert}
+\end{figure}
+
+Like in Figure~\ref{fig:insert},
+we insert a layer above the input,
+which contains two neurons
+$h_{21}=f_{21}(x_1)$,
+$h_{22}=f_{22}(x_2)$, and
+
+
+\begin{equation}
+    f_{21}(x_1) = \begin{cases}
+            x_1, \quad\quad\quad \text{when }x_1\le 1, \\
+            2-x_1, \quad \text{otherwise}.
+        \end{cases}
+\end{equation}
+\begin{equation}
+    f_{22}(x_2) := f_{21}(x_2).
+\end{equation}
