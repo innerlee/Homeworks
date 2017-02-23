@@ -20,12 +20,22 @@
 
 \subsection{} % 2.2
 
-\begin{figure}
-    \centering
-    \includegraphics[width=0.25\linewidth]{fig/insert.png}
+\begin{figure}[ht]
+\begin{minipage}[b]{0.45\linewidth}
+\centering
+    \includegraphics[width=0.5\linewidth]{fig/insert.png}
     \caption{\small
     new layer.}
     \label{fig:insert}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[b]{0.45\linewidth}
+\centering
+    \includegraphics[width=0.8\linewidth]{fig/4x4.png}
+    \caption{\small
+    $4\times 4$ pattern.}
+    \label{fig:4x4}
+\end{minipage}
 \end{figure}
 
 Like in Figure~\ref{fig:insert},
@@ -33,7 +43,6 @@ we insert a layer above the input,
 which contains two neurons
 $h_{21}=f_{21}(x_1)$,
 $h_{22}=f_{22}(x_2)$, and
-
 
 \begin{equation}
     f_{21}(x_1) = \begin{cases}
@@ -44,3 +53,16 @@ $h_{22}=f_{22}(x_2)$, and
 \begin{equation}
     f_{22}(x_2) := f_{21}(x_2).
 \end{equation}
+
+\subsection{} % 2.3
+
+Image the input region as a piece of paper in squared shape.
+Fold them horizontally and vertically along the center line,
+we will reduce a $2\times 2$ square to a $1\times 1$ square.
+Folding like this multiple times will be able to create more
+complex patterns.
+So such regularity and global structure is a complex symmetry pattern
+that resulted from this folding process.
+An example of $4\times 4$ square is shown if Figure~\ref{fig:4x4}.
+
+\subsection{} % 2.4
