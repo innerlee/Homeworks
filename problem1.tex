@@ -10,4 +10,29 @@ So $\M=\Mbar=\real^{n\times n}$.
 
 To make this question more sensible,
 let us impose an extra condition that
-$r<\min(m,n)$.
+$r<\min(m,n)=m$.
+First the fact that $\M \subset \Mbar$ is trivial to verify
+(by definition is ok).
+We focus on why it is a proper subset.
+
+Construct two orthogonal matrices $P\in\real^{m\times r}$,
+and $Q\in \real^{r\times n}$, s.t.,
+$\col(P)=U$ and $\row(Q)=V$.
+Then $\forall X\in\M$, it can be decomposed as
+$X=P\Sigma Q$, where $\Sigma\in\real^{r\times r}$
+(This is fairly easy to see after an svd on X).
+The decomposition is unique.
+For two decompositions of $X$,
+say $X=P\Sigma_1 Q=P\Sigma_2 Q$,
+then multiply $P^T$ and $Q^T$ at the left and right hand of the equation,
+we have $\Sigma_1=\Sigma_2$.
+So we get an one-to-one mapping from $\M$ to $\real^{r\times r}$.
+This mapping is also linear (easy to verify).
+Thus $\dim \M \le \dim \real^{r\times r} = r^2$.
+Similar story goes to $\Mbar^\perp$ and we have
+$\dim \Mbar^\perp \le \dim \real^{(m-r)\times(m-r)} = (m-r)^2$.
+Thus $\dim \M + \dim \Mbar^\perp \le r^2 + (m-r)^2 < m^2 \le mn = \dim \real^{m\times n}$.
+This is a contradiction if $\M=\Mbar$ because
+the sum of $\dim \Mbar(=\dim \M)$ and $\dim \Mbar^\perp$ should be $mn$ then.
+
+\subsection{} % 1.2
