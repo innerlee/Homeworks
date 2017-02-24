@@ -1,13 +1,28 @@
 \section{Problem 3}~\label{sec:prob3}
 
-For one neuron at the output pooling layer of network (a),
-it correspond  to $2\times 2$ size of the second convolution layer,
-which correspond to $4\times 4$ size of the first convolution layer,
-which correspond to $9\times 9$ size of the input layer.
-So the receptive field is $9\times 9$.
+\subsection{} % 3.1
 
-For one neuron at the output convolution layer of network (b),
-it correspond  to $3\times 3$ size of the pooling layer,
-which correspond to $9\times 9$ size of the first convolution layer,
-which correspond to $13\times 13$ size of the input layer.
-So the receptive field is $13\times 13$.
+Let $f(x):=\|x\|_1$,
+then the subgradient of $f$ at point $x=(x_1,x_2,\dots,x_n)$ is
+\begin{equation}
+\partial f(x)=\{g~|~(g_i = 1 \text{ if } x_i>0)
+\text{ and } (g_i = -1  \text{ if } x_i<0)
+\text{ and } (-1\le g_i \le 1  \text{ if } x_i=0)
+\}.
+\end{equation}
+
+So the optimality condition for the problem is
+$0\in \mu\partial f(x) + (x-v)$,
+which is equivalent to the condition $(v-x)/\mu \in\partial f(x)$.
+The the point $x^*=(x_1,x_2,\dots,x_n)$
+which reaches the minimum should satisfy
+\begin{equation}
+x_i=
+\begin{cases}
+v_i-\mu \quad \text{ if } v_i> \mu,\\
+v_i+\mu \quad \text{ if } v_i< \mu,\\
+0  \quad \quad \quad \text{ if } -\mu\le v_i\le \mu.
+\end{cases}
+\end{equation}
+
+\subsection{} % 3.2

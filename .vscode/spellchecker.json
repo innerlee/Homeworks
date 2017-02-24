@@ -13,7 +13,8 @@
         "CrossEntropy",
         "Zhizhong",
         "CUHK",
-        "ELEG"
+        "ELEG",
+        "subgradient"
     ],
     "documentTypes": [
         "markdown",
