@@ -37,3 +37,52 @@ This is a contradiction if $\M=\Mbar$ because
 the sum of $\dim \Mbar(=\dim \M)$ and $\dim \Mbar^\perp$ should be $mn$ then.
 
 \subsection{} % 1.2
+
+Let orthogonal matrices $P=(P_1\ P_2)\in\real^{m\times m}$ and
+$Q=(Q_1^T\ Q_2^T)^T\in\real^{n\times n}$, s.t.
+$\col(P_1)=U, \col(P_1) = U^\perp, \row(Q_1) = V, \row(Q_2)=V^\perp$.
+Then $\forall X\in\M, \forall Y\in\Mbar^\perp$, the decompositions
+\begin{equation}
+    X =
+        \begin{bmatrix}
+        P_1 & 0\\
+        \end{bmatrix}
+        \begin{bmatrix}
+        \Sigma_1 &   0 \\
+        0 & 0\\
+        \end{bmatrix}
+        \begin{bmatrix}
+        Q_1 \\
+        0 \\
+        \end{bmatrix},\quad
+        Y =
+        \begin{bmatrix}
+        0 & P_2\\
+        \end{bmatrix}
+        \begin{bmatrix}
+        0 &   0 \\
+        0 & \Sigma_2\\
+        \end{bmatrix}
+        \begin{bmatrix}
+        0 \\
+        Q_2 \\
+        \end{bmatrix}
+\end{equation}
+are unique (proofs see the previous sub-question).
+So,
+\begin{equation}
+    X + Y =
+        \begin{bmatrix}
+        P_1 & P_2\\
+        \end{bmatrix}
+        \begin{bmatrix}
+        \Sigma_1 &   0 \\
+        0 & \Sigma_2\\
+        \end{bmatrix}
+        \begin{bmatrix}
+        Q_1 \\
+        Q_2 \\
+        \end{bmatrix}.
+\end{equation}
+Thus,
+$\|X+Y\|_*=\|\Sigma_1+\Sigma_2\|_*=\|\Sigma_1\|_*+\|\Sigma_2\|_*=\|X\|_*+\|Y\|_*$.
