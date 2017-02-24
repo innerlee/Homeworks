@@ -1,14 +1,13 @@
 \section{Problem 1}~\label{sec:prob1}
-By definition of Cross Entropy, we have
-\begin{equation}
-    \text{CrossEntropy}(\mathcal{D}) =
-        -\frac{1}{N}\sum_{i=1}^{N}\sum_{k=1}^c \mathbb{I}(k=y_i)\log{z_{i,k}}
-    =-\frac{1}{N}\sum_{i=1}^{N}\log{z_{i,y_i}}.
-\end{equation}
-Move the sum inside $\log$, we have
-\begin{equation}
-    \text{CrossEntropy}(\mathcal{D}) =
-    -\frac{1}{N}\log{\prod_{i=1}^{N}z_{i,y_i}},
-\end{equation}
-which can be interpreted as the negative log-likelihood on the training set
-(with a constant factor).
+
+\subsection{} % 1.1
+
+Under the conditions specified in the problem,
+we cannot arrive at that conclusion.
+Here is an counter example.
+Let $m=n=r$, then $U=V=\real^n$.
+So $\M=\Mbar=\real^{n\times n}$.
+
+To make this question more sensible,
+let us impose an extra condition that
+$r<\min(m,n)$.
