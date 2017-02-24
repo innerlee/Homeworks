@@ -41,7 +41,9 @@ the sum of $\dim \Mbar(=\dim \M)$ and $\dim \Mbar^\perp$ should be $mn$ then.
 Let orthogonal matrices $P=(P_1\ P_2)\in\real^{m\times m}$ and
 $Q=(Q_1^T\ Q_2^T)^T\in\real^{n\times n}$, s.t.
 $\col(P_1)=U, \col(P_1) = U^\perp, \row(Q_1) = V, \row(Q_2)=V^\perp$.
-Then $\forall X\in\M, \forall Y\in\Mbar^\perp$, the decompositions
+Then similar to the last sub-question,
+$\forall X\in\M, \forall Y\in\Mbar^\perp$,
+we can decompose them as
 \begin{equation}
     X =
         \begin{bmatrix}
@@ -66,9 +68,9 @@ Then $\forall X\in\M, \forall Y\in\Mbar^\perp$, the decompositions
         \begin{bmatrix}
         0 \\
         Q_2 \\
-        \end{bmatrix}
+        \end{bmatrix},
 \end{equation}
-are unique (proofs see the previous sub-question).
+where $\Sigma_1\in\real^{r\times r}$ and $\Sigma_2\in\real^{(m-r)\times(n-r)}$.
 So,
 \begin{equation}
     X + Y =
