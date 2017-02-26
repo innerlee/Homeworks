@@ -1,6 +1,22 @@
 {
     "language": "en_US",
     "ignoreWordsList": [
+        "Schlumberger",
+        "Kaufmann",
+        "Jowell",
+        "ctmc",
+        "wcomb",
+        "CIFAR",
+        "ccccc",
+        "ijcai17",
+        "ijcai07",
+        "n01317541",
+        "n03575240",
+        "n00015388",
+        "n00020090",
+        "n03297735",
+        "cccccc",
+        "G123",
         "prob1",
         "prob2",
         "prob3",
@@ -14,7 +30,8 @@
         "Zhizhong",
         "CUHK",
         "ELEG",
-        "subgradient"
+        "subgradient",
+        "indices"
     ],
     "documentTypes": [
         "markdown",

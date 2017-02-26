@@ -1,0 +1,129 @@
+\section{Note 1}
+
+\subsection{Prelude}
+
+\subsubsection{Recall}
+
+Regularized loss minimization
+% Q
+\footnote{examples?}
+\begin{equation}
+\hat\theta \in \argmin_{\theta\in\real^d} \{\cL(\theta;\{z_i\}_{i=1}^n) + \lambda R(\theta)\}
+\end{equation}
+for estimating a certain unknown vector $\theta^*\in\real^d$.
+Here $z_1,\dots,z_n$ are iid \wrt $\Pbb_{\theta^*}$.
+% Q
+\footnote{what does notation $\Pbb_{\theta^*}$ mean?}
+Denote
+\begin{equation}
+F := \cL(\theta;\{z_i\}_{i=1}^n) + \lambda R(\theta).
+\end{equation}
+
+\subsubsection{This Lecture}
+
+Derive bounds on the statistical error
+% Q
+\footnote{what is a \emph{statistical error}?}
+$\hat\Delta = \hat\theta - \theta^*$.
+
+\subsubsection{Motivation}
+
+\begin{itemize}
+    \item From optimization, expect
+        $|F(\hat\theta) - F(\theta^*)|$
+        to be small.
+        % Q
+        \footnote{why it should small? why from optimization?}
+    \item Show that $\hat\Delta$ belongs to a region
+        that $F$ is not too flat.
+        % Q
+        \footnote{we want $\hat\Delta$ be small,
+        so we expect $F$ not flat near origin?}
+        This involves accounting fo the effect of $R$.
+    \item $R$ is intended to promote certain desirable structure (\eg sparsity).
+        We need to know how $R$ penalizes deviation,
+        which leads to the \emph{decomposability} concept.
+\end{itemize}
+
+\subsubsection{Decomposability of $R$}
+
+\begin{itemize}
+    \item $\cM$: model subspace,
+        which captures the constraints specified by the model
+        (\eg vectors within certain support for sparsity).
+    \item Let $\cM \subset \cMbar \subset \real^d$ be a pair of subspaces.
+        The \emph{perturbation subspace} is
+        \begin{equation}
+            \cMbar^\perp = \{v\in\real^d: u^Tv=0, \forall u\in\cMbar\}.
+        \end{equation}
+\end{itemize}
+
+\begin{define}
+    $R$ is decomposable \wrt $(\cM, \cMbar^\perp)$ if
+    \begin{equation}
+        R(\theta+\gamma) = R(\theta) + R(\gamma) \quad
+        \forall \theta \in \cM, \gamma \in \cMbar^\perp.
+    \end{equation}
+\end{define}
+
+\begin{obs} \leavevmode
+\begin{itemize}
+    \item $R$ is a norm and hence
+        $R(\theta+\gamma)\le R(\theta) + R(\gamma)$.
+        This means we want the perturbation term $\gamma$ be
+        maximally penalized (up to the equal sign).
+        % N
+        \footnote{seems to me this maximally penalization is just an excuse for
+        the simplified assumption.}
+    \item The notion of decomposability is useful when $\cM$ is small,
+        in the sense that $\Pi_\cM(\theta^*)\approx\theta^*$.
+        % N
+        \footnote{i think the sense of small is strange since when
+        $\cM$ is large enough, that projection would be exact.
+        Should we phrase it as
+        \emph{it is useful when $\cM$ is small and
+        at the same time not being too far from $\theta^*$}?}
+\end{itemize}
+\end{obs}
+
+\begin{ex}[Sparse vectors and $l_1$-regularization] \leavevmode
+\begin{itemize}
+    \item model: $S$-sparse vectors in $\real^d$, $R(\theta)=\|\theta\|_1$.
+    \item for any $S\subset\{1,\dots,d\}$ of cardinality $s$,
+        define $\cM(S):=\{\theta\in\real^d:\theta_j=0\ \forall j \notin S \}$.
+        If $\theta^*$ is supported on $S$,
+        then $\Pi_{\cM(S)}(\theta^*)=\theta^*$.
+    \item take $\cMbar(S):=\cM(S)$,
+        so $\cMbar(S)^\perp = \cM(S)^\perp$.
+        % N
+        \footnote{notation $\cMbar(S)^\perp$ corrected from $\cMbar^\perp(S)$ (undefined).}
+    \item decomposability is obvious.
+\end{itemize}
+\end{ex}
+
+\begin{ex}[Group-structured norms] \leavevmode
+\begin{itemize}
+    \item motivation: groups of coefficients likely to be
+        zero or non-zero simultaneously.
+    \item model: partition $\{1,\dots,d\}$ into $N$ disjoint groups
+        $\{G_1,\dots,G_N\}$, number of selected groups should be small,
+        say $s$; \ie $S\subset \{1,\dots,N\}$
+        are the group indices that correspond to non-zero groups and $s=|S|$.
+        The norm is
+        \begin{equation}
+            R(\theta) = \|\theta\|_{g,p} = \sum_{i=1}^N\|\theta_{G_i}\|_p,\quad p \in[1,\infty].
+        \end{equation}
+    \item subspace: for any $S\subset\{1,\dots,N\}$, set
+        \begin{gather}
+            \cM(S) := \{\theta\in\real^d:\theta_{G_i}=0, \forall i\notin S\}, \\
+            \cMbar(S) := \cM(S).
+        \end{gather}
+    \item decomposability can be verified.
+\end{itemize}
+\end{ex}
+
+\subsubsection{Key Consequences of Decomposability}
+
+\begin{pro} Suppose $\cL$ is convex, differentiable,
+    $\lambda\ge 2R^*(\nabla\cL(\theta^*;\{z_i\}_{i=1}^n))$
+\end{pro}
