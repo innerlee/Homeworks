@@ -139,6 +139,36 @@ $\hat\Delta = \hat\theta - \theta^*$.
     where $\Delta_{\cMbar^\perp}=\Pi_{\cMbar^\perp}(\Delta)$.
 \end{pro}
 
+\begin{proof}
+    Define
+    \begin{equation}
+        \cD(\Delta)=\cL(\theta^*+\Delta)-\cL(\theta^*)+\lambda(R(\theta^*+\Delta)-R(\theta^*)).
+    \end{equation}
+    Noting optimality of $\thetahat$, we have $\cD(\Deltahat)\le0$.
+
+    \begin{claim}
+        \begin{equation}
+            R(\theta^*+\Delta)-R(\theta^*) \ge R(\Delta_{\cMbar^\perp})-R(\Delta_{\cM})-2R(\theta^*_{\cMbar^\perp}).
+        \end{equation}
+    \end{claim}
+
+    \begin{claim}
+        If $\lambda\ge 2R^*(\nabla\cL(\theta^*))$ and $\cL$ is convex, then
+        \begin{equation}
+            \cL(\theta^*+\Delta) -\cL(\theta^*) \ge -\frac{\lambda}{2} [R(\Delta_{\cMbar})+R(\Delta_{\cMbar^\perp})].
+        \end{equation}
+    \end{claim}
+
+    With these two claims, we have
+    \begin{equation}
+    \begin{split}
+    0 \ge \cD(\Deltahat) & \ge \lambda[R(\Delta_{\cMbar^\perp})-R(\Delta_{\cMbar})-2R(\theta^*_{\cM^\perp})]
+        -\frac{\lambda}{2}[R(\Delta_{\cMbar})+R(\Delta_{\cMbar^\perp})]  \\
+    & = \frac{\lambda}{2}[R(\Delta_{\cMbar^\perp})-3R(\Delta_{\cMbar})-4R(\theta^*_{\cM^\perp})].
+    \end{split}
+    \end{equation}
+\end{proof}
+
 Now we want $\cL$ to be not too flat in $\cC$.
 To formulate this, we use RSC.
 
