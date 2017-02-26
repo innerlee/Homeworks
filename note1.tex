@@ -11,6 +11,8 @@ Regularized loss minimization
 \hat\theta \in \argmin_{\theta\in\real^d} \{\cL(\theta;\{z_i\}_{i=1}^n) + \lambda R(\theta)\}
 \end{equation}
 for estimating a certain unknown vector $\theta^*\in\real^d$.
+% Q
+\footnote{def of $\theta^*$?}
 Here $z_1,\dots,z_n$ are iid \wrt $\Pbb_{\theta^*}$.
 % Q
 \footnote{what does notation $\Pbb_{\theta^*}$ mean?}
@@ -125,5 +127,63 @@ $\hat\Delta = \hat\theta - \theta^*$.
 \subsubsection{Key Consequences of Decomposability}
 
 \begin{pro} Suppose $\cL$ is convex, differentiable,
-    $\lambda\ge 2R^*(\nabla\cL(\theta^*;\{z_i\}_{i=1}^n))$
+    $\lambda\ge 2R^*(\nabla\cL(\theta^*;\{z_i\}_{i=1}^n))$,
+    where $R^*(v):=\sup_{R(u)\le 1}u^T v$.
+    % Q
+    \footnote{this is a general question, what is dual norm used for?}
+    Then for any $(\cM, \cMbar^\perp)$ over which $R$ is decomposable,
+    $\Deltahat = \thetahat - \theta^*$ belongs to
+    \begin{equation}
+        \cC=\{\Delta\in\real^d:R(\Delta_{\cMbar^\perp})\le 3 R(\Delta_{\cMbar}) + 4R(\theta^*_{\cM^\perp})\},
+    \end{equation}
+    where $\Delta_{\cMbar^\perp}=\Pi_{\cMbar^\perp}(\Delta)$.
 \end{pro}
+
+Now we want $\cL$ to be not too flat in $\cC$.
+To formulate this, we use RSC.
+
+\begin{define}
+    $\cL$ satisfies RSC
+    % Q
+    \footnote{does RSC tightly related to $\cC$?}
+    if $\exists$ constant $\kappa > 0$ and function $\tau(\cdot)$
+    % Q
+    \footnote{what requirements for $\tau$?}
+    \st
+    \begin{equation}
+        \cL(\theta^*+\Delta)\ge \cL(\theta^*) + \nabla \cL(\theta^*)^T\Delta + \kappa\|\Delta\|_2^2-\tau^2(\theta^*),\quad \forall \Delta\in\cC.
+    \end{equation}
+\end{define}
+
+Here comes the main theorem.
+
+\begin{thm}
+Suppose
+\begin{itemize}
+    \item $R$ is a decomposable norm \wrt $(\cM, \cMbar^\perp)$,
+    \item $\cL$ is convex, differentiable, and RSC,
+    \item $\lambda\ge 2R^*(\nabla\cL(\theta^*;\{z_i\}_{i=1}^n))$.
+\end{itemize}
+Then
+\begin{equation}
+    \|\thetahat-\theta^*\|_2^2\le 9\frac{\lambda^2}{\kappa^2}\Psi^2(\cMbar)
+        + \frac{\lambda}{\kappa}\{2\tau^2(\theta^*)+4R(\theta^*_{\cM^\perp})\},
+\end{equation}
+where
+\begin{equation}
+    \Psi(\cM)=\sup_{u\in\cM\backslash\{0\}}\frac{R(u)}{\|u\|_2s},
+\end{equation}
+is the Lipschitz constant of $R$ restricted to $\cM$.
+\end{thm}
+
+\begin{rmk}\leavevmode
+\begin{itemize}
+    \item This is family of bounds, depending on choice of $(\cM, \cMbar^\perp)$.
+    \item Error comprises of estimation error $9\frac{\lambda^2}{\kappa^2}\Psi^2(\cMbar)$ and
+        approximation error $\frac{4\lambda}{\kappa}R(\theta^*_{\cM^\perp})$.
+        $\cM$ ``bigger'' $\Rightarrow$ approx. error $\downarrow$ and est. error $\uparrow$.
+        Note that if $\theta^*\in\cM$, then $R(\theta^*_{\cM^\perp})=0$.
+    \item To obtain more concrete conclusions, we essentially need to estimate
+        all the parameters in the theorem.
+\end{itemize}
+\end{rmk}
