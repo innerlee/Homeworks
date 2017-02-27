@@ -270,7 +270,32 @@ $\cD(t^*\Deltahat) \le t^*D(\Deltahat) \le 0$,
 which is a contradiction.
 \end{proof}
 
-
+To prove the theorem,
+it remains to establish a lower bound
+on $\cD(\Delta)$
+over $K(\delta)$ for some suitably chosen $\delta>0$.
+\begin{equation}
+\begin{split}
+    \cD(\Delta) & = \cL(\theta^*+\Delta)-\cL(\theta^*)+\lambda(R(\theta^*+\Delta)-R(\theta^*))  \\
+        & \ge \nabla\cL(\theta^*)^T\Delta + \kappa\|\Delta\|_2^2-\tau^2(\theta^*) + \lambda(R(\Delta_{\cMbar^\perp})-R(\Delta_{\cMbar})-2R(\theta^*_{\cM^\perp})) \\
+        & \ge \kappa\|\Delta\|_2^2-\tau^2(\theta^*) + \lambda(R(\Delta_{\cMbar^\perp})-R(\Delta_{\cMbar})-2R(\theta^*_{\cM^\perp})) - R^*(\cL(\theta^*))R(\Delta) \\
+        & \ge \kappa\|\Delta\|_2^2-\tau^2(\theta^*) + \lambda(\frac{1}{2}R(\Delta_{\cMbar^\perp})-\frac{3}{2}R(\Delta_{\cMbar})-2R(\theta^*_{\cM^\perp}))   \\
+        & \ge \kappa\|\Delta\|_2^2-\tau^2(\theta^*) - \frac{\lambda}{2}(3R(\Delta_{\cMbar})+4R(\theta^*_{\cM^\perp})).
+\end{split}
+\end{equation}
+By definition of $\Psi(\cMbar)$, we have
+\begin{equation}
+    R(\Delta_{\cMbar}) \le \Psi(\cMbar)\|\Delta_{\cMbar}\|_2 \le \Psi(\cMbar)\|\Delta\|_2.
+\end{equation}
+It follows that
+\begin{equation}
+    \cD(\Delta) \ge \kappa\|\Delta\|_2^2-\tau^2(\theta^*) - \frac{\lambda}{2}(3\Psi(\cMbar)\|\Delta\|_2+4R(\theta^*_{\cM^\perp})).
+\end{equation}
+Note that the RHS is quadratic in $\|\Delta\|_2$ and will be positive when
+\begin{equation}
+    \|\Delta\|_2^2 \ge \delta^2 = 9\frac{\lambda^2}{\kappa^2}\Psi^2(\cMbar)
+        + \frac{\lambda}{\kappa}\{2\tau^2(\theta^*)+4R(\theta^*_{\cM^\perp}).
+\end{equation}
 \end{proof}
 
 \begin{rmk}\leavevmode
