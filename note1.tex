@@ -153,17 +153,13 @@ $\hat\Delta = \hat\theta - \theta^*$.
     \end{claim}
 
     \begin{proof}
-        We compute
+        Split $\theta^*=\theta_{\cM}^*+\theta^*_{\cM^\perp}$ and $\Delta=\Delta_{\cMbar^\perp}+\Delta_{\cMbar}$,
         \begin{equation}
             \begin{split}
-                R(\theta^*+\Delta) & = R(\theta_{\cM}^*+\theta^*_{\cM^\perp}+\Delta_{\cMbar}+\Delta_{\cMbar^\perp}) \\
-                    & \ge R(\theta_{\cM}^*+\Delta_{\cMbar^\perp})-R(\theta^*_{\cM^\perp}) - R(\Delta_{\cMbar})  \\
-                    & = R(\theta_{\cM}^*)+R(\Delta_{\cMbar^\perp})-R(\theta^*_{\cM^\perp}) - R(\Delta_{\cMbar}).
+                R(\theta^*+\Delta) - R(\theta^*) & = R(\theta_{\cM}^*+\theta^*_{\cM^\perp}+\Delta_{\cMbar}+\Delta_{\cMbar^\perp}) - R(\theta_{\cM}^*+\theta^*_{\cM^\perp}) \\
+                    & \ge (R(\theta_{\cM}^*+\Delta_{\cMbar^\perp})-R(\theta^*_{\cM^\perp}) - R(\Delta_{\cMbar})) - (R(\theta_{\cM}^*) + R(\theta_{\cM^\perp}^*))  \\
+                    & = R(\Delta_{\cMbar^\perp})-2R(\theta^*_{\cM^\perp}) - R(\Delta_{\cMbar}).
             \end{split}
-        \end{equation}
-        Hence
-        \begin{equation}
-            R(\theta^*+\Delta) - R(\theta^*) \ge R(\Delta_{\cMbar^\perp})-2R(\theta^*_{\cM^\perp}) - R(\Delta_{\cMbar}).
         \end{equation}
     \end{proof}
 
