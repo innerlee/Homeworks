@@ -189,7 +189,7 @@ $\hat\Delta = \hat\theta - \theta^*$.
 \end{proof}
 
 Now we want $\cL$ to be not too flat in $\cC$.
-To formulate this, we use RSC.
+To formulate this, we use \emph{Restricted Strongly Convex} (RSC).
 
 \begin{define}
     $\cL$ satisfies RSC
@@ -220,10 +220,50 @@ Then
 \end{equation}
 where
 \begin{equation}
-    \Psi(\cM)=\sup_{u\in\cM\backslash\{0\}}\frac{R(u)}{\|u\|_2s},
+    \Psi(\cM)=\sup_{u\in\cM\backslash\{0\}}\frac{R(u)}{\|u\|_2},
 \end{equation}
 is the Lipschitz constant of $R$ restricted to $\cM$.
 \end{thm}
+
+\begin{proof}
+    Let $\delta>0$ be a parameter. Define
+    \begin{equation}
+        K(\delta) = \cC \cap \{\Delta:\|\Delta\|_2=\delta\}.
+    \end{equation}
+
+\begin{claim}
+    If $\forall \Delta\in K(\delta), \cD(\Delta)>0$, then $\|\Deltahat\|_2\le\delta$.
+\end{claim}
+
+\begin{proof}
+
+\begin{claim}
+    $\cC$ is star-shaped; \ie $\forall \Delta\in\cC, \{t\Delta:t\in(0,1)\}\subset \cC$.
+\end{claim}
+
+\begin{proof}
+If $\theta^*\in\cM$, $\cC$ is a cone.
+Now suppose $\theta^*\notin\cM$.
+Since $\cMbar$ is a subspace and projection $\Pi_{\cMbar}$ is linear,
+we have
+\begin{equation}
+    \Pi_{\cMbar}(t\Delta) = t\Pi_{\cMbar}(\Delta), \quad
+    \Pi_{\cMbar^\perp}(t\Delta) = t\Pi_{\cMbar^\perp}(\Delta).
+\end{equation}
+Hence for $t\in(0,1)$,
+\begin{equation}
+\begin{split}
+    R(\Pi_{\cMbar^\perp}(t\Delta)) & = tR(\Pi_{\cMbar^\perp}(\Delta)) \\
+        & \le t(3 R(\Pi_{\cMbar}(\Delta)) + 4R(\theta^*_{\cM^\perp}))    \\
+        & \le 3 R(\Pi_{\cMbar}(t\Delta)) + 4R(\theta^*_{\cM^\perp}).
+\end{split}
+\end{equation}
+\end{proof}
+
+
+\end{proof}
+
+\end{proof}
 
 \begin{rmk}\leavevmode
 \begin{itemize}
