@@ -5,14 +5,10 @@ Reading~\cite{negahban2012}.
 \subsubsection{Recall}
 
 Regularized loss minimization
-% Q
-\footnote{examples?}
 \begin{equation}
 \hat\theta \in \argmin_{\theta\in\real^d} \{\cL(\theta;\{z_i\}_{i=1}^n) + \lambda R(\theta)\}
 \end{equation}
 for estimating a certain unknown vector $\theta^*\in\real^d$.
-% Q
-\footnote{def of $\theta^*$?}
 Here $z_1,\dots,z_n$ are iid \wrt $\Pbb_{\theta^*}$.
 % Q
 \footnote{what does notation $\Pbb_{\theta^*}$ mean?}
@@ -35,13 +31,13 @@ $\hat\Delta = \hat\theta - \theta^*$.
         $|F(\hat\theta) - F(\theta^*)|$
         to be small.
         % Q
-        \footnote{why it should small? why from optimization?}
+        \footnote{why it should small? why from optimization?
+        this is strange because $\theta^*$ is a predefined value and
+        $\thetahat$ is a value not in control.}
     \item Show that $\hat\Delta$ belongs to a region
         that $F$ is not too flat.
         % Q
-        \footnote{we want $\hat\Delta$ be small,
-        so we expect $F$ not flat near origin?}
-        This involves accounting fo the effect of $R$.
+        This involves accounting for the effect of $R$.
     \item $R$ is intended to promote certain desirable structure (\eg sparsity).
         We need to know how $R$ penalizes deviation,
         which leads to the \emph{decomposability} concept.
@@ -77,7 +73,7 @@ $\hat\Delta = \hat\theta - \theta^*$.
         This means we want the perturbation term $\gamma$ be
         maximally penalized (up to the equal sign).
         % N
-        \footnote{seems to me this maximally penalization is just an excuse for
+        \footnote{seems that this maximally penalization is just an excuse for
         the simplified assumption.}
     \item The notion of decomposability is useful when $\cM$ is small,
         in the sense that $\Pi_\cM(\theta^*)\approx\theta^*$.
@@ -196,10 +192,9 @@ To formulate this, we use \emph{Restricted Strongly Convex} (RSC).
 \begin{define}
     $\cL$ satisfies RSC
     % Q
-    \footnote{does RSC tightly related to $\cC$?}
+    \footnote{does RSC tightly related to $\cC$? \ie `\emph{a} $\cC$' or `\emph{the} $\cC$'?
+    same question to $\theta^*$, a fixed $\theta^*$ or any point?}
     if $\exists$ constant $\kappa > 0$ and function $\tau(\cdot)$
-    % Q
-    \footnote{what requirements for $\tau$?}
     \st
     \begin{equation}
         \cL(\theta^*+\Delta)\ge \cL(\theta^*) + \nabla \cL(\theta^*)^T\Delta + \kappa\|\Delta\|_2^2-\tau^2(\theta^*),\quad \forall \Delta\in\cC.
@@ -313,6 +308,8 @@ Note that the RHS is quadratic in $\|\Delta\|_2$ and will be positive when
 \end{rmk}
 
 \subsection{Finale}
+
+Application to sparse regression.
 
 \subsubsection{Standard Linear Model}
 
