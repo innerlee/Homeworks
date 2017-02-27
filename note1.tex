@@ -1,5 +1,5 @@
 \section{Note 1}
-
+Reading~\cite{negahban2012}.
 \subsection{Prelude}
 
 \subsubsection{Recall}
@@ -46,6 +46,8 @@ $\hat\Delta = \hat\theta - \theta^*$.
         We need to know how $R$ penalizes deviation,
         which leads to the \emph{decomposability} concept.
 \end{itemize}
+
+\subsection{Theme}
 
 \subsubsection{Decomposability of $R$}
 
@@ -294,7 +296,7 @@ It follows that
 Note that the RHS is quadratic in $\|\Delta\|_2$ and will be positive when
 \begin{equation}
     \|\Delta\|_2^2 \ge \delta^2 = 9\frac{\lambda^2}{\kappa^2}\Psi^2(\cMbar)
-        + \frac{\lambda}{\kappa}\{2\tau^2(\theta^*)+4R(\theta^*_{\cM^\perp}).
+        + \frac{\lambda}{\kappa}[2\tau^2(\theta^*)+4R(\theta^*_{\cM^\perp})].
 \end{equation}
 \end{proof}
 
@@ -309,3 +311,119 @@ Note that the RHS is quadratic in $\|\Delta\|_2$ and will be positive when
         all the parameters in the theorem.
 \end{itemize}
 \end{rmk}
+
+\subsection{Finale}
+
+\subsubsection{Standard Linear Model}
+
+\begin{itemize}
+    \item $Z_i=(x_i,y_i)\in\real^d\times\real$ covariate-response pair.
+    \item $y=X\theta^*+w$,
+        where $\theta^*\in\real^d$ is an unknown regression vector and
+        $X\in\real^{n\times d}$ is the design matrix with $x_i^T$ as $i$-th row.
+        $w\in\real^n$ is the noise vector.
+    \item model: exactly sparse $\theta^*$.
+        % Q
+        \footnote{what is \emph{exactly sparse}?}
+        LASSO (least absolute shrinkage and selection operator):
+        \begin{equation}
+            \thetahat\in\argmin_{\theta\in\real^d}(\frac{1}{2n}\|y-X\theta\|_2^2+\lambda\|\theta\|_1).
+        \end{equation}
+        Denote
+        \begin{equation}
+            \cL(\theta;\{z_i\}_{i=1}^n) := \frac{1}{2n}\|y-X\theta\|_2^2.
+        \end{equation}
+\end{itemize}
+
+\subsubsection{Observe}
+
+\begin{equation}
+\begin{split}
+      & \cL(\theta^*+\Delta)-\cL(\theta^*)-\nabla\cL(\theta^*)^T\Delta    \\
+    = & \frac{1}{2n}(\|y-X(\theta^*+\Delta)\|_2^2-\|y-X\theta^*\|_2^2)
+        - \frac{1}{n}(X^TX\theta^*-X^Ty)^T\Delta  \\
+    = & \frac{1}{2n}(\|X\Delta\|_2^2+2(\theta^*)^TX^TX\Delta-2y^TX\Delta)
+        - \frac{1}{n}(X^TX\theta^*-X^Ty)^T\Delta  \\
+    = & \frac{1}{2n}\|X\Delta\|_2^2.
+\end{split}
+\end{equation}
+Thus to establish RSC with
+\begin{equation}
+    \cM(S) = \cMbar(S) = \{\theta\in\real^d:\theta_j=0, \forall j\notin S\},
+\end{equation}
+where $S$ is the support of $\theta^*$,
+it suffices to prove
+\begin{equation}
+    \frac{\|X\Delta\|_2^2}{2n}\ge \kappa\|\Delta\|_2^2,\quad
+        \forall \Delta\in\cC=\{\Delta\in\real^d:\|\Delta_{S^C}\|_1\le3\|\Delta_S\|_1\}.
+\end{equation}
+This condition can be viewed as a \emph{restricted eigenvalue condition}.
+
+\subsubsection{Implications}
+
+Before we discuss the validity of the condition,
+let us see its implications.
+
+\begin{pro}
+    Suppose we have the linear model $y=X\theta^*+w$ and
+    \begin{itemize}
+        \item $\theta^*$ is $S$-sparse,
+        \item The RSC condition holds,
+        \item $\frac{\|X_j\|_2}{\sqrt{n}}\le 1, \forall j$,
+            where $X_j$ is the $j$-th row of $X$.
+        \item $w$ is zero-mean with sub-Gaussian tails; \ie
+            $\exists \sigma>0$, \st for any fixed $\|v\|_2=1$,
+            \begin{equation}
+                \Pr[|v^Tw|\ge t] \le 2\exp(-\frac{t^2}{2\sigma^2}).
+            \end{equation}
+    \end{itemize}
+    Then for $\lambda=4\sigma\sqrt{\frac{\log d}{n}}$, we have
+    \begin{equation}
+        \|\thetahat-\theta^*\|_2^2\le \frac{144\sigma^2}{\kappa^2}\frac{S\log d}{n},
+    \end{equation}
+    with prob. $\ge 1-2/d$.
+\end{pro}
+
+\begin{proof}
+    Since $S$ is chosen as the support of $\theta^*$,
+    we have $\theta^*_{\cM(S)^\perp}=0$.
+    Also we have $\tau=0$.
+    Hence by theorem,
+    it remains to bound $\lambda$ and $\Psi(\cMbar(S))=\Psi(\cM(S))$.
+    For the latter we have
+    \begin{equation}
+        \Psi(\cM(S)) = \sup_{u\in\cM(S)\backslash\{0\}}\frac{\|u\|_1}{\|u\|_2}=\sqrt{s}.
+    \end{equation}
+    For the former, note that
+    \begin{equation}
+        \nabla\cL(\theta^*) = \frac{1}{n}X^T(X\theta^*-y)=-\frac{1}{n}X^Tw,
+    \end{equation}
+    and $R^*(v)=\|v\|_\infty$.
+    By theorem we need
+    \begin{equation}
+        \lambda\ge 2R^*(\nabla\cL(\theta^*))=\frac{2}{n}\|X^Tw\|_\infty.
+    \end{equation}
+    Note that by assumption,
+    \begin{equation}
+        \Pr\bigg[\bigg|\frac{X_j^T w}{n}\bigg|\ge t\bigg]
+            = \Pr\bigg[\bigg|\bigg(\frac{X_j}{\sqrt{n}}\bigg)^T w\bigg|\ge \sqrt{n}t\bigg]
+            \le 2\exp\bigg(\!\!-\frac{nt^2}{2\sigma^2}\bigg).
+    \end{equation}
+    Hence by union bound,
+    \begin{equation}
+        \Pr\bigg[\bigg\|\frac{X^T w}{n}\bigg\|_\infty\ge t\bigg]
+             \le 2d\exp\bigg(\!\!-\frac{nt^2}{2\sigma^2}\bigg).
+    \end{equation}
+    Let $t^2=(4\sigma^2\log d)/n$. Then
+    \begin{equation}
+        \Pr\bigg[\bigg\|\frac{X^T w}{n}\bigg\|_\infty\ge t\bigg] \le \frac{2}{d}.
+    \end{equation}
+    Or equivalently, with prob. $\ge 1-2/d$,
+    \begin{equation}
+        \lambda\ge \frac{2}{n}\|X^Tw\|_\infty.
+    \end{equation}
+\end{proof}
+
+\subsubsection{Restricted Eigenvalue Condition}
+
+The remaining question now is whether the restricted eigenvalue condition holds.
