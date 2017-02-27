@@ -427,3 +427,43 @@ let us see its implications.
 \subsubsection{Restricted Eigenvalue Condition}
 
 The remaining question now is whether the restricted eigenvalue condition holds.
+
+\begin{thm}
+Suppose that the rows of $X$ are iid $\cN(0,\Sigma)$.
+Then $\exists$ constants $c_1,c_2>0$ \st
+\begin{equation}
+    \frac{\|X\Delta\|_2}{\sqrt{n}}\ge\frac{1}{4}\|\Sigma^{\frac{1}{2}}\Delta\|_2-9\rho(\Sigma)\sqrt{\frac{\log d}{n}}\|\Delta\|_1, \quad \forall\Delta\in\real^d,
+\end{equation}
+with prob. $\ge 1-c_1\exp(-c_2n)$, where
+\begin{equation}
+    \rho^2(\Sigma):=\max_{1\le j\le d}\Sigma_{jj}.
+\end{equation}
+\end{thm}
+
+\begin{rmk} \leavevmode
+\begin{itemize}
+    \item Note that $\forall \Delta\in\cC$,
+        \begin{equation}
+            \|\Delta\|_1=\|\Delta_S\|_1+\|\Delta_{S^c}\|_1\le4\|\Delta_S\|_1\le4\sqrt{s}\|\Delta_S\|_2.
+        \end{equation}
+        Thus if for simplicity, $\Sigma=I$, then
+        \begin{equation}
+        \begin{split}
+            \frac{\|X\Delta\|_2}{\sqrt{n}}
+                & \ge\frac{1}{4}\|\Delta\|_2-9\sqrt{\frac{\log d}{n}}(4\sqrt{s}\|\Delta\|_2)    \\
+                & =\bigg(\frac{1}{4}-36\sqrt{\frac{s\log d}{n}}\bigg)\|\Delta\|_2, \quad \forall\Delta\in\cC,
+        \end{split}
+        \end{equation}
+        Hence provided that
+        \begin{equation}
+            \kappa'=\frac{1}{4}-36\sqrt{\frac{s\log d}{n}}>0\quad\Leftrightarrow\quad n>144^2 s\log d,
+        \end{equation}
+        the restricted eigenvalue condition holds with probability,
+        where $\kappa=(\kappa')^2/2$.
+    \item The theorem says the nullspace of $X$ cannot have vectors that are too sparse.
+    \item Subtlety in the proof of theorem:
+        the inequality has to hold for all $\Delta\in\real^d$,
+        not just for a fixed $\Delta$.
+        This requires tools from random matrix and empirical process theory.
+\end{itemize}
+\end{rmk}

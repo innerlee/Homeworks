@@ -31,7 +31,8 @@
         "CUHK",
         "ELEG",
         "subgradient",
-        "indices"
+        "indices",
+        "nullspace"
     ],
     "documentTypes": [
         "markdown",
