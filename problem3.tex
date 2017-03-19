@@ -141,9 +141,29 @@ we have
     \end{bmatrix}.
 \end{equation}
 
+If $D=-I$,
+then we get $X_{11}=1, X_{22}=0$.
+So $\sigma_1(X)\ge1$.
+Since $X$ is rank 2,
+$\sigma_2(X)>0$.
+We have $\|X\|_*>1$.
+So the objective function will have value larger than $4$.
+
+If $D=I$,
+then we get $X_{11}=21, X_{22}=14$.
+This is too large.
+
 If $D=
     \begin{bmatrix}
-        -1 & 0    \\
-        0    & -1 \\
+        -1 & 0 \\
+        0  & 1 \\
     \end{bmatrix}$,
-then we get $X_{11}=1, X_{22}=0$
+then we get $X_{11}=9, X_{22}=6$.
+This is also too large.
+
+If $D=
+    \begin{bmatrix}
+        1 & 0  \\
+        0 & -1 \\
+    \end{bmatrix}$,
+then we get $X_{11}=-7/5, X_{22}=-8/5$.
