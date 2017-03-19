@@ -1,23 +1,28 @@
 \section{Problem 2}
 
-First we claim that the nuclear norm function $f(X):=\|X\|_*$ is convex,
+First we claim that the nuclear norm function $\|X\|_*$ is convex,
 and treat it as a known fact.
-
-Suppose $U\in\cO(m), V\in\cO(n)$ are two orthogonal matrices.
-Then $X=U\Sigma V^T$ for some $\Sigma$.
-Let $F(\Sigma):=f(U\Sigma V^T)=f(X)$.
-Then
-\begin{equation}
-    \partial F(X) = \{UDV^T:D\in\partial F(X)\}.
-\end{equation}
+Suppose $X=USV^T$ is an SVD of $X$,
+then $U\in\cO(m), V\in\cO(n)$ are two orthogonal matrices.
 \begin{equation}
 \begin{split}
-    \partial f(X)
+    \partial \|X\|_*
         &=\{D:\|X+\Delta\|_*-\|X\|_*\ge D\cdot\Delta, \forall\Delta\in\real^{m\times n}\} \\
-        &=\{D:\|U(X+\Delta)V^T\|_*-\|UXV^T\|_*\ge (UDV^T)\cdot(U\Delta V^T), \forall\Delta\in\real^{m\times n}\}
+        &=\{D:\|U^T(X+\Delta)V\|_*-\|U^TXV\|_*\ge (U^TDV)\cdot(U^T\Delta V), \forall\Delta\in\real^{m\times n}\} \\
+        &=\{D:\|S+U^T\Delta V\|_*-\|S\|_*\ge (U^TDV)\cdot(U^T\Delta V), \forall\Delta\in\real^{m\times n}\} \\
+        &=\{D:\|S+\Delta\|_*-\|S\|_*\ge (U^TDV)\cdot\Delta, \forall\Delta\in\real^{m\times n}\} \\
+        &=\{UDV^T: D\in\partial \|S\|_*\}.
 \end{split}
 \end{equation}
-
+So for this problem,
+we only need compute $\partial\|S\|_*$,
+where
+\begin{equation}
+    S=\begin{bmatrix}
+    \Sigma       & 0 \\
+    0       & 0 \\
+\end{bmatrix}.
+\end{equation}
 \begin{claim}
 
 \end{claim}
