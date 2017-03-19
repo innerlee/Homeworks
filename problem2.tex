@@ -80,11 +80,11 @@ Next we compute the partial derivatives (if exists) by definition.
         =\lim_{t\to0}\frac{\|S+tE_{ij}\|_*-\|S\|_*}{t},
 \end{equation}
 where $E_{ij}$ is a all zero matrix except for the $(i,j)$-th element being $1$.
-Case $i\le r,j\le r,i=j$.
+Case ($i\le r,j\le r,i=j$).
 For small enough $t$,
 we have $\|S+tE_{ij}\|_*=\|S\|_*+t$ (trivial case).
 
-Case $i\le r,j\le r,i<j$.
+Case ($i\le r,j\le r,i<j$).
 We transform $S+tE_{ij}$ to a simpler shape.
 First switch the $i$-th row and first row,
 then switch the $i$-th column and first column,
@@ -146,7 +146,7 @@ However,
 this method fails for case ($i>r, j>r$)
 because in the corresponding Equation~\eqref{eq:simple},
 $\sigma_i=\sigma_j=0$.
-and Equation~\eqref{eq:sing} will leads to
+And then Equation~\eqref{eq:sing} will lead to
 \begin{equation}
     \bigg\|\begin{bmatrix}
         0 & t \\
