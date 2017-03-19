@@ -3,7 +3,7 @@
 Since $h(\cA(X))$ is smooth,
 we compute the derivative
 \begin{equation}
-    \frac{\partial h(\cA(X))}{\partial X} =
+    D:=\frac{\partial h(\cA(X))}{\partial X} =
     \begin{bmatrix}
         \frac{3}{2}X_{11}-2X_{22}-\frac{5}{2} & 0 \\
         0   & -2X_{11}+3X_{22}+1 \\
@@ -33,4 +33,21 @@ However,
 $\|-D\|=2.5>1$.
 So $X=0$ is not a solution.
 
-
+If $X$ is rank 2,
+suppose one of its SVD is $X=U\Sigma V^T$
+and $\sigma_1\ge\sigma_2>0$.
+Then $\partial\|X\|_*=UV^T$.
+We get the constraint
+\begin{equation}
+    -D=UV^T.
+\end{equation}
+The right hand side can be seen as an SVD of $-D$
+with $\sigma_1(D)=\sigma_2(D)=1$.
+Since $D$ is a diagonal matrix,
+we have
+\begin{equation}
+\begin{split}
+    \frac{3}{2}X_{11}-2X_{22}-\frac{5}{2} &= \pm1, \\
+    -2X_{11}+3X_{22}+1 &= \pm1.
+\end{split}
+\end{equation}
