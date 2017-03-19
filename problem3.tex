@@ -167,3 +167,15 @@ If $D=
         0 & -1 \\
     \end{bmatrix}$,
 then we get $X_{11}=-7/5, X_{22}=-8/5$.
+Let $U=[u\ k_1u^\perp],V=[v\ k_2v^\perp]$,
+where $k_1=\pm1,k_2=\pm1$.
+Then $-D=UV^T=\begin{bmatrix}
+        u_1v_1+k_1k_2u_2v_2 & u_1v_2-k_1k_2u_2v_1 \\
+        u_2v_1-k_1k_2u_1v_2 & u_1v_1+k_1k_2u_2v_2 \\
+    \end{bmatrix}$.
+This leads to a contradiction
+because the diagonal elements of the right hand side have the same sign,
+while those of the left hand side matrix $D$ have opposite ones.
+
+As argued above,
+we found that the unique optimal solution is $\hat X=\diag(1,0)$.
