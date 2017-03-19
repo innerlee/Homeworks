@@ -72,3 +72,40 @@ we have
 \end{equation}
 This contradicts $f(0,\delta_2)\ge0$.
 \end{proof}
+
+Next we compute the partial derivatives (if exists) by definition.
+\begin{equation}
+    \frac{\partial\|X\|_*}{\partial x_{ij}}\bigg|_{X=S}
+        =\lim_{t\to0}\frac{\|S+tE_{ij}\|_*-\|S\|_*}{t},
+\end{equation}
+where $E_{ij}$ is a all zero matrix except for the $(i,j)$-th element being $1$.
+Case $i<=r,j<=r,i=j$.
+For small enough $t$,
+we have $\|S+tE_{ij}\|_*=\|S\|_*+t$ (trivial case).
+
+Case $i<=r,j<=r,i<j$.
+We transform $S+tE_{ij}$ to a simpler shape.
+First switch the $i$-th row and first row,
+then switch the $i$-th column and first column,
+then switch the $j$-th row and second row,
+then switch the $j$-th column and second column.
+After these operation,
+the matrix becomes a block diagonal shape without changing the nuclear norm.
+\begin{equation}
+    \tilde X(t)=\begin{bmatrix}
+    \sigma_i & t        & 0            & 0 \\
+    0        & \sigma_j & 0            & 0 \\
+    0        & 0        & \tilde\Sigma & 0 \\
+    0        & 0        & 0            & 0 \\
+\end{bmatrix},
+\end{equation}
+where $\tilde\Sigma$ is $\Sigma$ without its original $i,j$-th rows and columns.
+So
+\begin{equation}
+    \frac{\partial\|X\|_*}{\partial x_{ij}}\bigg|_{X=S}
+        =\frac{\partial}{\partial t}\bigg|_{t=0}
+            \bigg\|\begin{bmatrix}
+                \sigma_i & t        \\
+                0        & \sigma_j \\
+            \end{bmatrix}\bigg\|_*.
+\end{equation}
