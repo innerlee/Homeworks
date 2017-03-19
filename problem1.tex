@@ -31,3 +31,22 @@ Then $z-y=(a-s, b-u_1, a-u_2)$ must parallel to the normal direction of plane $H
 which is $n=(1,0,-1)$.
 Solve this constraint,
 we get $b=u_1$ and $a=(s+u_2)/2$.
+
+\subsection{} %1.3
+
+Let $p=(t,u_1,u_2)\in \cQ^3\cap H$ be a point in the intersection.
+Since $p\in H$, we have $t=u_2$.
+Since $p \in \cQ$, we have $u_1^2+u_2^2=u_1^2 + t^2\le t^2$,
+and thus $u_1\equiv0$.
+Together with $t\ge\|x\|_2\ge0$,
+we know the intersection is contained in the ray $R:=\{t(1,0,1): t\ge0\}$.
+It's easy to see that this ray also contained in the intersection.
+So $\cQ^3\cap H=R$.
+Then the projection of point $y$ to this ray $R$ is a simple optimization problem
+\begin{equation}
+    t^*=\argmin_{t\ge0}\|(s,u_1,u_2)-t(1,0,1)\|_2^2=\argmin_{t\ge0}(s-t)^2+(u_2-t)^2.
+\end{equation}
+The solution is $t^*=(s+u_2)_+/2$.
+So comes the desired answer.
+
+\subsection{} %1.4
