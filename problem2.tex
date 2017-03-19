@@ -24,8 +24,51 @@ where
 \end{bmatrix}.
 \end{equation}
 \begin{claim}
-
+Suppose $f(x,y)$ is a convex function
+where $x\in\real^s,y\in\real^t$.
+Given point $(x_0,y_0)$,
+let $g(x):=f(x,y_0)$ and $h(y):=f(x_0,y)$.
+If the partial gradient $v=\nabla_x g(x_0)\in\real^s$ exists,
+then
+\begin{equation}
+    \partial f(x_0,y_0) = \{(v,w):w\in\partial h(y_0)\}.
+\end{equation}
 \end{claim}
 \begin{proof}
+(Left $\subset$ Right)
+$\forall (v,w)\in\partial f(x_0,y_0)$,
+we have
+\begin{equation}
+    f(x_0+\delta_1,y_0+\delta_2)\ge f(x_0,y_0)+v^T\delta_1+w^T\delta_2,
+        \quad\forall \delta_1\in\real^s,\delta_2\in\real^t.
+\end{equation}
+Let $\delta_1=0$ and $\delta_2=0$ respectively,
+we will get $w\in\partial h(y_0)$ and $v=\nabla_x g(x_0)$.
 
+(Left $\supset$ Right)
+Without loss of generality,
+we can assume $(x_0,y_0)=0, f(x_0,y_0)=0$ and $(v,w)=0$.
+So we have $\nabla_x f(0,0)=0$ and inequalities
+\begin{equation}
+    f(\delta_1,0)\ge0, f(0,\delta_2)\ge 0,
+        \quad \forall \delta_1\in\real^s,\delta_2\in\real^t.
+\end{equation}
+We need to show that $(0,0)\in\partial f(0,0)$, \ie
+\begin{equation}
+    f(\delta_1,\delta_2)\ge 0,
+        \quad \forall \delta_1\in\real^s,\delta_2\in\real^t.
+\end{equation}
+If not,
+then $\exists (a,b)\in\real^{s+t}$, \st $f(a,b)<0$.
+Let point $p_t=(-ta,0), t>0$.
+Then
+\begin{equation}
+\begin{split}
+    f\bigg(0,\frac{tb}{1+t}\bigg)
+        &\le \frac{1}{1+t}f(-ta,0)+\frac{t}{1+t}f(a,b) \\
+        &= t\bigg(\frac{1}{1+t}\frac{f(-ta,0)}{t}+\frac{1}{1+t}f(a,b)\bigg) \\
+        &< 0 \quad(\text{for small enough } $t$).
+\end{split}
+\end{equation}
+This contradicts $f(0,\delta_2)\ge0$.
 \end{proof}
