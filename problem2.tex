@@ -190,3 +190,23 @@ $\partial g(0)=\{D:\|\Delta\|_*\ge D\cdot\Delta,
 (Left $\subset$ Right)
 
 (Left $\supset$ Right)
+Let $W$ satisfy $\|W\|\le1$,
+we want $W\cdot\Delta\le\|\Delta\|_*$ holds for any $\Delta$.
+Suppose for a given $\Delta$,
+it has an SVD $\Delta=U\Sigma V^T$,
+where the diagonal elements of $\Sigma$ are non-negative.
+Then we need prove
+\begin{equation}
+    (U^TWV)\cdot(U^T\Delta V)\le\|U^T\Delta V\|_*,
+\end{equation}
+which is equivalent to
+\begin{equation}
+    (U^TWV)\cdot\Sigma\le\|\Sigma\|_*.
+\end{equation}
+Let $t_i$ be the diagonal elements of $U^TWV$,
+then the above equation is equivalent to
+\begin{equation}\label{eq:toprove}
+    \sum_i t_i \sigma_i \le\sum_i \sigma_i,
+\end{equation}
+Since $\|U^TWV\|=\|W\|\le1$,
+we have $|t_i|\le1$ and thus Equation~\eqref{eq:toprove} holds.
