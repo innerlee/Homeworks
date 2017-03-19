@@ -27,13 +27,94 @@ Or equivalently,
     -D\in\partial\|X\|_*.
 \end{equation}
 
-For $X=0$,
+\textbf{For $X=0$ being rank 0},
 $\partial\|X\|_*=\{W:\|W\|\le1\}$.
 However,
 $\|-D\|=2.5>1$.
 So $X=0$ is not a solution.
 
-If $X$ is rank 2,
+\textbf{If $X$ is rank 1},
+Then an SVD of $X$ can be written as
+\begin{equation}
+    X=[u\ u^\perp] \diag(\sigma,0) [v\ v^\perp]^T = \sigma uv^T,
+\end{equation}
+where $\sigma>0, u=(u_1,u_2), u^\perp=(-u_2,u_1), v=(v_1,v_2), v^\perp=(-v_2,v_1)$.
+So
+\begin{equation}
+\begin{split}
+    \partial\|X\|_*
+        &=\bigg\{[u\ u^\perp]
+            \begin{bmatrix}
+                1 & 0    \\
+                0 & w \\
+            \end{bmatrix}
+            [v\ v^\perp]^T:|w|\le1\bigg\} \\
+        &=\bigg\{
+            \begin{bmatrix}
+                u_1v_1+wu_2v_2 & u_1v_2-wu_2v_1 \\
+                u_2v_1-wu_1v_2 & u_1v_1+wu_2v_2 \\
+            \end{bmatrix}
+            :|w|\le1\bigg\}
+\end{split}
+\end{equation}
+So, the optimality condition becomes $\exists |w|\le1$, \st
+\begin{equation}
+    -D=\begin{bmatrix}
+            u_1v_1+wu_2v_2 & u_1v_2-wu_2v_1 \\
+            u_2v_1-wu_1v_2 & u_1v_1+wu_2v_2 \\
+        \end{bmatrix}.
+\end{equation}
+We have $u_1v_2=wu_2v_1$ and $u_2v_1=wu_1v_2$.
+If $u_1v_2=u_2v_1=0$,
+then must have $u=v=(1,0)$ or $u=v=(0,1)$.
+
+If $u=v=(1,0)$,
+then $-D=I$ and $X=\diag(\sigma,0)$.
+We get $X_{11}=1,X_{22}=0$.
+So
+\begin{equation}
+    X=\diag(1,0) \text{ satisfies the optimality condition}.
+\end{equation}
+If $u=v=(0,1)$,
+then $-D=wI$ and $X=\diag(0,\sigma)$.
+Solve them we get $\sigma=0.7, w=1.1>1$,
+a contradiction with condition $|w|\le1$.
+
+If $u_1v_2\ne0$,
+then we have $u_1v_2=wu_2v_1=w^2u_1v_2$
+and thus $w=\pm1$.
+
+If $w=1$,
+we have $u_1v_2-u_2v_1=0$,
+\ie $u$ and $v$ are colinear.
+We must have $u=\pm v$.
+If $u=v$,
+then $X=\sigma uu^T$ and $-D=I$.
+we get $X_{11}=1, X_{22}=0$.
+Then we have $\sigma u_2^2=X_{22}=0$
+and thus $u_2=0$,
+a contradiction with $u_2v_1=u_1v_2\ne0$.
+If $u=-v$,
+then $X=-\sigma uu^T$ and $-D=-I$.
+we get $X_{11}=21, X_{22}=14$.
+Then we have $\|X\|_*\ge21$,
+a value being too large for an optimal.
+
+If $w=-1$,
+we have $u_1v_2+u_2v_1=0$,
+and thus $(u_1,u_2)$ and $(-v_1,v_2)$ are colinear.
+We must have $(u_1,u_2)=\pm(-v_1,v_2)$.
+If $(u_1,u_2)=(-v_1,v_2)$,
+then $-D=-I$ and we have $X_{11}=21, X_{22}=14$.
+This is too large.
+If $(u_1,u_2)=(v_1,-v_2)$,
+then $X=\sigma uv^T$ and $-D=I$.
+we get $X_{11}=1, X_{22}=0$.
+Then we have $-\sigma u_2^2=X_{22}=0$
+and thus $u_2=0$,
+a contradiction with $u_2v_1=u_1v_2\ne0$.
+
+\textbf{If $X$ is rank 2},
 suppose one of its SVD is $X=U\Sigma V^T$
 and $\sigma_1\ge\sigma_2>0$.
 Then $\partial\|X\|_*=UV^T$.
@@ -52,3 +133,10 @@ we have
         0    & \pm1 \\
     \end{bmatrix}.
 \end{equation}
+
+If $D=
+    \begin{bmatrix}
+        -1 & 0    \\
+        0    & -1 \\
+    \end{bmatrix}$,
+then we get $X_{11}=1, X_{22}=0$
