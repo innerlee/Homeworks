@@ -195,18 +195,34 @@ $\partial g(0)=\{D:\|\Delta\|_*\ge D\cdot\Delta,
 \forall\Delta\in\real^{(m-r)\times(n-r)}\}$.
 
 (Left $\subset$ Right)
+Let $D\in\partial g(0)$,
+then $\forall\Delta$,
+one has $D\cdot\Delta\le\|\Delta\|_*$.
+Suppose $D$ has an SVD $D=U\Sigma V^T$,
+then we have
+\begin{equation}
+    (U^TDV)\cdot(U^T\Delta V)\le\|U^T\Delta V\|_*,
+    \quad\forall\Delta,
+\end{equation}
+which is equivalent to
+\begin{equation}
+    \Sigma\cdot\Delta\le\|\Delta\|_*,
+    \quad\forall\Delta.
+\end{equation}
+Let $\Delta=E_{11}$,
+then we get $\sigma_1=\|D\|\le1$.
 
 (Left $\supset$ Right)
-Let $W$ satisfy $\|W\|\le1$,
+Let $W$ satisfies $\|W\|\le1$,
 we want $W\cdot\Delta\le\|\Delta\|_*$ holds for any $\Delta$.
 Suppose for a given $\Delta$,
 it has an SVD $\Delta=U\Sigma V^T$,
 where the diagonal elements of $\Sigma$ are non-negative.
-Then we need prove
+Then we only need to prove
 \begin{equation}
-    (U^TWV)\cdot(U^T\Delta V)\le\|U^T\Delta V\|_*,
+    W\cdot\Delta=(U^TWV)\cdot(U^T\Delta V)\le\|U^T\Delta V\|_*=\|\Delta\|_*,
 \end{equation}
-which is equivalent to
+which is equivalent to prove
 \begin{equation}
     (U^TWV)\cdot\Sigma\le\|\Sigma\|_*.
 \end{equation}
