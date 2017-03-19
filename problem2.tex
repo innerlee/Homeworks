@@ -80,6 +80,7 @@ Next we compute the partial derivatives (if exists) by definition.
         =\lim_{t\to0}\frac{\|S+tE_{ij}\|_*-\|S\|_*}{t},
 \end{equation}
 where $E_{ij}$ is a all zero matrix except for the $(i,j)$-th element being $1$.
+
 Case ($i\le r,j\le r,i=j$).
 For small enough $t$,
 we have $\|S+tE_{ij}\|_*=\|S\|_*+t$ (trivial case).
@@ -138,22 +139,28 @@ and get
         = 0,\quad (i\le r,j\le r,i<j).
 \end{equation}
 Similarly,
-for case ($i>r, j\le r$)
+for
+case ($i\le r,j\le r,i>j$),
+case ($i>r, j\le r$),
 and case ($i\le r, j>r$),
 we also have the partial derivatives being $0$.
 
 However,
 this method fails for case ($i>r, j>r$)
-because in the corresponding Equation~\eqref{eq:simple},
+because in the corresponding Equation~\eqref{eq:simple}s,
 $\sigma_i=\sigma_j=0$.
 And then Equation~\eqref{eq:sing} will lead to
 \begin{equation}
+    \bigg\|\begin{bmatrix}
+        0 & 0 \\
+        t & 0 \\
+    \end{bmatrix}\bigg\|_*=
     \bigg\|\begin{bmatrix}
         0 & t \\
         0 & 0 \\
     \end{bmatrix}\bigg\|_*=|t|,
 \end{equation}
-which is not smooth in $t$.
+which are not smooth in $t$.
 
 Let
 \begin{equation}
@@ -210,3 +217,5 @@ then the above equation is equivalent to
 \end{equation}
 Since $\|U^TWV\|=\|W\|\le1$,
 we have $|t_i|\le1$ and thus Equation~\eqref{eq:toprove} holds.
+
+Then we finish all the proofs.
