@@ -50,3 +50,22 @@ The solution is $t^*=(s+u_2)_+/2$.
 So comes the desired answer.
 
 \subsection{} %1.4
+
+Use previous results,
+we have
+\begin{equation}
+\begin{split}
+    \dist(x^k, \cQ^3)
+        &= \bigg\|(k,1,k)-\frac{k+\sqrt{1+k^2}}{2\sqrt{1+k^2}}(\sqrt{1+k^2},1,k)\bigg\|_2 \\
+        &= \bigg\|\bigg( \frac{\sqrt{1+k^2}-k}{2},\frac{k}{2\sqrt{1+k^2}}-\frac{1}{2},\frac{k}{2\sqrt{1+k^2}}\big(k-\sqrt{1+k^2}\big) \bigg)\bigg\|_2 \\
+        &\rightarrow 0\quad(k\rightarrow\infty),
+\end{split}
+\end{equation}
+\begin{equation}
+    \dist(x^k, H) = 0,
+\end{equation}
+and
+\begin{equation}
+    \dist(x^k, \cQ^3\cap H) = 1.
+\end{equation}
+It is evident that the claim in the question holds.
