@@ -1,1 +1,19 @@
 \section{Problem 3}
+
+Since $h(\cA(X))$ is smooth,
+we compute the derivative
+\begin{equation}
+    \frac{\partial h(\cA(X))}{\partial X} =
+    \begin{bmatrix}
+        \frac{3}{2}X_{11}-2X_{22}-\frac{5}{2} & 0 \\
+        0   & -2X_{11}+3X_{22}+1 \\
+    \end{bmatrix}.
+\end{equation}
+The two numbers in the matrix come from
+\begin{equation}
+\begin{split}
+    \frac{\partial h(y)}{\partial y}
+        &= (B^{\frac{1}{2}})^T(B^{\frac{1}{2}}y-B^{-\frac{1}{2}}d) \\
+        &= By-d.
+\end{split}
+\end{equation}
