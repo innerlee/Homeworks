@@ -2,13 +2,13 @@
 
 \subsection{} % 4.1
 
-Denote the $i$-th hidden layer by L$i$.
+Denote the $i$-th hidden layer by Hidden$_{i}$.
 Then the number of fc parameters:
 
 \begin{itemize}
-    \item Input $\to$ L$1$: $dn$.
-    \item L$i$ $\to$ L$(i+1)$: $n^2$, $i=1,2,\dots,n-1$.
-    \item L$n$ $\to$ Output: $nc$.
+    \item Input $\to$ Hidden$_{1}$: $dn$.
+    \item Hidden$_{i}$ $\to$ Hidden$_{(i+1)}$: $n^2$, $i=1,2,\dots,n-1$.
+    \item Hidden$_{L}$ $\to$ Output: $nc$.
 \end{itemize}
 
 Total: $dn + (L-1)n^2 + nc$.
@@ -20,6 +20,7 @@ and we have $y=f(Wx)$
 where $x\in\real^m, y\in\real^n$, and $f$ is an element-wise function.
 Suppose $u$ is the last node to compute the cost function.
 Then
+
 \begin{equation}
 \begin{split}
     \frac{\partial u}{\partial W_{ij}}
@@ -32,7 +33,8 @@ We ignore the multiplication $Wx$ since this result should already be available
 when doing forward pass.
 Then for the whole matrix,
 we need $2mn$ multiplications.
-Next we estimate the computation burden for the term $\partial u/\partial x_i}$.
+Next we estimate the computation burden for the term
+$\partial u/\partial x_i$.
 
 \begin{equation}
 \begin{split}
@@ -49,16 +51,45 @@ Then we can compute the number of multiplication when BP:
 
 \begin{itemize}
     \item Loss $\to$ Output: do not count this in.
-    \item Output $\to$ L$n$:
+    \item Output $\to$ Hidden$_{L}$:
         for fc weights: $2nc$.
-        for neurons in L$n$: $2n$.
-    \item L$(i+1)$ $\to$ L$i$:
+        for neurons in Hidden$_{L}$: $2n$.
+    \item Hidden$_{(i+1)}$ $\to$ Hidden$_{i}$:
         for fc weights: $2n^2$.
-        for neurons in L$i$: $2n$.
-    \item L$1$ $\to$ Input: $dn$.
+        for neurons in Hidden$_{i}$: $2n$.
+    \item Hidden$_{1}$ $\to$ Input:
         for fc weights: $2nd$.
 \end{itemize}
 
 Total: $2nc+2n+(L-1)(2n^2+2n)+2nd=2n[1+c+d+(L-1)(n+1)]$.
 
 \subsection{} % 4.3
+
+The computation fc weights are the same as the previous sub-question.
+However,
+we need to estimate computation complexity for computing
+gradients on neurons $\partial u_N/\partial u_i$.
+The number of paths is $cn^{(N-i-1)}$
+and for each path,
+there are $n-2$ multiplications.
+So
+
+\begin{itemize}
+    \item Loss $\to$ Output: do not count this in.
+    \item Output $\to$ Hidden$_{L}$:
+        for fc weights: $2nc$.
+        for neurons in Hidden$_{L}$: $cn$.
+    \item Hidden$_{(i+1)}$ $\to$ Hidden$_{i}$:
+        for fc weights: $2n^2$.
+        for neurons in Hidden$_{i}$: $(L-i+1)cn^{L-i}$.
+    \item Hidden$_{1}$ $\to$ Input:
+        for fc weights: $2nd$.
+\end{itemize}
+
+Total:
+\begin{equation}
+\begin{split}
+    & 2nc+cn+2n^2+2dn+\sum_{i=1}^{L-1}(L-i+1)cn^{L-i} \\
+    & = n(3c+2d+2n) + c\sum_{i=1}^{L-1}(i+1)n^i
+\end{split}
+\end{equation}
