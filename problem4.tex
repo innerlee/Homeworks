@@ -2,6 +2,17 @@
 
 \subsection{} % 4.1
 
+Denote the $i$-th hidden layer by L$i$.
+Then the number of fc parameters:
+
+\begin{itemize}
+    \item Input $\to$ L$1$: $dn$.
+    \item L$i$ $\to$ L$(i+1)$: $n^2$, $i=1,2,\dots,n-1$.
+    \item L$n$ $\to$ Output: $nc$.
+\end{itemize}
+
+Total: $dn + (n-1)n^2 + nc$
+
 \subsection{} % 4.2
 
 \subsection{} % 4.3
