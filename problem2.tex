@@ -2,4 +2,15 @@
 
 \subsection{} % 2.1
 
+\begin{equation}
+\begin{split}
+    \vh_t
+        &= F_\theta(\vh_{t-1},\vx_t) \\
+        &= F_\theta(F_\theta(\vh_{t-2},\vx_{t-1}),\vx_t) \\
+        &= F_\theta(F_\theta(F_\theta(\vh_{t-3},\vx_{t-2}),\vx_{t-1}),\vx_t) \\
+        &= F_\theta(F_\theta(F_\theta(F_\theta(\vh_{t-4},\vx_{t-3}),\vx_{t-2}),\vx_{t-1}),\vx_t) \\
+        &= \cdots\cdots (\text{unfold until reach } \vx_1)\\
+\end{split}
+\end{equation}
+
 \subsection{} % 2.2
