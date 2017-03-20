@@ -1,1 +1,54 @@
 \section{Problem 1}~\label{sec:prob1}
+
+Let $\vu:=\mW_{hz}\vh_t+\vb_z$.
+Then $\vz_t=\softmax(\vu)$.
+
+\begin{equation}
+\begin{split}
+    \frac{d \tanh(s)}{d s}
+        &= 1 - \tanh(s)^2
+\end{split}
+\end{equation}
+
+\begin{equation}
+\begin{split}
+    \frac{\partial (\softmax(\vu))_i}{\partial u_j}
+        &= \begin{cases}
+            \softmax(\vu)_j-\softmax(\vu)_i\softmax(\vu)_j, &\text{ when } i=j \\
+            -\softmax(\vu)_i\softmax(\vu)_j,&\text{ when } i\neq j
+        \end{cases}
+\end{split}
+\end{equation}
+
+\begin{equation}
+\begin{split}
+    \frac{\partial L}{\partial z_{t,i}}
+        &= -\frac{\Ibb(i=y_t)}{z_{t,i}}
+\end{split}
+\end{equation}
+
+\begin{equation}
+\begin{split}
+    \frac{\partial u_l}{\partial W_{hz,ij}}
+        &= \frac{\partial (\sum_s W_{hz,ls}h_{t,s}+b_{z,l})}{\partial W_{hz,ij}}  \\
+        &= \Ibb(i=l)h_{t,j}
+\end{split}
+\end{equation}
+
+\begin{equation}
+\begin{split}
+    \frac{\partial L}{\partial W_{hz,ij}}
+        &= \sum_t \frac{\partial L}{\partial \vz_t} \frac{\partial \vz_t}{\partial W_{hz,ij}} \\
+        &= \sum_{t,k} \frac{\partial L}{\partial z_{t,k}} \frac{\partial z_{t,k}}{\partial W_{hz,ij}} \\
+        &= \sum_{t,k,l} \frac{\partial L}{\partial z_{t,k}} \frac{\partial (\softmax(\vu))_k}{\partial u_l}\frac{\partial u_l}{\partial W_{hz,ij}} \\
+        &= \sum_{t,k} \frac{\partial L}{\partial z_{t,k}} \frac{\partial (\softmax(\vu))_k}{\partial u_i}h_{t,j} \\
+\end{split}
+\end{equation}
+
+\begin{equation}
+\begin{split}
+    \frac{\partial L}{\partial W_{hh}}
+        &= \sum_t \frac{\partial L}{\partial \vh_t} \frac{\partial \vh_t}{\partial W_{hh}} \\
+        &= \sum_{t,i} \frac{\partial L}{\partial h_{t,i}} \frac{\partial h_{t,i}}{\partial W_{hh}} \\
+\end{split}
+\end{equation}
