@@ -11,8 +11,54 @@ Then the number of fc parameters:
     \item L$n$ $\to$ Output: $nc$.
 \end{itemize}
 
-Total: $dn + (n-1)n^2 + nc$
+Total: $dn + (L-1)n^2 + nc$.
 
 \subsection{} % 4.2
+
+Suppose weights from layer $i$ to $i+1$ is $W\in\real^{n\times m}$
+and we have $y=f(Wx)$
+where $x\in\real^m, y\in\real^n$, and $f$ is an element-wise function.
+Suppose $u$ is the last node to compute the cost function.
+Then
+\begin{equation}
+\begin{split}
+    \frac{\partial u}{\partial W_{ij}}
+        &= \sum_k \frac{\partial u}{\partial y_k}\frac{\partial y_k}{\partial W_{ij}} \\
+        &= \sum_{k} \frac{\partial u}{\partial y_k} f'((Wx)_k) \frac{\partial (\sum_l W_{kl}x_{l})}{\partial W_{ij}} \\
+        &= \frac{\partial u}{\partial y_i} f'((Wx)_i) x_j \\
+\end{split}
+\end{equation}
+We ignore the multiplication $Wx$ since this result should already be available
+when doing forward pass.
+Then for the whole matrix,
+we need $2mn$ multiplications.
+Next we estimate the computation burden for the term $\partial u/\partial x_i}$.
+
+\begin{equation}
+\begin{split}
+    \frac{\partial u}{\partial x_i}
+        &= \sum_k \frac{\partial u}{\partial y_k}\frac{\partial y_k}{\partial x_i} \\
+        &= \sum_{k} \frac{\partial u}{\partial y_k} f'((Wx)_k) \frac{\partial (\sum_l W_{kl}x_{l})}{\partial x_i} \\
+        &= \frac{\partial u}{\partial y_i} f'((Wx)_i) W_{ki} \\
+\end{split}
+\end{equation}
+Since $x\in\real^m$,
+the number of multiplications are $2m$.
+
+Then we can compute the number of multiplication when BP:
+
+\begin{itemize}
+    \item Loss $\to$ Output: do not count this in.
+    \item Output $\to$ L$n$:
+        for fc weights: $2nc$.
+        for neurons in L$n$: $2n$.
+    \item L$(i+1)$ $\to$ L$i$:
+        for fc weights: $2n^2$.
+        for neurons in L$i$: $2n$.
+    \item L$1$ $\to$ Input: $dn$.
+        for fc weights: $2nd$.
+\end{itemize}
+
+Total: $2nc+2n+(L-1)(2n^2+2n)+2nd=2n[1+c+d+(L-1)(n+1)]$.
 
 \subsection{} % 4.3
