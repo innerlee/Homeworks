@@ -33,7 +33,8 @@
         "subgradient",
         "indices",
         "nullspace",
-        "colinear"
+        "colinear",
+        "softmax"
     ],
     "documentTypes": [
         "markdown",
