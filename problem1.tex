@@ -31,13 +31,11 @@ Use these equations, we have
 \end{equation}
 
 Now compute derivatives for $\mW_{hh}$.
-Let $\vv_t=$
+Let $\vv_t=\mW_{hx}\vx_t+\mW_{hh}\vh_{t-1}+\vb_h$.
+Then $\vh_t=\tanh(\vv_t)$.
 
 \begin{equation}
-\begin{split}
-    \frac{d \tanh(s)}{d s}
-        &= 1 - \tanh(s)^2
-\end{split}
+    \frac{\partial h_{t,i}}{\partial v_{t,j}} = \Ibb(i=j)(1-h_{t,j}^2)
 \end{equation}
 
 \begin{equation}
