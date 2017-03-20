@@ -14,6 +14,12 @@ Using formula for softmax, we have
 \end{equation}
 
 \begin{equation}
+    \frac{\partial u_{t,l}}{\partial h_{t,k}}
+        = \frac{\partial \big(\sum_s W_{hz,ls}h_{t,s}+b_{z,l}\big)}{\partial h_{t,k}}
+        = W_{hz,lk}
+\end{equation}
+
+\begin{equation}
     \frac{\partial L}{\partial z_{t,i}}= -\frac{\Ibb(i=y_t)}{z_{t,i}}
 \end{equation}
 
@@ -31,17 +37,35 @@ Use these equations, we have
 \end{equation}
 
 Now compute derivatives for $\mW_{hh}$.
-Let $\vv_t=\mW_{hx}\vx_t+\mW_{hh}\vh_{t-1}+\vb_h$.
+Let $\vv_t=\mW_{xh}\vx_t+\mW_{hh}\vh_{t-1}+\vb_h$.
 Then $\vh_t=\tanh(\vv_t)$.
 
 \begin{equation}
-    \frac{\partial h_{t,i}}{\partial v_{t,j}} = \Ibb(i=j)(1-h_{t,j}^2)
+    \frac{\partial h_{t,k}}{\partial v_{t,i}} = \Ibb(k=i)(1-h_{t,k}^2)
 \end{equation}
 
 \begin{equation}
 \begin{split}
-    \frac{\partial L}{\partial W_{hh}}
-        &= \sum_t \frac{\partial L}{\partial \vh_t} \frac{\partial \vh_t}{\partial W_{hh}} \\
-        &= \sum_{t,i} \frac{\partial L}{\partial h_{t,i}} \frac{\partial h_{t,i}}{\partial W_{hh}} \\
+    \frac{\partial L}{\partial h_{t,k}}
+        &= \frac{\partial L}{\partial \vz_t} \frac{\partial \vz_t}{\partial h_{t,k}} \\
+        &= \sum_{s} \frac{\partial L}{\partial z_{t,s}} \frac{\partial z_{t,s}}{\partial h_{t,k}} \\
+        &= \sum_{s,l} \frac{\partial L}{\partial z_{t,s}} \frac{\partial z_{t,s}}{\partial u_{t,l}}\frac{\partial u_{t,l}}{\partial h_{t,k}} \\
+        &= \sum_{l} -\frac{W_{hz,lk}}{z_{t,{y_t}}} \frac{\partial z_{t,{y_t}}}{\partial u_{t,l}} \\
+\end{split}
+\end{equation}
+
+\begin{equation}
+    \frac{\partial v_{t,l}}{\partial W_{hh,ij}}
+        = \frac{\partial \big((\mW_{xh}\vx_t)_l+\sum_s W_{hh,ls}h_{t-1,s}+b_{h,l}\big)}{\partial W_{hh,ij}}
+        = \Ibb(i=l)h_{t-1,j}
+\end{equation}
+
+\begin{equation}
+\begin{split}
+    \frac{\partial L}{\partial W_{hh,ij}}
+        &= \sum_t \frac{\partial L}{\partial \vh_t} \frac{\partial \vh_t}{\partial W_{hh,ij}} \\
+        &= \sum_{t,k} \frac{\partial L}{\partial h_{t,k}} \frac{\partial h_{t,k}}{\partial W_{hh,ij}} \\
+        &= \sum_{t,k,l} \frac{\partial L}{\partial h_{t,k}} \frac{\partial h_{t,k}}{\partial v_{t,l}}\frac{\partial v_{t,l}}{\partial W_{hh,ij}} \\
+        &= \sum_{t,k} \frac{\partial L}{\partial h_{t,k}} \frac{\partial h_{t,k}}{\partial v_{t,i}}h_{t-1,j} \\
 \end{split}
 \end{equation}
