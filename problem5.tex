@@ -20,7 +20,7 @@ Comparison between weight decay and no weight decay is shown in Figure~\ref{fig:
 
 \begin{figure}[ht]
 \centering
-    \includegraphics[width=0.99\linewidth]{fig/curve1}
+    \includegraphics[width=0.9\linewidth]{fig/curve1}
     \caption{\small
     Filters of the first convolutional layer.}
     \label{fig:2}
@@ -71,6 +71,19 @@ So
 \end{equation}
 
 The initialization described here is the \emph{msra} initialization~\cite{he2015delving}.
+We use msra to initialize fc layers.
+The result is shown in Figure~\ref{fig:msra}.
+
+\begin{figure}[ht]
+\centering
+    \includegraphics[width=0.9\linewidth]{fig/msra}
+    \caption{\small
+    Gaussian initialization v.s. msra initialization.
+    We can see that msra is worse in this experiment.
+    The one with Gaussian has best val accuracy $67.44\%$.
+    The one with msra has best val accuracy $59.61\%$.}
+    \label{fig:msra}
+\end{figure}
 
 \subsection{} % 5.3
 

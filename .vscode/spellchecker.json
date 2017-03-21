@@ -35,7 +35,8 @@
         "nullspace",
         "colinear",
         "softmax",
-        "convolutional"
+        "convolutional",
+        "msra"
     ],
     "documentTypes": [
         "markdown",
