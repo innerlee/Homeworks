@@ -87,4 +87,39 @@ The result is shown in Figure~\ref{fig:msra}.
 
 \subsection{} % 5.3
 
+Adding BN,
+the training is much faster.
+The final accuracy also improves.
+See Figure~\ref{fig:bn}.
+
+\begin{figure}[ht]
+\centering
+    \includegraphics[width=0.9\linewidth]{fig/bn}
+    \caption{\small
+    Val accuracy with or without BN.
+    We can see that BN is very effective in improving
+    training speed and test accuracy.
+    The one without BN has best val accuracy $67.44\%$.
+    The one with BN has best val accuracy $68.91\%$.}
+    \label{fig:bn}
+\end{figure}
+
 \subsection{} % 5.4
+
+We add augmentation as follows:
+Pad 4 pixels around the image and randomly crop to size $32\times 32$.
+The result is shown in Figure~\ref{fig:aug}.
+*Note*: the implementation of padding and random crop
+is using Parrots' code.
+Not implemented by self.
+
+\begin{figure}[ht]
+\centering
+    \includegraphics[width=0.9\linewidth]{fig/aug}
+    \caption{\small
+    Val accuracy with or without augmentation.
+    We can see that augmentation is very effective in improving accuracy.
+    The one without BN has best val accuracy $67.44\%$.
+    The one with BN has best val accuracy $73.61\%$.}
+    \label{fig:aug}
+\end{figure}
