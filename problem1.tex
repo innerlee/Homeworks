@@ -46,11 +46,24 @@ Then $\vh_t=\tanh(\vv_t)$.
 
 \begin{equation}
 \begin{split}
+    \frac{\partial h_{t+1,i}}{\partial h_{t,k}}
+        &= \frac{\partial h_{t+1,i}}{\partial v_{t,i}} \frac{\partial v_{t,i}}{\partial h_{t,k}} \\
+        &= \frac{\partial \big((\mW_{xh}\vx_{t+1})_i+\sum_s W_{hh,is}h_{t,s}+b_{h,i}\big)}{\partial h_{t,k}} \\
+        &= W_{hh,ik}.
+\end{split}
+\end{equation}
+
+\begin{equation}
+\begin{split}
     \frac{\partial L}{\partial h_{t,k}}
-        &= \frac{\partial L}{\partial \vz_t} \frac{\partial \vz_t}{\partial h_{t,k}} \\
-        &= \sum_{s} \frac{\partial L}{\partial z_{t,s}} \frac{\partial z_{t,s}}{\partial h_{t,k}} \\
-        &= \sum_{s,l} \frac{\partial L}{\partial z_{t,s}} \frac{\partial z_{t,s}}{\partial u_{t,l}}\frac{\partial u_{t,l}}{\partial h_{t,k}} \\
-        &= \sum_{l} -\frac{W_{hz,lk}}{z_{t,{y_t}}} \frac{\partial z_{t,{y_t}}}{\partial u_{t,l}} \\
+        &= \frac{\partial L}{\partial \vz_t} \frac{\partial \vz_t}{\partial h_{t,k}} +
+            \frac{\partial L}{\partial \vh_{t+1}} \frac{\partial \vh_{t+1}}{\partial h_{t,k}} \\
+        &= \sum_{s} \frac{\partial L}{\partial z_{t,s}} \frac{\partial z_{t,s}}{\partial h_{t,k}} +
+            \sum_i\frac{\partial L}{\partial h_{t+1,i}} \frac{\partial h_{t+1,i}}{\partial h_{t,k}} \\
+        &= \sum_{s,l} \frac{\partial L}{\partial z_{t,s}} \frac{\partial z_{t,s}}{\partial u_{t,l}}\frac{\partial u_{t,l}}{\partial h_{t,k}} +
+            \sum_i\frac{\partial L}{\partial h_{t+1,i}} \frac{\partial h_{t+1,i}}{\partial h_{t,k}} \\
+        &= \sum_{l} -\frac{W_{hz,lk}}{z_{t,{y_t}}} \frac{\partial z_{t,{y_t}}}{\partial u_{t,l}} +
+            \sum_i\frac{\partial L}{\partial h_{t+1,i}} \frac{\partial h_{t+1,i}}{\partial h_{t,k}} \\
 \end{split}
 \end{equation}
 
