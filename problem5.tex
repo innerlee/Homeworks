@@ -2,6 +2,10 @@
 
 \subsection{} % 5.1
 
+The training curve is shown in Figure~\ref{fig:1}.
+The learned filters is shown in Figure~\ref{fig:2}.
+Comparison between weight decay and no weight decay is shown in Figure~\ref{fig:3}.
+
 \begin{figure}[ht]
 \centering
     \includegraphics[width=0.99\linewidth]{fig/curve1}
@@ -13,6 +17,26 @@
     The step sizes are 8000, 10000 and 12000.}
     \label{fig:1}
 \end{figure}
+
+\begin{figure}[ht]
+\centering
+    \includegraphics[width=0.99\linewidth]{fig/curve1}
+    \caption{\small
+    Filters of the first convolutional layer.}
+    \label{fig:2}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+    \includegraphics[width=0.9\linewidth]{fig/nodecayacc}
+    \caption{\small
+    With or without weight decay.
+    We can see that they do not have significant difference.
+    The one with weight decay has best val accuracy $67.44\%$.
+    The one without weight decay has best val accuracy $67.86\%$.}
+    \label{fig:3}
+\end{figure}
+
 
 \subsection{} % 5.2
 

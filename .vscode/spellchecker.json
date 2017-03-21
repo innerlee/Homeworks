@@ -34,7 +34,8 @@
         "indices",
         "nullspace",
         "colinear",
-        "softmax"
+        "softmax",
+        "convolutional"
     ],
     "documentTypes": [
         "markdown",
