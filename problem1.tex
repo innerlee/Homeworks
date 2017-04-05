@@ -5,6 +5,11 @@
 \begin{equation}
 \begin{split}
     P(\vx)
+        &= \sum_h \frac{e^{-E(\vx,\vh)}}{Z} \\
+        &= \exp\bigg(\log\sum_h\frac{e^{-E(\vx,\vh)}}{Z}\bigg) \\
+        &= \exp\bigg(\log\sum_h e^{-E(\vx,\vh)} - \log Z\bigg) \\
+        &= \frac{\exp\bigg(\log\sum_h e^{-E(\vx,\vh)}\bigg)}{Z} \\
+        &= \frac{e^{-\cF(\vx)}}{Z}. \\
 \end{split}
 \end{equation}
 
