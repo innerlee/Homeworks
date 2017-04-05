@@ -40,9 +40,10 @@ gulp.task('default', function() {
             fs.readFile(f + ".log", "utf-8", (err, _data) => console.log(_data));
             return;
           }
-          cp.exec('start ' + f + '.pdf', (error, stdout, stderr) => {
+          cp.exec('start ' + f + '.pdf ', (error, stdout, stderr) => {
             gutil.log(`opening ${f}.pdf`);
             gutil.log('love bufan.');
+            cp.exec('code .')
           });
         });
       });
