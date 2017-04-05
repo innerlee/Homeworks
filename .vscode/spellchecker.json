@@ -36,7 +36,8 @@
         "colinear",
         "softmax",
         "convolutional",
-        "msra"
+        "msra",
+        "MCMC"
     ],
     "documentTypes": [
         "markdown",
