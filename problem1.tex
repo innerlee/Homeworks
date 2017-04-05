@@ -15,4 +15,15 @@
 
 \subsection{} % 1.2
 
+\begin{equation}
+\begin{split}
+    -\frac{\partial\log p(\vx)}{\partial\theta}
+        &= -\frac{\partial}{\partial\theta}\log\bigg(\frac{e^{-\cF(\vx)}}{Z}\bigg) \\
+        &= -\frac{\partial(-\cF(\vx))}{\partial\theta} + \frac{\partial \log Z}{\partial\theta} \\
+        &= \frac{\partial \cF(\vx)}{\partial\theta} + \frac{1}{Z}\frac{\partial}{\partial\theta} \sum_{\tilde\vx} e^{-\cF(\tilde\vx)}\\
+        &= \frac{\partial \cF(\vx)}{\partial\theta} - \sum_{\tilde\vx} \frac{\partial\cF(\tilde\vx)}{\partial\theta}\frac{e^{-\cF(\tilde\vx)}}{Z}\\
+        &= \frac{\partial \cF(\vx)}{\partial\theta} - \sum_{\tilde\vx} \frac{\partial\cF(\tilde\vx)}{\partial\theta}p(\tilde\vx)\\
+\end{split}
+\end{equation}
+
 \subsection{} % 1.3
