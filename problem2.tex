@@ -1,1 +1,51 @@
 \section{Problem 2}~\label{sec:prob2}
+
+Suppose there are $m$ training samples $x_1, x_2,\dots,x_m$
+with sample mean $\bar x$.
+Assemble them into a matrix $X$ whose $i$-th column is $x_i$.
+Let $\onebb\in\real^m$ is a all-one vector.
+Then the total loss is
+
+\begin{equation}
+\begin{split}
+    L(W, W', b, b')
+        &= \|W'(WX + b\onebb^T) + b'\onebb^T - X\|_F^2 \\
+        &= \|W'W(X-\bar x\onebb^T) + W'W\bar x\onebb^T + W'b\onebb^T + b'\onebb^T - (X-\bar x\onebb^T)-\bar x\onebb^T\|_F^2 \\
+        &= \|W'W\tilde X - \tilde X + (W'W\bar x+W'b+b'-\bar x)\onebb^T\|_F^2 \\
+        &= \|W'W\tilde X - \tilde X + v\onebb^T\|_F^2. \\
+\end{split}
+\end{equation}
+
+where $\tilde X:=X-\bar x\onebb^T$ is the centered data matrix,
+$W'W$ is a matrix with rank no more than $k$,
+and $v:=W'W\bar x+W'b+b'-\bar x$.
+Let $v_i$ denote the $i$-th column of matrix $(W'W\tilde X - \tilde X)$,
+we have
+\begin{equation}
+    \sum_{i=1}^m v_i = 0.
+\end{equation}
+
+Then the loss is equivalent to
+\begin{equation}
+    L = \sum_{i=1}^m \|v_i-v\|^2
+\end{equation}
+
+To minimize loss,
+the best $v$ is $0$.
+So we set $v=0$ and get
+
+\begin{equation}
+    L = \|W'W\tilde X - \tilde X \|_F^2.
+\end{equation}
+
+Since the column space of $W'W\tilde X$ is contained in the
+column space of $W'$.
+So the best we can get for $L$ is let $W'W\tilde X$
+be the projection of column vectors of $\tilde X$ onto
+the column space of $W'$ and $W$ be the projection operator.
+Suppose an SVD of $\tilde X$ is $U\Sigma V^T$,
+then let $W$ be the first $k$ columns of $U$,
+and let $W'=W^T$,
+we obtain the minimum loss $L$.
+Look at the whole process then,
+it is equivalent to a PCA.

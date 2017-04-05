@@ -37,7 +37,8 @@
         "softmax",
         "convolutional",
         "msra",
-        "MCMC"
+        "MCMC",
+        "eigenspace"
     ],
     "documentTypes": [
         "markdown",
