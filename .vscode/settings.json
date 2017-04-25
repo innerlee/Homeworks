@@ -24,5 +24,65 @@
     "*.synctex.gz(busy)": true,
     "*.pdfsync": true,
     "node_modules": true
-  }
+  },
+  "spellchecker.language": "en_US",
+  "spellchecker.ignoreWordsList": [
+    "Schlumberger",
+    "Kaufmann",
+    "Jowell",
+    "ctmc",
+    "wcomb",
+    "CIFAR",
+    "ccccc",
+    "ijcai17",
+    "ijcai07",
+    "n01317541",
+    "n03575240",
+    "n00015388",
+    "n00020090",
+    "n03297735",
+    "cccccc",
+    "G123",
+    "prob1",
+    "prob2",
+    "prob3",
+    "prob4",
+    "medskip",
+    "natbib",
+    "nonatbib",
+    "hyperlinks",
+    "microtypography",
+    "CrossEntropy",
+    "Zhizhong",
+    "CUHK",
+    "ELEG",
+    "subgradient",
+    "indices",
+    "nullspace"
+  ],
+  "spellchecker.documentTypes": [
+    "markdown",
+    "latex",
+    "plaintext"
+  ],
+  "spellchecker.ignoreRegExp": [
+    "/\\\\\\\\\\\\w+/g",
+    "/\\\\w+\\\\{/g",
+    "/\\\\w+'/g",
+    "/\\\\w+''/g",
+    "/fig:\\\\w+/g",
+    "/eq:\\\\w+/g",
+    "/tab:\\\\w+/g",
+    "/\\\\w+.png/g",
+    "/\\\\w+.jpg/g",
+    "/\\\\{\\\\w+\\\\}/g",
+    "/\\\\[\\\\w+\\\\]/g",
+    "/fig\\/\\\\w+/g",
+    "/\\\\w+.pdf/g"
+  ],
+  "spellchecker.ignoreFileExtensions": [
+    ".bib",
+    ".pdf"
+  ],
+  "spellchecker.checkInterval": 5000
 }
