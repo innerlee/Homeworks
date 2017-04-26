@@ -112,5 +112,16 @@ we are interested in the following three properties:
         So it is interesting to see what would happen to GAN if the dimension
         of latent space and data manifold do not match.
     \item \emph{Connectivity}.
+        Natural images are clustered into distinct classes naturally.
+        This means that the data manifold may have several components
+        that are disconnected with each other.
+        The question is,
+        do we have to require the latent space to be disconnected
+        at the same time?
+        What if the latent space is connected while the data distribution
+        is connected?
     \item \emph{Topology}.
+        As observed in~\cite{white2016sampling},
+        latent space with different topology may have different impact on GAN.
+        We can try more settings.
 \end{itemize}
