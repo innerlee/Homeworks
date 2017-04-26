@@ -31,6 +31,53 @@ Codes and experiment results are available at
 
 \subsection{Dimensionality}
 
+\begin{figure}[ht]
+\centering
+    \begin{subfigure}[t]{0.45\textwidth}
+        \includegraphics[width=\linewidth]{"fig/spiral_gaussgauss_000100"}
+        \caption{$z$: $1$-dim, spiral.
+            $x$: $2$-dim, Gaussian.}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[t]{0.45\textwidth}
+        \includegraphics[width=\linewidth]{"fig/lattice3x3_gaussgauss_000100"}
+        \caption{$z$: $0$-dim, lattice.
+            $x$: $2$-dim, Gaussian.}
+    \end{subfigure}
+    \vskip 0.4cm
+    \begin{subfigure}[t]{0.45\textwidth}
+        \includegraphics[width=\linewidth]{"fig/gaussgauss_spiral_000100"}
+        \caption{$z$: $2$-dim, Gaussian.
+            $x$: $1$-dim, spiral.}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[t]{0.45\textwidth}
+        \includegraphics[width=\linewidth]{"fig/gaussgauss_lattice3x3_000100"}
+        \caption{$z$: $2$-dim, Gaussian.
+            $x$: $0$-dim, lattice.}
+    \end{subfigure}
+    \caption{\small
+        GAN in different dimensions.
+        The snapshots are taken at iteration $10000$.
+        }
+    \label{fig:dim}
+\end{figure}
+
+We use three manifolds:
+1) a $3\times3$ lattice. It is $0$-dimensional manifold in $\real^2$.
+2) a $1$-dimensional spiral curve in $\real^2$.
+3) the whole $2$-dimensional plane with Gaussian distribution.
+As shown in Figure~\ref{fig:dim},
+we can see that
+1) If the dimension of latent manifold is lower than that of the data manifold
+(Figure~\ref{fig:dim}~(a, b)),
+the generated low dimensional manifold try to cover the
+larger dimensional data manifold as possible.
+2) If the dimension of latent manifold is larger (Figure~\ref{fig:dim}~(c, d)),
+then the generated manifold is able to cover the data manifold.
+However,
+it may generate many fake examples that do not belong to the data manifold.
+
 \subsection{Connectivity}
 
 \subsection{Topology}
