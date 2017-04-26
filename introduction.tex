@@ -36,4 +36,55 @@ mode collapse,
 lack of systematic evaluations methods,
 to name a few.
 
+GAN is formulated as a two-player game that involves a generator and
+a discriminator.
+Given a data distribution that we want to model,
+the generator is trained to generate samples that look real,
+while the discriminator is trained to distinguish between
+samples that come from real data distribution and
+those come from the generator.
+This is a dynamic process.
+In each training cycle,
+both the generator and the discriminator have to adjust themselves
+to cope with the changes in their opponents.
+In the equilibrium state,
+the discriminator cannot identify the source of a sample,
+and the generator is able to generate samples that share the same
+distribution as the real data distribution.
+Formally,
+GAN is formulated~\cite{goodfellow2014generative} as the following problem,
+\begin{equation}\label{eq:gan}
+    \min_G \max_D \Ebb_{x\sim p_{\text{data}}(x)}[\log D(x)]
+        + \Ebb_{z\sim p_z(z)}[\log (1-D(G(z)))],
+\end{equation}
+where $G$ is the generator neural network,
+$D$ is the discriminator neural network,
+$x$ is a sample from data distribution,
+and $z$ is a sample from noise distribution.
+If the discriminator is certain that a sample $x$ comes from
+data distribution,
+then the output should be $1$.
+If it is certain that a fake sample comes,
+the output of $D$ is $0$.
+In the equilibrium state,
+when the discriminator $D$ cannot decide where the sample comes from,
+the output is $1/2$.
+It can be shown that if in each step,
+the discriminator is at its optimum,
+then the objective of minimizing generator $G$ in Equation~\eqref{eq:gan}
+is equivalent to minimizing the Jensen-Shannon divergence between
+the real data distribution and the generated distribution.
+Note that the theoretical justification of GAN
+only considers an idealized setting,
+in which the discriminator is able to achieve the optimum,
+and the capacities of networks are unlimited.
+These assumptions never hold in real experiments.
+So in contrast to the utopian world that the theory demonstrates,
+neither are we guaranteed that the perfect distribution
+can be generated in the end,
+nor can we be confident to say that the algorithm would converge.
+
+Although the original formulation of GAN which
+we described above adopt a game theory and probabilistic view,
+
 \subsection{Related Work}
