@@ -5,30 +5,33 @@ A \emph{manifold} (without boundary) is a set of points that
 locally resembles Euclidean space near each point.
 Specifically,
 near each point of an $n$-dimensional manifold,
-there exists a neighborhood that is homeomorphic to the $n$-dimensional open
-cube $\mathring{I}^n:=(0,1)^n$.
+there exists a neighborhood that is homeomorphic to an $n$-dimensional open
+set $\Omega\subset\real^n$,
+such as the open cube $\mathring{I}^n:=(0,1)^n\subset\real^n$.
 Intuitively,
-we can view a $n$-dimensional manifold as a `surfaces'
-in a higher dimensional Euclidean space,
-such as a \emph{point} in a line,
+we can view a $n$-dimensional manifold as a \emph{surface}
+in an Euclidean space;
+\eg, a \emph{point} in a line,
 a \emph{circle} in a plane,
 and a \emph{ball} in the $3$-dimensional space that we live in.
 
 Suppose we have an $n$ dimensional data manifold $M$ in the $N$-dimensional
 Euclidean space,
-and we choose the cube $\mathring{I}^n$ as the latent space.
+and we choose the cube $\Omega=\mathring{I}^n$ as the latent space.
 For simplicity,
 we assume $M$ is \emph{contractible},
 \ie,
 it is topologically equivalent to a point.
 Then we are able to parametrize manifold $M$ by a
-single coordinate chart $\mathring{I}^n$.
+single coordinate chart $\Omega$.
 Suppose the mapping from coordinate space to manifold is
 \begin{equation}
-    \varphi:\mathring{I}^n\to M\subset \real^N,
+    \varphi:\Omega\to M\subset \real^N,
 \end{equation}
 then we can view the objective of GAN as to learn such a
 parametrization as $\varphi$.
+There are several immediate observations on GAN from this geometric
+point of view.
 
 \paragraph{Decouple Geometry and Distribution}
 In fact,
@@ -52,14 +55,13 @@ lower than the dimension of the space that data live in.
 
 \paragraph{Inverse Mapping}
 The coordinate mapping $\varphi$ is a homeomorphism,
-and thus a bijection,
-so there exists an inverse mapping,
+and thus a bijection.
+The necessary and sufficient condition for $\varphi$ being a bijection is
+that there exists a mapping $\psi$,
 \begin{equation}
-    \psi:M\to \mathring{I}^n\subset\real^n.
+    \psi:M\to \Omega\subset\real^n,
 \end{equation}
-If we impose the bijection as an extra regularization for GAN,
-then the mode collapse problem might be mitigated.
-One necessary and sufficient condition for $\varphi$ being a bijection is
+such that,
 \begin{equation}
     \psi\circ\varphi = \id_\Omega \quad
     (\varphi\text{ is injective}),
@@ -69,9 +71,32 @@ and
     \varphi\circ\psi = \id_\cM \quad
     (\varphi\text{ is surjective}).
 \end{equation}
+If we impose the bijection as an extra regularization for GAN,
+then the mode collapse problem might be mitigated.
+In fact,
+many existing works incorporate the idea of
+inverse mapping into their formulation.
+Some works~\cite{huang2016stacked,che2016mode,kim2017learning,perarnau2016invertible}
+view this inverse mapping as an encoder using the
+variational auto-encoder language.
+Some works~\cite{zhu2016generative,zhu2017unpaired} also
+motivate this from geometric intuition.
 
-\paragraph{Learn Mapping as Graph}
+\paragraph{Learning Mapping as Graph}
 In conditional GAN,
-we want to control the generated
+we want to control the generated sample $x$ through some condition $c$;
+\ie,
+we want to learn a multi-valued mapping from condition $c$ to
+some data sample $x$.
+Geometrically,
+we can represent a mapping by its graph $G:=\{(c,x)\}$.
+The graph is a manifold that can be learned in the usual GAN formulation.
 
-% property of manifold
+These observations lead to some useful insights into the problem of GAN.
+As we have seen,
+the inverse mapping and learning mapping as graph have been
+extensively studied recently,
+although their starting point might be quite different.
+
+In this report,
+we will study
