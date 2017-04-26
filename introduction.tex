@@ -15,7 +15,7 @@ various extensions~\cite{chen2016infogan,che2016mode,donahue2016adversarial,
 salimans2016improved,mescheder2017adversarial,mirza2014conditional,
 gauthier2014conditional,huang2016stacked},
 exploring effective network design and
-training methods~\cite{radford2015unsupervised},
+training methods~\cite{radford2015unsupervised,arjovsky2017towards},
 and applications in image generation~\cite{odena2016conditional,denton2015deep,
 reed2016generative,zhang2016stackgan},
 manipulation~\cite{zhu2016generative},
@@ -84,7 +84,38 @@ neither are we guaranteed that the perfect distribution
 can be generated in the end,
 nor can we be confident to say that the algorithm would converge.
 
-Although the original formulation of GAN which
-we described above adopt a game theory and probabilistic view,
+Although the original formulation of GAN
+adopts a game theory and probabilistic point of view,
+it is also natural to interpret the training dynamics of GAN
+in the context of manifold learning.
+In most real applications,
+we are dealing with structured data,
+such as natural images.
+The distribution of such data may lie on a low dimensional manifold
+instead of distributing all over the space.
+So we can view the target of GAN is to learn such a data manifold
+which is parametrized by the latent space.
+The authors of Wasserstein GAN~\cite{arjovsky2017towards,arjovsky2017wasserstein}
+use this point of view to explain
+why GANs are so hard to train in practice.
+The core idea in their argument is that,
+since the dimension of the latent space and the dimension of the data manifold
+are usually smaller than the data space,
+we are trying to matching two low dimensional manifolds in a high dimensional
+ambient space.
+The chance of two such manifolds have sufficient overlap is zero.
+In this case,
+the Jensen Shannon divergence do not even have a valid definition.
+This explains why training GAN is so difficult.
+
+Since this close relationship between geometry and GAN,
+we are inspired to investigate more deep into the geometric aspects of GAN.
+There are many important concepts for a manifold,
+such as dimensionality,
+connectivity,
+and the topology.
+All those aspects lack sufficient discussion in current literature.
+In this report,
+we study the effect of these geometric properties on the training of GAN.
 
 \subsection{Related Work}
