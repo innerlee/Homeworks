@@ -1,1 +1,23 @@
-\section{Experiments} \label{sec:exp}
+\section{Experiments and Visualization} \label{sec:exp}
+
+To answer the questions raised in previous section,
+we specially designed toy problems in low-dimensions,
+so that we can visualize what happens in the training dynamics of GAN.
+We use \emph{fully connected} layers as the building blocks for both
+the generator and discriminator.
+After each fully connected layer,
+we add a \emph{batch normalization} layer and a \emph{Elu} activation layer.
+Both the latent space and the data space is
+restricted to $1$-dimension or $2$-dimension.
+Across all experiments,
+we use fc networks with
+$20-40-100-200-200-100-40-20$ hidden neuron numbers
+as the structure for generator.
+The same hidden neuron setting is also applied to the discriminator.
+The capacity of these networks is large enough for our experiments.
+
+\subsection{Dimensionality}
+
+\subsection{Connectivity}
+
+\subsection{Topology}
