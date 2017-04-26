@@ -1,6 +1,54 @@
 \section{Geometric View of GAN} \label{sec:geom}
 
 % def of manifold
+A \emph{manifold} (without boundary) is a set of points that
+locally resembles Euclidean space near each point.
+Specifically,
+near each point of an $n$-dimensional manifold,
+there exists a neighborhood that is homeomorphic to the $n$-dimensional open
+cube $\mathring{I}^n:=(0,1)^n$.
+Intuitively,
+we can view a $n$-dimensional manifold as a `surfaces'
+in a higher dimensional Euclidean space,
+such as a \emph{point} in a line,
+a \emph{circle} in a plane,
+and a \emph{ball} in the $3$-dimensional space that we live in.
+
+Suppose we have an $n$ dimensional data manifold $M$ in the $N$-dimensional
+Euclidean space,
+and we choose the cube $\mathring{I}^n$ as the latent space.
+For simplicity,
+we assume $M$ is \emph{contractible},
+\ie,
+it is topologically equivalent to a point.
+Then we are able to parametrize manifold $M$ by a
+single coordinate chart $\mathring{I}^n$.
+Suppose the mapping from coordinate space to manifold is
+\begin{equation}
+    \varphi:\mathring{I}^n\to M\subset \real^N,
+\end{equation}
+then we can view the objective of GAN as to learn such a
+parametrization as $\varphi$.
+
+\paragraph{Decouple Geometry and Distribution}
+In fact,
+as a generative model,
+being able to generate the whole set of real data points is not enough.
+It should generate samples in the right probability.
+So,
+we can decouple the generation task as two subtasks:
+generating the right geometry,
+and the right distribution.
+Following this view,
+we can first aim to generate the correct data manifold
+without worrying about the distribution.
+For example,
+we can exploit various sampling tricks to aid this geometry learning process.
+Once we can generate the right geometry,
+we may fix the generator and attach another network before the latent space
+to learn the right distribution.
+The latter task would be easier since the dimension of latent space is
+lower than the dimension of the space that data live in.
 
 % gan as manifold
 
