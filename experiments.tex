@@ -64,8 +64,8 @@ Codes and experiment results are available at
 \end{figure}
 
 We use three manifolds:
-1) a $3\times3$ lattice. It is $0$-dimensional manifold in $\real^2$.
-2) a $1$-dimensional spiral curve in $\real^2$.
+1) A $3\times3$ lattice. It is $0$-dimensional manifold in $\real^2$.
+2) A $1$-dimensional spiral curve in $\real^2$.
 3) the whole $2$-dimensional plane with Gaussian distribution.
 As shown in Figure~\ref{fig:dim},
 we can see that
@@ -79,5 +79,39 @@ However,
 it may generate many fake examples that do not belong to the data manifold.
 
 \subsection{Connectivity}
+
+\begin{figure}[ht]
+\centering
+    \begin{subfigure}[t]{0.45\textwidth}
+        \includegraphics[width=\linewidth]{"fig/uniformuniform_patch3x3_000100"}
+        \caption{$z$: $2$-dim, uniform square, connected.\\
+            $x$: $2$-dim, 9 square patches, disconnected.}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[t]{0.45\textwidth}
+        \includegraphics[width=\linewidth]{"fig/patch3x3_uniformuniform_000100"}
+        \caption{$z$: $2$-dim, 9 square patches, disconnected.\\
+            $x$: $2$-dim, uniform square, connected.}
+    \end{subfigure}
+    \caption{\small
+        GAN in connected/disconnected manifolds.
+        The snapshots are taken at iteration $10000$.
+        }
+    \label{fig:conn}
+\end{figure}
+
+We have two settings:
+1) A two dimensional square with uniform distribution.
+It is a connected manifold.
+2) A disconnected manifold that consists 9 small squares as components.
+From Figure~\ref{fig:conn},
+we can observe that,
+1) The connected latent space is able to approximate the disconnected
+data manifold (Figure~\ref{fig:conn} (a)).
+2) The disconnected latent space has difficulty in covering
+the data manifold although the dimensions are the same
+(Figure~\ref{fig:conn} (b)).
+This may be caused by the continuity in the learned mapping
+of the generator.
 
 \subsection{Topology}
