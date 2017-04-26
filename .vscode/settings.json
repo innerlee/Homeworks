@@ -201,6 +201,8 @@
     "/\\\\\\\\\\\\w+/g",
     "/\\\\w+\\\\{/g",
     "/\\\\w+'/g",
+    "/[A-Z]+s[^a-z]/g",
+    "/[A-Z]+[^a-zA-Z]/g",
     "/\\\\w+''/g",
     "/fig:\\\\w+/g",
     "/eq:\\\\w+/g",
@@ -216,7 +218,9 @@
   ],
   "spellchecker.ignoreFileExtensions": [
     ".bib",
-    ".pdf"
+    ".pdf",
+    ".md",
+    ".log"
   ],
   "spellchecker.checkInterval": 5000
 }

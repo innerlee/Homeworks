@@ -16,7 +16,7 @@
 % last revision: March 2016
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{nips_2016}[2016/03/07 NIPS 2016 submission/camera-ready style file]
+\ProvidesPackage{eleg5491_fp}[2017/02/08 ELEG5491 2017 final project submission/camera-ready style file]
 
 % declare final option, which creates camera-ready copy
 \newif\if@nipsfinal\@nipsfinalfalse
@@ -38,20 +38,15 @@
 \renewcommand{\rmdefault}{ptm}
 \renewcommand{\sfdefault}{phv}
 
-% change this every year for notice string at bottom
-\newcommand{\@nipsordinal}{29th}
-\newcommand{\@nipsyear}{2016}
-\newcommand{\@nipslocation}{Barcelona, Spain}
-
 % handle tweaks for camera-ready copy vs. submission copy
 \if@nipsfinal
   \newcommand{\@noticestring}{%
-    \emph{ELEG 5491 Homeworks~\cite{assign}.} %
+    Paper Report of Final Project for ELEG5491 - Introduction to Deep Learning. \\
+    Copyright by author(s) 2017. The Chinese University of Hong Kong.%
   }
 \else
   \newcommand{\@noticestring}{%
-    Submitted to \@nipsordinal\/ Conference on Neural Information
-    Processing Systems (NIPS \@nipsyear). Do not distribute.%
+    Under review in the final project for ELEG5491. Do not distribute.%
   }
 
   % line numbers for submission
@@ -291,10 +286,10 @@
       \begin{tabular}[t]{c}\bf\rule{\z@}{24\p@}\@author\end{tabular}%
     \else
       \begin{tabular}[t]{c}\bf\rule{\z@}{24\p@}
-        Anonymous Author(s) \\
-        Affiliation \\
-        Address \\
-        \texttt{email} \\
+        Anonymous Submission \\
+        Paper ID: \PaperID \\
+%        Address \\
+%        \texttt{email} \\
       \end{tabular}%
     \fi
     \vskip 0.3in \@minus 0.1in
