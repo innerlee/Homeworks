@@ -1,7 +1,5 @@
 \section{Introduction} \label{sec:intro}
 
-\subsection{Related Work}
-
 Generative Adversarial Networks (GAN)~\cite{goodfellow2014generative}
 as generative models have been actively studied
 and developed~\cite{chen2016infogan,nowozin2016f,
@@ -21,4 +19,21 @@ training methods~\cite{radford2015unsupervised},
 and applications in image generation~\cite{odena2016conditional,denton2015deep,
 reed2016generative,zhang2016stackgan},
 manipulation~\cite{zhu2016generative},
-and cross domain transfer~\cite{kim2017learning,zhu2017unpaired}, etc.
+and cross domain transfer~\cite{kim2017learning,zhu2017unpaired},
+and many others.
+Compared to other generative models,
+like Restricted Boltzmann Machine~\cite{hinton2002training},
+Variational Auto-Encoders~\cite{kingma2013auto}, etc.,
+GAN is reported to be able to generate higher quality examples.
+For example,
+in applications in super-resolution~\cite{ledig2016photo},
+the generated images are visually more sharp with adversarial losses.
+This is one of the advantages of the GAN formulation.
+However, in general,
+GAN also faces some well known problems:
+hard to train,
+mode collapse,
+lack of systematic evaluations methods,
+to name a few.
+
+\subsection{Related Work}
