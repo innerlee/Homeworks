@@ -50,10 +50,28 @@ to learn the right distribution.
 The latter task would be easier since the dimension of latent space is
 lower than the dimension of the space that data live in.
 
-% gan as manifold
+\paragraph{Inverse Mapping}
+The coordinate mapping $\varphi$ is a homeomorphism,
+and thus a bijection,
+so there exists an inverse mapping,
+\begin{equation}
+    \psi:M\to \mathring{I}^n\subset\real^n.
+\end{equation}
+If we impose the bijection as an extra regularization for GAN,
+then the mode collapse problem might be mitigated.
+One necessary and sufficient condition for $\varphi$ being a bijection is
+\begin{equation}
+    \psi\circ\varphi = \id_\Omega \quad
+    (\varphi\text{ is injective}),
+\end{equation}
+and
+\begin{equation}
+    \varphi\circ\psi = \id_\cM \quad
+    (\varphi\text{ is surjective}).
+\end{equation}
 
-% inverse mapping
-
-% geometry vs distribution
+\paragraph{Learn Mapping as Graph}
+In conditional GAN,
+we want to control the generated
 
 % property of manifold
