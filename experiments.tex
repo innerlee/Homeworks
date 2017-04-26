@@ -15,6 +15,11 @@ $20-40-100-200-200-100-40-20$ hidden neuron numbers
 as the structure for generator.
 The same hidden neuron setting is also applied to the discriminator.
 The capacity of these networks is large enough for our experiments.
+We use \emph{rmsprop} with initial lr $0.001$ as the optimization method.
+learning rate is multiplied by $0.98$ after every $300$ iterations.
+The batch size is set to $256$,
+and we update generator and discriminator alternately,
+with each processes $1$ batch of data.
 
 We use \emph{Parrots}~\cite{parrots} as the deep learning framework
 and use the the Julia port \emph{Parrots.jl}~\cite{parrotsjl}
