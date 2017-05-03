@@ -89,10 +89,13 @@ we can see that
 (Figure~\ref{fig:dim}~(a, b)),
 the generated low dimensional manifold try to cover the
 larger dimensional data manifold as possible.
-2) If the dimension of latent manifold is larger (Figure~\ref{fig:dim}~(c, d)),
+2) The marginal distribution of the generated manifold is close to that
+of the data manifold.
+3) If the dimension of latent manifold is larger (Figure~\ref{fig:dim}~(c, d)),
 then the generated manifold is able to cover the data manifold.
 However,
 it may generate many fake examples that do not belong to the data manifold.
+This is clearly shown in the Gaussian to spiral experiment.
 
 \subsection{Connectivity}
 
@@ -129,15 +132,20 @@ it may generate many fake examples that do not belong to the data manifold.
 \end{figure}
 
 We have two settings:
-1) A two dimensional square with uniform distribution.
-It is a connected manifold.
-2) A disconnected manifold that consists 9 small squares as components.
+1) $2$-dimensional.
+Generating from a connected uniform square to a squared patches
+with $9$ components,
+and vice versa.
+2) $1$-dimensional.
+Generating from a connected circle to four disconnected arcs,
+and vice versa.
 From Figure~\ref{fig:conn},
 we can observe that,
 1) The connected latent space is able to approximate the disconnected
-data manifold (Figure~\ref{fig:conn} (a)).
+data manifold (Figure~\ref{fig:conn} (a,c)).
 2) The disconnected latent space has difficulty in covering
 the data manifold although the dimensions are the same
-(Figure~\ref{fig:conn} (b)).
-This may be caused by the continuity in the learned mapping
-of the generator.
+(Figure~\ref{fig:conn} (b,d)).
+So a connected latent space is able to handle different components
+of a disconnected data manifold,
+and making the latent space disconnected is not good in general.
