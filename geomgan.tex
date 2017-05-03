@@ -4,26 +4,27 @@
 A \emph{manifold} (without boundary) is a set of points that
 locally resembles Euclidean space near each point.
 Specifically,
-near each point of an $n$-dimensional manifold,
+for each point of an $n$-dimensional manifold,
 there exists a neighborhood that is homeomorphic to an $n$-dimensional open
 set $\Omega\subset\real^n$,
 such as the open cube $\mathring{I}^n:=(0,1)^n\subset\real^n$.
 Intuitively,
 we can view a $n$-dimensional manifold as a \emph{surface}
-in an Euclidean space;
-\eg, a \emph{point} in a line,
+in an Euclidean space.
+Trivial examples are,
+a \emph{point} in a line,
 a \emph{circle} in a plane,
-and a \emph{ball} in the $3$-dimensional space that we live in.
+or a \emph{ball} in the $3$-dimensional space we live in.
 
-Suppose we have an $n$ dimensional data manifold $M$ in the $N$-dimensional
-Euclidean space,
-and we choose the cube $\Omega=\mathring{I}^n$ as the latent space.
+Suppose we have an $n$-dimensional data manifold $M$ in the $N$-dimensional
+($N\ge n$) Euclidean space.
 For simplicity,
 we assume $M$ is \emph{contractible},
 \ie,
 it is topologically equivalent to a point.
-Then we are able to parametrize manifold $M$ by a
-single coordinate chart $\Omega$.
+Choose the cube $\Omega=\mathring{I}^n$ as the latent space,
+then we are able to parametrize manifold $M$ by a
+single coordinate chart $(z_1,\dots,z_n)$.
 Suppose the mapping from coordinate space to manifold is
 \begin{equation}
     \varphi:\Omega\to M\subset \real^N,
@@ -37,84 +38,93 @@ point of view.
 In fact,
 as a generative model,
 being able to generate the whole set of real data points is not enough.
-It should generate samples in the right probability.
-So,
-we can decouple the generation task as two subtasks:
+It should also generate samples in the right probability.
+Thus,
+it is natural to decouple the generation task as two subtasks:
 generating the right geometry,
 and the right distribution.
-Following this view,
-we can first aim to generate the correct data manifold
-without worrying about the distribution.
+Following this idea,
+we can first focus on generating the correct data manifold
+without worrying about issues on the distribution.
 For example,
-we can exploit various sampling tricks to aid this geometry learning process.
-Once we can generate the right geometry,
-we may fix the generator and attach another network before the latent space
-to learn the right distribution.
-The latter task would be easier since the dimension of latent space is
-lower than the dimension of the space that data live in.
+we can exploit sampling tricks more freely to aid
+this geometry learning process.
+Once the right geometry is generated,
+we can freeze the generator and attach another network
+right before the latent space
+to learn to adjust to the right distribution.
+The latter task would be easier since
+1) the dimension of latent space is lower,
+and
+2) the data manifold and generated manifold already have sufficient overlap.
 
 \paragraph{Inverse Mapping}
 The coordinate mapping $\varphi$ is a homeomorphism,
 and thus a bijection.
 The necessary and sufficient condition for $\varphi$ being a bijection is
-that there exists a mapping $\psi$,
+the existence of a mapping $\psi$,
 \begin{equation}
     \psi:M\to \Omega\subset\real^n,
 \end{equation}
 such that,
-\begin{equation}
-    \psi\circ\varphi = \id_\Omega \quad
-    (\varphi\text{ is injective}), \quad
-    \varphi\circ\psi = \id_\cM \quad
+\begin{equation}\label{eq:inv}
+    \psi\circ\varphi = \id_\Omega ~
+    (\varphi\text{ is injective}), \quad\text{ and } \quad
+    \varphi\circ\psi = \id_\cM ~
     (\varphi\text{ is surjective}).
 \end{equation}
-If we impose the bijection as an extra regularization for GAN,
-then the mode collapse problem might be mitigated.
+The mode collapse problem might be mitigated
+provided we impose the bijection as an regularization,
+because data samples are explicitly required to be generatable.
 In fact,
-many existing works incorporate the idea of
-inverse mapping into their formulation.
-Some works~\cite{huang2016stacked,che2016mode,kim2017learning,perarnau2016invertible}
-view this inverse mapping as an encoder using the
-variational auto-encoder language.
-Some works~\cite{zhu2016generative,zhu2017unpaired} also
-motivate this from geometric intuition.
+some works~\cite{huang2016stacked,che2016mode,kim2017learning,
+perarnau2016invertible,zhu2016generative}
+already take the general idea of inverse mapping into consideration.
+Though they mostly motivated from the auto-encoder perspective
+and focus more on the reconstruction,
+i.e., the second equation in~\eqref{eq:inv}.
+The full power of inverse mapping is still waiting to be discovered.
 
 \paragraph{Learning Mapping as Graph}
 In conditional GAN,
-we want to control the generated sample $x$ through some condition $c$;
-\ie,
-we want to learn a multi-valued mapping from condition $c$ to
-some data sample $x$.
+we want to control the generated sample $x$ through some condition $c$.
+This can be reformulated as learning a multi-valued mapping
+from condition $c$ to some data sample $x$.
 Geometrically,
 we can represent a mapping by its graph $G:=\{(c,x)\}$.
 The graph is a manifold that can be learned in the usual GAN formulation.
+The idea of learning mapping as graph is a general solution to
+handle the one to many relationships.
+More applications other than conditional GAN are still underdeveloped.
 
-These observations lead to some useful insights into the problem of GAN.
-As we have seen,
-the inverse mapping and learning mapping as graph have been
-extensively studied recently,
-although their starting point might be quite different.
+These observations lead to some useful insights into GAN.
+As we have commented,
+some of the ideas have been explored recently
+in one form or another.
+However,
+many aspects are still in mystery.
 
 In this report,
-we focus on studying the impact of the geometric and topological
-properties of the latent space and the data manifold on the training of GAN.
+we take a crack on the simplest yet a fundamental problem in
+understanding the geometric aspects of GAN,
+namely the impact of the geometric properties of
+latent space and data manifold on the training of GAN.
 Specifically,
-we are interested in the following three properties:
+we are interested in the following two properties:
 \begin{itemize}
     \item \emph{Dimensionality}.
-        We know that two manifolds would not match
-        if their dimensions are different.
+        We know that two manifolds never match
+        if their dimensions are different in the first place.
         However, in real applications,
         the dimension of data manifold is unknown.
-        So it is interesting to see what would happen to GAN if the dimension
+        So it is interesting to see what would happen to GAN if the dimensions
         of latent space and data manifold do not match.
     \item \emph{Connectivity}.
-        Natural images are clustered into distinct classes naturally.
-        This means that the data manifold may have several components
-        that are disconnected with each other.
-        The question is,
-        do we have to require the latent space to be disconnected
-        at the same time?
-        What if the latent space is connected while the data distribution
+        Natural images are clustered into distinct classes.
+        This means that the data manifold may have several disconnected
+        components.
+        The questions are,
+        do we have to make the latent space disconnected at the same time?
+        What if the latent space is disconnected while the data distribution
         is connected?
 \end{itemize}
