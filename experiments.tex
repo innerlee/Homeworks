@@ -33,31 +33,31 @@ Codes and detailed results are available at
 \begin{figure}[ht]
 \centering
     \begin{subfigure}[t]{0.45\textwidth}
-        \includegraphics[width=\linewidth]{"fig/spiral_gaussgauss_000100"}
+        \includegraphics[width=\linewidth]{"fig/spiral_gaussgauss_00030000"}
         \caption{$z$: $1$-dim, spiral.
             $x$: $2$-dim, Gaussian.}
     \end{subfigure}
     ~
     \begin{subfigure}[t]{0.45\textwidth}
-        \includegraphics[width=\linewidth]{"fig/lattice3x3_gaussgauss_000100"}
+        \includegraphics[width=\linewidth]{"fig/lattice3x3_gaussgauss_00030000"}
         \caption{$z$: $0$-dim, lattice.
             $x$: $2$-dim, Gaussian.}
     \end{subfigure}
     \vskip 0.4cm
     \begin{subfigure}[t]{0.45\textwidth}
-        \includegraphics[width=\linewidth]{"fig/gaussgauss_spiral_000100"}
+        \includegraphics[width=\linewidth]{"fig/gaussgauss_spiral_00030000"}
         \caption{$z$: $2$-dim, Gaussian.
             $x$: $1$-dim, spiral.}
     \end{subfigure}
     ~
     \begin{subfigure}[t]{0.45\textwidth}
-        \includegraphics[width=\linewidth]{"fig/gaussgauss_lattice3x3_000100"}
+        \includegraphics[width=\linewidth]{"fig/gaussgauss_lattice3x3_00030000"}
         \caption{$z$: $2$-dim, Gaussian.
             $x$: $0$-dim, lattice.}
     \end{subfigure}
     \caption{\small
         GAN in different dimensions.
-        The snapshots are taken at iteration $10000$.
+        The snapshots are taken at iteration $30000$.
         }
     \label{fig:dim}
 \end{figure}
@@ -82,19 +82,31 @@ it may generate many fake examples that do not belong to the data manifold.
 \begin{figure}[ht]
 \centering
     \begin{subfigure}[t]{0.45\textwidth}
-        \includegraphics[width=\linewidth]{"fig/uniformuniform_patch3x3_000100"}
+        \includegraphics[width=\linewidth]{"fig/uniformuniform_patch3x3_00030000"}
         \caption{$z$: $2$-dim, uniform square, connected.\\
             $x$: $2$-dim, 9 square patches, disconnected.}
     \end{subfigure}
     ~
     \begin{subfigure}[t]{0.45\textwidth}
-        \includegraphics[width=\linewidth]{"fig/patch3x3_uniformuniform_000100"}
+        \includegraphics[width=\linewidth]{"fig/patch3x3_uniformuniform_00030000"}
         \caption{$z$: $2$-dim, 9 square patches, disconnected.\\
             $x$: $2$-dim, uniform square, connected.}
     \end{subfigure}
+    \vskip 0.4cm
+    \begin{subfigure}[t]{0.45\textwidth}
+        \includegraphics[width=\linewidth]{"fig/sphere1_fourleaves_00030000"}
+        \caption{$z$: $1$-dim, unit circle, connected.\\
+            $x$: $1$-dim, four arcs, disconnected.}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[t]{0.45\textwidth}
+        \includegraphics[width=\linewidth]{"fig/fourleaves_sphere1_00030000"}
+        \caption{$z$: $1$-dim, four arcs, disconnected.\\
+            $x$: $1$-dim, unit circle, connected.}
+    \end{subfigure}
     \caption{\small
         GAN in connected/disconnected manifolds.
-        The snapshots are taken at iteration $10000$.
+        The snapshots are taken at iteration $30000$.
         }
     \label{fig:conn}
 \end{figure}
