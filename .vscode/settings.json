@@ -202,6 +202,7 @@
     "regularizer",
     "surjective",
     "generatable",
+    "Frobenius",
     "Xiao"
   ],
   "spellchecker.documentTypes": [

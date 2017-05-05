@@ -1,3 +1,15 @@
 \section{Problem 1}
 
-\subsection{} %1.1
+Both the Frobenius norm and the nuclear norm are invariant
+under left or right multiplication by a orthogonal matrix.
+Thus the problem is can be written as
+\begin{equation}
+\begin{split}
+    \prox_{\|\cdot\|_*}(X)
+        &= \argmin_{Z\in\real^{m\times n}}\frac{1}{2}\|X-Z\|_F^2+\|Z\|_* \\
+        &= \argmin_{Z\in\real^{m\times n}}\frac{1}{2}\|U^TXV-U^TZV\|_F^2+\|U^TZV\|_* \\
+        &= \argmin_{Z\in\real^{m\times n}}\frac{1}{2}\|\Sigma-Y\|_F^2+\|Y\|_*, \\
+\end{split}
+\end{equation}
+where $Y:=U^TZV$.
+We need to prove that $Y=\Sigma_1$.
