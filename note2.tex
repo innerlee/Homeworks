@@ -10,9 +10,9 @@ We are interested in establishing the following \emph{restricted eigenvalue} (RE
 
 \begin{equation}
     \frac{\|X\Delta\|_2^2}{2n}\ge \kappa\|\Delta\|_2^2\quad\forall\Delta\in\cC=
-        \{\Delta\in\real^d:\|\Delta_{S^c}\|_1\le3\|\Delta\|_1\},
+        \{\Delta\in\real^d:\|\Delta_{S^c}\|_1\le3\|\Delta_S\|_1\},
 \end{equation}
-where $\kappa>0$.
+where $\kappa>0$, $X\in\real^{n\times d}$.
 
 In general,
 one would not expect it to hold for arbitrary $X$;
@@ -38,16 +38,108 @@ Thus without loss of generality,
 we may assume $\|\Delta\|_2=1$.
 The proof of the theorem consists of three main steps:
 
+\paragraph{Step 1.}
+For a given $r>0$, define
+\begin{equation}
+    V(r)=\{\Delta\in\real^d:\|\Delta\|_2=1,\|\Delta\|_1\le r\}.
+\end{equation}
+\begin{pro}\label{pro:b1}
+    \begin{equation}
+        \Ebb\bigg[\inf_{\Delta\in V(r)}\frac{\|X\Delta\|_2}{\sqrt{n}}\bigg]\ge
+            3\bigg[\frac{1}{4}-\sqrt{\frac{\log d}{n}}r\bigg],
+    \end{equation}
+    whenever $V(r)\neq \emptyset$.
+\end{pro}
+\begin{proof}
+The quantity of interest here is
+\begin{equation}
+    \widetilde Q(r,X) = \inf_{\Delta\in V(r)}\|X\Delta\|_2
+        = \adjustlimits\inf_{\Delta\in V(r)}\sup_{u\in S^{n-1}}u^TX\Delta.
+\end{equation}
+Note that for each $(u,\Delta)\in S^{n-1}\times V(r)$,
+\begin{equation}
+Y_{u,\Delta}=u^TX\Delta
+\end{equation}
+is a zero mean Gaussian RV.
+To get a lower bound on $\Ebb[\widetilde Q(r,X)]$,
+or equivalently,
+an upper bound on
+\begin{equation}
+    \Ebb[-\widetilde Q(r,X)] =
+        \Ebb\bigg[\adjustlimits\sup_{\Delta\in V(r)}\inf_{u\in S^{n-1}}u^TX\Delta\bigg],
+\end{equation}
+a powerful idea is to construct another family of Gaussian random variables
+$\{Z_{u,\Delta}\}$,
+such that $\Ebb[\adjustlimits\sup_{\Delta\in V(r)}\inf_{u\in S^{n-1}}Z_{u,\Delta}]$
+is easy to compute and is related to
+$\Ebb[\adjustlimits\sup_{\Delta\in V(r)}\inf_{u\in S^{n-1}}Y_{u,\Delta}]$.
+This is the content of Gordon's inequality.
+\begin{fact}[Gordon's Inequality]\label{fact:gordon}
+Let $U,V$ be arbitrary index sets.
+Consider two families $\{Y_{u,v}\}$ and $\{Z_{u,v}\}$ of zero-mean Gaussian RVs.
+Suppose that
+\begin{equation}
+    \sigma(Y_{u,v}-Y_{u',v'})\le\sigma(Z_{u,v}-Z_{u',v'})\quad
+    \forall(u,v),(u',v')\in U\times V,
+\end{equation}
+and
+\begin{equation}
+    \sigma(Y_{u,v}-Y_{u,v'})\le\sigma(Z_{u,v}-Z_{u,v'})\quad
+    \forall u\in U,~ v,v'\in V.
+\end{equation}
+Then,
+\begin{equation}
+    \Ebb\bigg[\adjustlimits\sup_{u\in U}\inf_{v\in V}Y_{u,v}\bigg]\le
+    \Ebb\bigg[\adjustlimits\sup_{u\in U}\inf_{v\in V}Z_{u,v}\bigg].
+\end{equation}
+\end{fact}
+
+To apply Gordon's inequality,
+let us first compute $\sigma(Y_{u,\Delta}-Y_{u',\Delta'})$,
+and see what properties are needed for $Z_{u,\Delta}$.
+By definition,
+
+\end{proof}
+
+\paragraph{Step 2.}
+We show that the random variable $Q(r,X)$ is concentrated around its mean,
+where
+\begin{equation}
+    Q(r,X)=\inf_{\Delta\in V(r)}\frac{\|X\Delta\|_2}{\sqrt{n}}.
+\end{equation}
+\begin{pro}\label{pro:b2}
+Let $r>0$ \st $V(r)\ne \emptyset$.
+Then
+\begin{equation}
+    \Pr\big[\;|Q(r,X)-\Ebb[Q(r,X)]|\ge\frac{1}{2}t(r)\;\big]\le 2\exp(-nt^2(r)/8),
+\end{equation}
+\end{pro}
+where
+\begin{equation}
+    t(r)=\frac{1}{4}+3\sqrt{\frac{\log d}{n}}r.
+\end{equation}
+
+\paragraph{Step 3.}
+The results of Proposition~\ref{pro:b1} and~\ref{pro:b2} show that
+with probability at least $1-2\exp(-nt^2(r)/8)$,
+\begin{equation}
+\begin{split}
+    Q(r,X) &= \inf_{\Delta\in V(r)}\frac{\|X\Delta\|_2}{\sqrt{n}}
+        \ge \Ebb[Q(r,X)]-\frac{1}{2}t(r) \\
+        &\ge 1-\frac{3}{2}t(r)=\frac{5}{8}-\frac{9}{2}\sqrt{\frac{\log d}{n}}r.
+\end{split}
+\end{equation}
+Here,
+we need $\|\Delta\|_1\le r$,
+where $r$ is fixed.
+However,
+we need the above to hold for all $r$.
+This is the goal of this step.
+
+\subsubsection{Probability Tools Used}
+
 \begin{itemize}
-    \item Step 1.
-        For a given $r>0$, define
-        \begin{equation}
-            V(r)=\{\Delta\in\real^d:\|\Delta\|_2=1,\|\Delta\|_1\le r\}.
-        \end{equation}
-        \begin{pro}
-            \begin{equation}
-                \Ebb\bigg[\inf_{\Delta\in V(r)}\frac{\|X\Delta\|_2}{\sqrt{n}}\bigg]\ge 3\bigg[\frac{1}{4}-\sqrt{\frac{\log d}{n}}r\bigg],
-            \end{equation}
-            whenever $V(r)\neq \emptyset$.
-        \end{pro}
+    \item Comparison inequality for Gaussian process.
+    \item Concentration of measure for Lipschitz functions of Gaussians.
+    \item ``Peeling argument'' from empirical process theory.
 \end{itemize}

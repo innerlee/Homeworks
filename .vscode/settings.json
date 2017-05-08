@@ -58,6 +58,7 @@
     "ELEG",
     "subgradient",
     "indices",
+    "Gaussians",
     "nullspace"
   ],
   "spellchecker.documentTypes": [
@@ -76,6 +77,7 @@
     "/\\\\w+.png/g",
     "/\\\\w+.jpg/g",
     "/\\\\{\\\\w+\\\\}/g",
+    "/\\\\{\\\\w+:\\\\w+\\\\}/g",
     "/\\\\[\\\\w+\\\\]/g",
     "/fig\\/\\\\w+/g",
     "/\\\\w+.pdf/g"
