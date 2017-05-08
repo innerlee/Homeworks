@@ -6,8 +6,8 @@
         {
             "taskName": "default",
             "isBuildCommand": true,
-            "showOutput": "always",
-            "isWatching": true
+            "showOutput": "silent",
+            "isBackground": true
         }
     ]
 }
