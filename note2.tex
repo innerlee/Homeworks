@@ -1,0 +1,53 @@
+\clearpage
+\section{Note 2}
+Reading~\cite{raskutti2010restricted}.
+
+\subsection{Prelude}
+
+\subsubsection{Recall}
+
+We are interested in establishing the following \emph{restricted eigenvalue} (RE) condition:
+
+\begin{equation}
+    \frac{\|X\Delta\|_2^2}{2n}\ge \kappa\|\Delta\|_2^2\quad\forall\Delta\in\cC=
+        \{\Delta\in\real^d:\|\Delta_{S^c}\|_1\le3\|\Delta\|_1\},
+\end{equation}
+where $\kappa>0$.
+
+In general,
+one would not expect it to hold for arbitrary $X$;
+\eg fix $\Delta\in\cC$ and construct $X$
+\st $\Delta\in\nullsp(X)$.
+Thus some assumptions on $X$ are needed.
+
+Let us assume that the rows of $X$ are iid $\cN(0,I)$.
+Our goal is to prove
+
+\begin{thm}
+    With prob. $\ge 1-c_1\exp(-c_2 n)$,
+    for some $c_1,c_2>0$.
+    \begin{equation}
+        \frac{\|X\Delta\|_2}{\sqrt{n}}\ge
+            \frac{1}{4}\|\Delta\|_2-9\sqrt{\frac{\log d}{n}}\|\Delta\|_1
+            \quad \forall \Delta\in\real^d.
+    \end{equation}
+\end{thm}
+
+Note that the theorem trivially holds for $\Delta=0$.
+Thus without loss of generality,
+we may assume $\|\Delta\|_2=1$.
+The proof of the theorem consists of three main steps:
+
+\begin{itemize}
+    \item Step 1.
+        For a given $r>0$, define
+        \begin{equation}
+            V(r)=\{\Delta\in\real^d:\|\Delta\|_2=1,\|\Delta\|_1\le r\}.
+        \end{equation}
+        \begin{pro}
+            \begin{equation}
+                \Ebb\bigg[\inf_{\Delta\in V(r)}\frac{\|X\Delta\|_2}{\sqrt{n}}\bigg]\ge 3\bigg[\frac{1}{4}-\sqrt{\frac{\log d}{n}}r\bigg],
+            \end{equation}
+            whenever $V(r)\neq \emptyset$.
+        \end{pro}
+\end{itemize}

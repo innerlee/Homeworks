@@ -9,9 +9,7 @@ Regularized loss minimization
 \hat\theta \in \argmin_{\theta\in\real^d} \{\cL(\theta;\{z_i\}_{i=1}^n) + \lambda R(\theta)\}
 \end{equation}
 for estimating a certain unknown vector $\theta^*\in\real^d$.
-Here $z_1,\dots,z_n$ are iid \wrt $\Pbb_{\theta^*}$.
-% Q
-\footnote{what does notation $\Pbb_{\theta^*}$ mean?}
+Here $z_1,\dots,z_n$ are iid \wrt distribution $\Pbb_{\theta^*}$.
 Denote
 \begin{equation}
 F := \cL(\theta;\{z_i\}_{i=1}^n) + \lambda R(\theta).
@@ -19,9 +17,7 @@ F := \cL(\theta;\{z_i\}_{i=1}^n) + \lambda R(\theta).
 
 \subsubsection{This Lecture}
 
-Derive bounds on the statistical error
-% Q
-\footnote{what is a \emph{statistical error}?}
+Derive bounds on the \emph{statistical error}
 $\hat\Delta = \hat\theta - \theta^*$.
 
 \subsubsection{Motivation}
@@ -30,13 +26,8 @@ $\hat\Delta = \hat\theta - \theta^*$.
     \item From optimization, expect
         $|F(\hat\theta) - F(\theta^*)|$
         to be small.
-        % Q
-        \footnote{why it should small? why from optimization?
-        this is strange because $\theta^*$ is a predefined value and
-        $\thetahat$ is a value not in control.}
     \item Show that $\hat\Delta$ belongs to a region
         that $F$ is not too flat.
-        % Q
         This involves accounting for the effect of $R$.
     \item $R$ is intended to promote certain desirable structure (\eg sparsity).
         We need to know how $R$ penalizes deviation,
@@ -72,17 +63,9 @@ $\hat\Delta = \hat\theta - \theta^*$.
         $R(\theta+\gamma)\le R(\theta) + R(\gamma)$.
         This means we want the perturbation term $\gamma$ be
         maximally penalized (up to the equal sign).
-        % N
-        \footnote{seems that this maximally penalization is just an excuse for
-        the simplified assumption.}
     \item The notion of decomposability is useful when $\cM$ is small,
+        and at the same time not being too far from $\theta^*$,
         in the sense that $\Pi_\cM(\theta^*)\approx\theta^*$.
-        % N
-        \footnote{i think the sense of small is strange since when
-        $\cM$ is large enough, that projection would be exact.
-        Should we phrase it as
-        \emph{it is useful when $\cM$ is small and
-        at the same time not being too far from $\theta^*$}?}
 \end{itemize}
 \end{obs}
 
@@ -95,8 +78,6 @@ $\hat\Delta = \hat\theta - \theta^*$.
         then $\Pi_{\cM(S)}(\theta^*)=\theta^*$.
     \item take $\cMbar(S):=\cM(S)$,
         so $\cMbar(S)^\perp = \cM(S)^\perp$.
-        % N
-        \footnote{notation $\cMbar(S)^\perp$ corrected from $\cMbar^\perp(S)$ (undefined).}
     \item decomposability is obvious.
 \end{itemize}
 \end{ex}
@@ -191,9 +172,6 @@ To formulate this, we use \emph{Restricted Strongly Convex} (RSC).
 
 \begin{define}
     $\cL$ satisfies RSC
-    % Q
-    \footnote{does RSC tightly related to $\cC$? \ie `\emph{a} $\cC$' or `\emph{the} $\cC$'?
-    same question to $\theta^*$, a fixed $\theta^*$ or any point?}
     if $\exists$ constant $\kappa > 0$ and function $\tau(\cdot)$
     \st
     \begin{equation}
@@ -319,9 +297,8 @@ Application to sparse regression.
         where $\theta^*\in\real^d$ is an unknown regression vector and
         $X\in\real^{n\times d}$ is the design matrix with $x_i^T$ as $i$-th row.
         $w\in\real^n$ is the noise vector.
-    \item model: exactly sparse $\theta^*$.
-        % Q
-        \footnote{what is \emph{exactly sparse}?}
+    \item model: exactly sparse $\theta^*$;
+        \ie, you know the vector is supported on a given set.
         LASSO (least absolute shrinkage and selection operator):
         \begin{equation}
             \thetahat\in\argmin_{\theta\in\real^d}(\frac{1}{2n}\|y-X\theta\|_2^2+\lambda\|\theta\|_1).
