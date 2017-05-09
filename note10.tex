@@ -40,3 +40,64 @@ it is natural to formulate the following least squares problem,
 \end{equation}
 Using the fact that $|z_j\bar z_l|^2=1$ for any $z\in T^n$,
 the above is equivalent to
+\begin{equation}\label{eq:j_p}
+    \hat z \in\argmax_{z\in T^n}z^HCz,
+\end{equation}
+where $C_{jj}=1$ for $j=1,\dots,n$.
+
+Note that neither the objective function nor the constraints set of
+\eqref{eq:j_p} is convex.
+Moreover,
+there will be multiple optimal solutions to \eqref{eq:j_p},
+because whenever $\hat z$ is optimal,
+so is $e^{i\theta}\hat z$ for any $\theta\in[0,2\pi)$.
+This also suggests that we can only recover $z^*$ up to a global phase.
+Hence,
+we define the following distance metric to measure the closeness of
+any $z\in T^n$ to the target vector $z^*$,
+\begin{equation}
+    d_2(z,z^*)=\min_{\theta\in[0,2\pi)}\|z-e^{i\theta}z^*\|_2.
+\end{equation}
+
+Following our earlier studies,
+a natural first question is to study the estimation performance of $\hat z$
+\wrt the metric $d_2$.
+As it turns out,
+this is rather straightforward.
+To begin,
+observe from \eqref{eq:probj} that
+\begin{equation}
+    C=z^*(z^*)^H+\Delta,
+\end{equation}
+where $\Delta$ is a Hermitian matrix whose diagonal is zero
+and its above-diagonal entries are given by $\Delta_{jl}$.
+Then,
+we have the following,
+\begin{pro}\label{pro:j1}
+Let $z\in\cpx^n$ be such that $\|z\|_2^2=n$ and $(z^*)^HCz^*\le z^HCz$
+(in particular,
+these conditions are satisfied by an optimal solution
+$\hat z$ to \eqref{eq:j_p}).
+Then,
+\begin{equation}
+    d_2(z,z^*) = \sqrt{2\big(n-|z^Hz^*|\big)}\le\frac{4\|\Delta\|}{\sqrt{n}}.
+\end{equation}
+\end{pro}
+\begin{proof}
+\todo
+\end{proof}
+
+In view of Proposition~\ref{pro:j1},
+it is natural to ask if we can find an optimal solution $\hat z$
+to \eqref{eq:j_p} efficiently.
+Noting that projection onto the non-convex set $T^n$ is efficiently computable,
+let us consider the following simple projected gradient scheme,
+\begin{equation}
+\begin{split}
+    w^k &\leftarrow z^k + \frac{\alpha_k}{n}Cz^k, \\
+    z^{k+1}&\leftarrow \frac{w^k}{|w^k|},
+\end{split}
+\end{equation}
+where $\alpha_k>0$ is the step size,
+and for a vector $w\in\cpx^n$,
+\todo
