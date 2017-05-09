@@ -59,6 +59,8 @@
     "subgradient",
     "indices",
     "Gaussians",
+    "regularizers",
+    "subdifferentiable",
     "nullspace"
   ],
   "spellchecker.documentTypes": [
