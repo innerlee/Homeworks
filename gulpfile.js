@@ -3,11 +3,12 @@ let gulp = require('gulp');
 let cp = require('child_process');
 let gutil = require('gulp-util');
 let fs = require("fs")
+var del = require('del');
 
 // modify this to your main .tex file
 let f = 'bf';
 
-gulp.task('default', function() {
+gulp.task('pdflatex', function() {
   gutil.log('please wait...')
   cp.exec('pdflatex -interaction=nonstopmode ' + f, (error, stdout, stderr) => {
     if (error !== null) {
@@ -49,4 +50,20 @@ gulp.task('default', function() {
       });
     });
   });
+});
+
+gulp.task('clean', function() {
+  gutil.log('cleaning artifacts...')
+  del([
+    '*.aux',
+    '*.log',
+    '*.bbl',
+    '*.blg',
+    '*.out',
+    // here we use a globbing pattern to match everything inside the `mobile` folder
+    // 'dist/mobile/**/*',
+    // we don't want to clean this file though so we negate the pattern
+    // '!dist/mobile/deploy.json'
+  ]);
+  gutil.log('done!')
 });

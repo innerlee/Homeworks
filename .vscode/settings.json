@@ -204,6 +204,8 @@
     "generatable",
     "Frobenius",
     "regularizers",
+    "subdifferentiable",
+    "Gaussians",
     "Xiao"
   ],
   "spellchecker.documentTypes": [
