@@ -1,1 +1,19 @@
 \section{Problem 2}
+
+\subsection{} % (a)
+\begin{equation}
+\begin{split}
+    d(X^k,\cX) &= \bigg\|
+    \begin{bmatrix}
+        2\delta_k^2  & \delta_k \\
+        \delta_k     & \delta_k^2 \\
+    \end{bmatrix}
+    \bigg\|_F \\
+    &= \sqrt{2\delta_k^2+5\delta_k^4} \\
+    &= \sqrt{2}\delta_k \sqrt{1+\frac{5}{2}\delta_k^2} \\
+    &= \sqrt{2}\delta_k \bigg(1+ \frac{5}{4}\delta_k^2+O(\delta_k^4)\bigg) \\
+    &= \Theta(\delta_k).
+\end{split}
+\end{equation}
+
+\subsection{} % (b)
