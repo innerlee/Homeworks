@@ -1,2 +1,42 @@
 \clearpage
 \section{Note J}
+
+\subsection{Prelude}
+
+\subsubsection{Recall}
+
+In the past lectures,
+we focused on regularized loss minimization problems that have
+non-convex loss functions and/or non-convex regularizations.
+By stipulating that the loss function satisfies RSC and that
+the regularizers is not ``too non-convex'',
+we essentially turned the problem into a convex one,
+for which standard techniques apply.
+
+\subsubsection{This Lecture}
+
+In this lecture,
+we depart from the regularized loss minimization problem and
+consider another quite different estimation problem:
+the \emph{phase synchronization problem}.
+In this problem,
+one is interested in recovering a collection of phases $\{e^{i\theta_k}\}$
+based on noisy measurements of relative phases $\{e^{i(\theta_j-\theta_k)}\}$.
+Specifically,
+let
+\begin{equation}
+    z^*\in T^n\triangleq\{w\in\cpx^n:|w_1|=\cdots=|w_n|=1\}
+\end{equation}
+be the unknown phase vector we wish to recover.
+We have noisy measurements of the form
+\begin{equation}\label{eq:probj}
+    C_{jl}=z_j^*\bar z_l^*+\Delta_{jl},\quad 1\le j<l\le n,
+\end{equation}
+where $\Delta_{jk}$ is the noise associated with the $(j,k)$-th measurement.
+To recover $z^*$,
+it is natural to formulate the following least squares problem,
+\begin{equation}
+    \hat z \in\argmin_{z\in T^n}\sum_{1\le j<l\le n}|c_{jl}-z_j\bar z_l|^2.
+\end{equation}
+Using the fact that $|z_j\bar z_l|^2=1$ for any $z\in T^n$,
+the above is equivalent to
