@@ -1,1 +1,63 @@
 \section{Problem 3}
+
+First observe that the right hand side of the condition~(b)
+is $1$-homogeneous.
+This motivate us to consider if we can reduce the problem to
+the case when $\|\Delta\|_2=1$,
+since the absolute length is unimportant here.
+However,
+we need to deal with the left hand side
+because $\Delta$ appears in the term $\nabla\cL(\theta^*+\Delta)$.
+This is easy to handle due to the convexity of $\cL$.
+Since $(\nabla\cL(\theta^*+\Delta))^T\Delta/\|\Delta\|_2$ is
+the directional derivative of $\cL$ at $(\theta^*+\Delta)$
+along direction $\Delta$.
+Restrict $\cL$ on line $t\mapsto\theta^*+t\Delta$,
+function $f(t):=\cL(\theta^*+t\Delta)$ is convex
+and its derivative is increasing.
+Thus for $\|\Delta\|_2\ge1$,
+\begin{equation}
+    (\nabla\cL(\theta^*+\Delta))^T\frac{\Delta}{\|\Delta\|_2} =
+        \frac{df(t)}{dt}\bigg|_{t=1}
+    \ge \frac{df(t)}{dt}\bigg|_{t=\frac{1}{\|\Delta\|_2}}
+    =(\nabla\cL(\theta^*+\Delta/\|\Delta\|_2))^T\frac{\Delta}{\|\Delta\|_2}.
+\end{equation}
+So
+\begin{equation}
+    (\nabla\cL(\theta^*+\Delta)-\nabla\cL(\theta^*))^T\Delta
+        \ge(\nabla\cL(\theta^*+\Delta/\|\Delta\|_2)-\nabla\cL(\theta^*))^T\Delta.
+\end{equation}
+We then turn the condition~(b) to a homogeneous form
+\begin{equation}
+    (\nabla\cL(\theta^*+\Delta/\|\Delta\|_2)-\nabla\cL(\theta^*))^T\Delta
+        \ge\alpha_2\|\Delta\|_2-\tau_2\sqrt{\frac{\log d}{n}}\|\Delta\|_1.
+\end{equation}
+So we can assume that $\|\Delta\|_2=1$
+because it will automatically be true for $\|\Delta\|_2>1$.
+Use condition~(a) when $\|\Delta\|_2=1$,
+we have
+\begin{equation}
+    (\nabla\cL(\theta^*+\Delta)-\nabla\cL(\theta^*))^T\Delta
+        \ge\alpha_1-\tau_1\frac{\log d}{n}\|\Delta\|_1^2.
+\end{equation}
+we only need to verify that
+\begin{equation}
+    \alpha_1-\tau_1\frac{\log d}{n}\|\Delta\|_1^2
+        \ge\alpha_2-\sqrt{\frac{\log d}{n}}\|\Delta\|_1.
+\end{equation}
+This is equivalent to
+\begin{equation}
+    \tau_1\frac{\log d}{n}\|\Delta\|_1^2
+        \le\sqrt{\frac{\log d}{n}}\|\Delta\|_1,
+\end{equation}
+and equivalent to
+\begin{equation}
+    \tau_1\sqrt{\frac{\log d}{n}}\|\Delta\|_1
+        \le1,
+\end{equation}
+This holds because
+\begin{equation}
+    \tau_1\sqrt{\frac{\log d}{n}}\|\Delta\|_1
+        \le\tau_1\sqrt{\frac{\log d}{4R^2\tau_1^2\log d}}2R
+        =1.
+\end{equation}
