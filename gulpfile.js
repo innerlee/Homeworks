@@ -8,7 +8,7 @@ var del = require('del');
 // modify this to your main .tex file
 let f = 'bf';
 
-gulp.task('default', function() {
+gulp.task('pdflatex', function() {
   gutil.log('please wait...')
   cp.exec('pdflatex -interaction=nonstopmode ' + f, (error, stdout, stderr) => {
     if (error !== null) {
