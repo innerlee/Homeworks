@@ -17,3 +17,74 @@
 \end{equation}
 
 \subsection{} % (b)
+
+In HW2,
+we have computed the gradient of $h(\cA(X))$ as
+\begin{equation}
+    \nabla_X h(\cA(X)) =
+    \begin{bmatrix}
+        \frac{3}{2}X_{11}-2X_{22}-\frac{5}{2} & 0 \\
+        0   & -2X_{11}+3X_{22}+1 \\
+    \end{bmatrix}.
+\end{equation}
+So
+\begin{equation}
+    \nabla_X h(\cA(X^k)) =
+    \begin{bmatrix}
+        \delta_k^2-1 & 0 \\
+        0   & -\delta_k^2-1 \\
+    \end{bmatrix}.
+\end{equation}
+And we have
+\begin{equation}
+\begin{split}
+    X^k-\nabla_X h(\cA(X^k))
+    &=\begin{bmatrix}
+        \delta_k^2+2 & \delta_k \\
+        \delta_k    & 2\delta_k^2+1 \\
+    \end{bmatrix} \\
+    &= \begin{bmatrix}
+        \frac{-\delta_k}{\sqrt{1+\delta_k^2}} & \frac{1}{\sqrt{1+\delta_k^2}} \\
+        \frac{1}{\sqrt{1+\delta_k^2}}  & \frac{\delta_k}{\sqrt{1+\delta_k^2}} \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        \delta_k^2+1 & 0 \\
+        0  & 2+2\delta_k^2 \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        \frac{-\delta_k}{\sqrt{1+\delta_k^2}} & \frac{1}{\sqrt{1+\delta_k^2}} \\
+        \frac{1}{\sqrt{1+\delta_k^2}}  & \frac{\delta_k}{\sqrt{1+\delta_k^2}} \\
+    \end{bmatrix}. \\
+\end{split}
+\end{equation}
+So,
+\begin{equation}
+\begin{split}
+    \prox_{\|\cdot\|_*}(X^k-\nabla_X h(\cA(X^k)))
+    &= \frac{1}{1+\delta_k^2}
+    \begin{bmatrix}
+        -\delta_k & 1 \\
+        1  & \delta_k \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        \delta_k^2 & 0 \\
+        0  & 1+2\delta_k^2 \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        -\delta_k & 1 \\
+        1  & \delta_k \\
+    \end{bmatrix} \\
+    &=\begin{bmatrix}
+        \delta_k^2+1 & \delta_k \\
+        \delta_k  & 2\delta_k^2 \\
+    \end{bmatrix}.
+\end{split}
+\end{equation}
+So
+\begin{equation}
+    E(X^k) = \prox_{\|\cdot\|_*}(X^k-\nabla_X h(\cA(X^k))) - X^k =
+    \begin{bmatrix}
+        -\delta_k^2 & 0 \\
+        0  & \delta_k^2 \\
+    \end{bmatrix}. \\
+\end{equation}
