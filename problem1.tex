@@ -2,14 +2,67 @@
 
 Both the Frobenius norm and the nuclear norm are invariant
 under left or right multiplication by a orthogonal matrix.
-Thus the problem is can be written as
+Thus the problem is can be rewritten as
 \begin{equation}
 \begin{split}
     \prox_{\|\cdot\|_*}(X)
         &= \argmin_{Z\in\real^{m\times n}}\frac{1}{2}\|X-Z\|_F^2+\|Z\|_* \\
         &= \argmin_{Z\in\real^{m\times n}}\frac{1}{2}\|U^TXV-U^TZV\|_F^2+\|U^TZV\|_* \\
-        &= \argmin_{Z\in\real^{m\times n}}\frac{1}{2}\|\Sigma-Y\|_F^2+\|Y\|_*, \\
+        &= \argmin_{Y\in\real^{m\times n}}\frac{1}{2}\|\Sigma-Y\|_F^2+\|Y\|_*, \\
 \end{split}
 \end{equation}
 where $Y:=U^TZV$.
-We need to prove that $Y=\Sigma_1$.
+We need to prove that $Y=\Sigma_1$ is the minimum point.
+Since the problem is convex (because it is the sum of two norms),
+it suffices to show that the first order optimality condition holds
+at point $Y=\Sigma_1$,
+\begin{equation}
+    0\in \partial_Y\bigg(\frac{1}{2}\|\Sigma-Y\|_F^2+\|Y\|_*\bigg)\bigg|_{Y=\Sigma_1}.
+\end{equation}
+
+To simplify notation,
+denote $\sigma_i:=\sigma_i(X), i=1,2,\dots,m$,
+and suppose the first $r$ eigenvalues are greater than $1$,
+\ie
+\begin{equation}
+    \sigma_1\ge\sigma_2\ge\cdots\ge\sigma_r>1\ge\sigma_{r+1}\ge\cdots\ge\sigma_m\ge0.
+\end{equation}
+Then we can write $\Sigma$ and $\Sigma_1$ as
+\begin{equation}
+    \Sigma=\diag(\sigma_1,\dots,\sigma_m),
+\end{equation}
+and
+\begin{equation}
+    \Sigma_1=\diag(\sigma_1-1,\dots,\sigma_r-1,0,\dots,0).
+\end{equation}
+
+Denote $W_1=\diag(\sigma_{r+1},\dots,\sigma_m)$.
+Then the subgradient at $\Sigma_1$ is
+\begin{equation}
+\begin{split}
+    & \partial_Y\bigg(\frac{1}{2}\|\Sigma-Y\|_F^2+\|Y\|_*\bigg)\bigg|_{Y=\Sigma_1} \\
+    &= \bigg\{\Sigma_1 - \Sigma +
+    \begin{bmatrix}
+        I_r  & 0 \\
+        0    & W \\
+    \end{bmatrix}: \|W\|\le 1 \bigg\} \\
+    &= \bigg\{\begin{bmatrix}
+        -I_r  & 0 \\
+        0    & -W_1 \\
+    \end{bmatrix} +
+    \begin{bmatrix}
+        I_r  & 0 \\
+        0    & W \\
+    \end{bmatrix}: \|W\|\le 1 \bigg\} \\
+    &= \bigg\{\begin{bmatrix}
+        0    & 0 \\
+        0    & W - W_1 \\
+    \end{bmatrix}: \|W\|\le 1 \bigg\} \\
+\end{split}
+\end{equation}
+where $\|W\|$ is the spectral norm,
+and we use the result from HW2, Problem 2 to compute the subgradient
+of nuclear norm.
+Since $\|W_1\|=\sigma_{r+1}\le 1$,
+we get $0$ belongs to the subgradient of the objective
+by simply making $W=W_1$.
