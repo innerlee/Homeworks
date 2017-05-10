@@ -87,8 +87,40 @@ Then,
 By definition,
 \begin{equation}
 \begin{split}
-    d_2(z,z^*)^2=\min_{\theta\in[0,2\pi)\|z-e^{i\theta}z^*\|_2^2}
+    d_2(z,z^*)^2 &=\min_{\theta\in[0,2\pi)}\|z-e^{i\theta}z^*\|_2^2 \\
+        &= 2\bigg(n-\max_{\theta\in[0,2\pi)}\re(e^{i\theta}z^Hz^*)\bigg) \\
+        &= 2(n-|z^Hz^*|).
 \end{split}
+\end{equation}
+Now,
+without loss,
+suppose that $z^Hz^*=|z^Hz^*|$.
+By assumption,
+\begin{equation}
+    z^HCz=|z^Hz^*|^2+z^H\Delta z\ge(z^*)^HCz^*=n^2+(z^*)^H\Delta z^*.
+\end{equation}
+This gives
+\begin{equation}
+    n^2-|z^Hz^*|^2\le z^H\Delta z-(z^*)^H\Delta z^*.
+\end{equation}
+Dividing both sides by $n$ and observing that $|z^Hz^*|\le n$ and
+\begin{equation}
+    n^2-|z^Hz^*|^2=(n-|z^Hz^*|)(n+|z^Hz^*|),
+\end{equation}
+we have
+\begin{equation}
+\begin{split}
+    n-|z^Hz^*|
+        &\le \frac{1}{n}\big(z^H\Delta z-(z^*)^H\Delta z^*\big) \\
+        &= \frac{1}{n}\re\big((z-z^*)^H\Delta (z+z^*)\big) \\
+        &\le \frac{1}{n}\|\Delta\|~\|z-z^*\|_2~\|z+z^*\|_2 \\
+        &\le \frac{2}{\sqrt{n}}\|\Delta\|~\|z-z^*\|_2
+\end{split}
+\end{equation}
+Note that $d_2(z,z^*)=\|z-z^*\|_2$,
+it follows that
+\begin{equation}
+    d_2(z,z^*)\le \frac{4\|\Delta\|}{\sqrt{n}}.
 \end{equation}
 \end{proof}
 
