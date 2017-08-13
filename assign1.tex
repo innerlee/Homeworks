@@ -1,0 +1,38 @@
+\section{Assignment 1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{} %1.1
+
+Since
+\begin{align}
+    P(Y_i=0) &= P(X_i\le\mu) = F_X(\mu), \\
+    P(Y_i=1) &= 1 - F_X(\mu).
+\end{align}
+We know $Y_i\sim Bernoulli(1-F_X(\mu))$ and are iid.
+So the sum is a Binomial distribution. \ie
+\begin{equation}
+    \sum_{i=1}^n Y_i = Binomial(n, 1 - F_X(\mu)).
+\end{equation}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{} %1.2
+
+If we model the Binomial distribution as counting heads of tossing a biased coin,
+then the sum of independent Binomial distributions is just tossing more times.
+So the result should be another Binomial distribution.
+\ie, $\sum_{i=1}^{k}X_i \sim Binomial\big(\sum_i n_i, p\big)$.
+
+Formally, we only need to prove for the case of $k=2$.
+\begin{align}
+    P(X_1+X_2=t) &= \sum_{i=0}^t P(X_1=i)P(X_2=t-i) \\
+                 &= \sum_{i=0}^t \binom{n_1}{i}p^{i}(1-p)^{n_1-i}\binom{n_2}{t-i}p^{t-i}(1-p)^{n_2-(t-i)} \\
+                 &= p^{t}(1-p)^{n_1+n_2-t}\sum_{i=0}^t \binom{n_1}{i}\binom{n_2}{t-i} \\
+                 &= \binom{n_1+n_2}{t}p^{t}(1-p)^{n_1+n_2-t}
+\end{align}
+So $X_1+X_2\sim Binomial(n_1+n_2, p)$.
+Simple induction will suffice for proving the general case for $k>2$.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{} %1.3
