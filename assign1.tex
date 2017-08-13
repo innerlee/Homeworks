@@ -36,3 +36,91 @@ Simple induction will suffice for proving the general case for $k>2$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{} %1.3
+
+\subsubsection{} %1.3.1
+
+We write the marginal distribution in terms of conditional distribution \wrt $p$.
+\begin{align}
+    P(X_1=x_1,\dots,X_k=x_k)
+        &= \int_0^1 P(X_1=x_1,\dots,X_k=x_k|p=u) du
+\end{align}
+Under condition $p=u$, $X_i$'s are independent,
+so the marginal is
+\begin{equation}
+    P(X_1=x_1,\dots,X_k=x_k|p=u) = u^t(1-u)^{k-t}.
+\end{equation}
+Together, we have the desired equation
+\begin{equation} \label{eq:1_3_1}
+    P(X_1=x_1,\dots,X_k=x_k) = \int_0^1 p^t(1-p)^{k-t}dp.
+\end{equation}
+RHS of Equation \eqref{eq:1_3_1} is invariant under permutation of $X_i$,
+so $X_1,\dots,X_n$ are exchangeable.
+
+\subsubsection{} %1.3.2
+
+\begin{equation}
+    P(X_i=x_i) = \int_0^1 p^{x_i}(1-p)^{1-x_i} dp
+\end{equation}
+
+Consider the case that $X_i=1, \forall i$.
+\begin{align}
+    P(X_1=1,\dots,X_n=1) &= \int_0^1 p^n dp = \frac{1}{n+1}, \\
+    P(X_1=1)\cdots P(X_n=1) &= \int_0^1 p dp\; \dots  \int_0^1 p dp = \frac{1}{2^n}.
+\end{align}
+So they are not equal.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{} %1.4
+
+\subsubsection{} %1.4.1
+
+For $X\sim Binomial(n,p)$,
+\begin{align}
+    M_X(t)
+        &= \Ebb[e^{tX}] \\
+        &= \sum_{i=0}^n \binom{n}{i}p^i(1-p)^{n-i}e^{ti} \\
+        &= (pe^t + (1-p))^n \\
+        &= (1-p+pe^t)^n.
+\end{align}
+
+\subsubsection{} %1.4.2
+
+For $X\sim Pois(\lambda)$,
+\begin{align}
+    M_X(t)
+        &= \Ebb[e^{tX}] \\
+        &= \sum_{i=0}^\infty \frac{\lambda^i}{i!}e^{-\lambda}e^{ti} \\
+        &= e^{-\lambda}e^{\lambda e^t} \\
+        &= e^{\lambda(e^t-1)}.
+\end{align}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{} %1.5
+
+Let the cdf of std normal be $F(z)$.
+\begin{align}
+    F_Z(z)
+        &= P(Z\le z) \\
+        &= P(X\le z) + P(Y\le z) - P(X\le z)P(Y\le z) \\
+        &= 2F(z) - (F(z))^2.
+\end{align}
+For $u\ge0$, we have $F(-u)=1-F(u)$. Then
+\begin{align}
+    P(Z^2\le u^2)
+        &= P(-u\le Z\le u) \\
+        &= F_Z(u) - F_Z(-u) \\
+        &= 2F(u) - (F(u))^2 - (2F(-u) - (F(-u))^2) \\
+        &= 2F(u) - (F(u))^2 - (1 - 2F(u) - (1 - F(u))^2) \\
+        &= 2F(u) - 1.
+\end{align}
+This shows that $Z^2\sim \chi_1^2$.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{} %1.6
+
+\begin{align}
+    E(c\sqrt{S^2})
+\end{align}
