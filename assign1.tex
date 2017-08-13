@@ -123,4 +123,26 @@ This shows that $Z^2\sim \chi_1^2$.
 
 \begin{align}
     E(c\sqrt{S^2})
+        &= E\vast(c\sqrt{\frac{1}{n}\sum_{i=1}^n(X_i-\mu)^2}\vast) \\
+        &= \frac{c\sigma}{\sqrt{n}}E\vast(\sqrt{\sum_{i=1}^n\bigg(\frac{X_i-\mu}{\sigma}\bigg)^2}\vast) \\
+        &= \sigma
 \end{align}
+Let
+\begin{equation}
+    Y:=\sum_{i=1}^n\bigg(\frac{X_i-\mu}{\sigma}\bigg)^2.
+\end{equation}
+Then $Y\sim\chi^2_n$.
+From \cite{chi}, the square root of a chi-squared distribution is a chi distribution.
+And the expectation is
+\begin{equation}
+    E\big(\sqrt{Y}\big) = \frac{\sqrt{2}\Gamma(\frac{n+1}{2})}{\Gamma(\frac{n}{2})}.
+\end{equation}
+Then,
+\begin{equation}
+    c = \frac{\sqrt{n}}{E\big(\sqrt{Y}\big)}
+      = \frac{\sqrt{n}\Gamma(\frac{n}{2})}{\sqrt{2}\Gamma(\frac{n+1}{2})}.
+\end{equation}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{} %1.7
