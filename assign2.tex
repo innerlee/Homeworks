@@ -1,0 +1,24 @@
+\clearpage
+\section{Assignment 2}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{} %2.1
+
+The cdf of $Beta(1,\beta)$ distribution is
+\begin{equation}
+    F(x) = 1 - (1-x)^\beta.
+\end{equation}
+
+\begin{equation}
+    P(X_{(n)}\le t) = (P(X_1\le t))^n = \big(F(x)\big)^n
+\end{equation}
+
+\begin{align}
+    P\big(n^\nu\big(1-X_{(n)}\big)\le t\big)
+        &= P\bigg(X_{(n)}\ge 1-\frac{t}{n^\nu}\bigg) \\
+        &= 1 - \bigg(F\bigg(1-\frac{t}{n^\nu}\bigg)\bigg)^n \\
+        &= 1 - \bigg(1 - \bigg(\frac{t}{n^\nu}\bigg)^\beta\bigg)^n \\
+        &= 1 - \bigg(1 - \frac{t^\beta}{n^{\nu \beta}}\bigg)^n
+\end{align}
+
+This equation has limit if we set $\nu=1/\beta$.
