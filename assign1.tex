@@ -146,3 +146,19 @@ Then,
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{} %1.7
+
+For $0\le a\le 1$ and $0\le b\le\theta$,
+\begin{align}
+    & P(X_{(1)}/X_{(n)}\le a ~|~ X_{(n)}=b) \\
+        &= \sum_{i=1}^n \frac{P(X_{(n)}=X_i=b)}{P(X_{(n)}=b)} P(X_{(1)}/b\le a ~|~ X_{(n)}=X_i=b) \\
+        &= P(X_{(1)}\le ab ~|~ X_{(n)}=X_n=b) \\
+        &= P(\min(X_{(1)},\dots,X_{(n-1)})\le ab ~|~ X_{(1)}\le b,\dots,X_{(n-1)}\le b) \\
+        &= 1 - (1 - a)^{n-1}
+\end{align}
+The result do not depend on values of $X_{(n)}$,
+so $X_{(1)}/X_{(n)}$ and $X_{(n)}$ are independent.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{} %1.8
+
+\todo
