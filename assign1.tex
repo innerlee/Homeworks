@@ -42,12 +42,12 @@ Simple induction will suffice for proving the general case for $k>2$.
 We write the marginal distribution in terms of conditional distribution \wrt $p$.
 \begin{align}
     P(X_1=x_1,\dots,X_k=x_k)
-        &= \int_0^1 P(X_1=x_1,\dots,X_k=x_k|p=u) du
+        &= \int_0^1 P(X_1=x_1,\dots,X_k=x_k~|~p=u) du
 \end{align}
 Under condition $p=u$, $X_i$'s are independent,
 so the marginal is
 \begin{equation}
-    P(X_1=x_1,\dots,X_k=x_k|p=u) = u^t(1-u)^{k-t}.
+    P(X_1=x_1,\dots,X_k=x_k~|~p=u) = u^t(1-u)^{k-t}.
 \end{equation}
 Together, we have the desired equation
 \begin{equation} \label{eq:1_3_1}
