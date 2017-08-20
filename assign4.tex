@@ -29,3 +29,19 @@ Let $Z_i:=Y_i/V$
 
 Compare the equation with the form of Dirichlet distribution's pdf,
 we know they must be the same.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{} %4.3
+
+Let $X_i\sim Pois(1), i=1,\dots,n$ be iid, then $Y_n:=\sum_{i=1}^{n}X_i\sim Pois(n)$.
+By CLT,
+
+\begin{align}
+    Z_n:=\frac{Y_n-n}{\sqrt{n}} \xrightarrow{d} N(0, 1).
+\end{align}
+
+Then,
+
+\begin{equation}
+    \sum_{i=0}^n \frac{n^i}{i!}e^{-n} =: P(Y_n\le n) = P(Z_n\le 0) \rightarrow \Phi(0) = \frac{1}{2}.
+\end{equation}
