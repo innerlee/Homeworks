@@ -11,8 +11,21 @@ Let $u = x+y, v=x-y$, then
         &= \int_0^1\int_{-u}^{u}\sqrt{u}\bigg(\frac{u-v}{2}-u-v\bigg)^2 \frac{1}{2} dvdu \\
         &= \frac{1}{8} \int_0^1\int_{-u}^{u} \sqrt{u} (u+3v)^2 dvdu \\
         &= \int_0^1 \sqrt{u} u^3 du \\
-        &= \frac{2}{9}
+        &= \frac{2}{9}.
 \end{align}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{} %4.2
+
+Since $Y_i$ are iid, we have $V=\sum_{i=1}^{k-1} Y_i\sim Gamma\big(\sum_{i=1}^{k-1} \alpha_i, \theta\big)$.
+Let $Z_i:=Y_i/V$
+
+\begin{align}
+    f(z_1,\dots,z_k) d\sigma
+        &\propto \int_0^\infty \prod_{i=1}^{k}\frac{(lz_i)^{\alpha_i-1}e^{-\frac{(lz_i)}{\theta}}}{\theta^{\alpha_i}\Gamma(\alpha_i)} l^{k-1} d\sigma dl \\
+        &\propto \prod_{i=1}^{k}\frac{z_i^{\alpha_i-1}}{\theta^{\alpha_i}\Gamma(\alpha_i)} d\sigma  \int_0^\infty l^{(\sum_{i=1}^k\alpha_i) - 1} e^{-\frac{l}{\theta}(\sum_{i=1}^k z_i)}dl \\
+        &\propto \Gamma\bigg(\sum_{i=1}^k\alpha_i\bigg)\prod_{i=1}^{k}\frac{z_i^{\alpha_i-1}}{\Gamma(\alpha_i)} d\sigma.
+\end{align}
+
+Compare the equation with the form of Dirichlet distribution's pdf,
+we know they must be the same.
