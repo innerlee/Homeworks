@@ -81,3 +81,27 @@ By Slutsky’s theorem,
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{} %4.6
+
+\subsubsection{} %4.6.1
+
+By CLT,
+\begin{align}
+    \sqrt{n}(\bar{X_n} - p)\xrightarrow{d} N(0,p(1-p)).
+\end{align}
+
+Let $g(x)=\sin^{-1}(\sqrt{x})$,
+then $g'(p)=\frac{1}{2\sqrt{p(1-p)}}\ne 0$.
+Then
+\begin{align}
+    \sqrt{n}(\sin^{-1}\sqrt{\bar{X_n}} - \sin^{-1}\sqrt{p})\xrightarrow{d} N(0,1/4).
+\end{align}
+
+\subsubsection{} %4.6.2
+
+Since $\frac{n}{\sigma^2}S_n\sim \chi^2_{(n-1)}$
+
+\begin{align}
+    S_n
+        &= \frac{1}{n}\sum_{i=1}^n (X_i^2 - 2 X_i \bar X + \bar X^2) \\
+        &= \frac{1}{n}\sum_{i=1}^n X_i^2 - \bar X^2
+\end{align}
