@@ -49,6 +49,7 @@ Then,
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{} %4.4
 
+\warn: not sure correctness.
 \begin{align}
     Var(Z_iY_i) = E((Z_iY_i)^2) - (E(Z_iY_i))^2 = \sigma^4.
 \end{align}
@@ -68,3 +69,15 @@ By Slutsky’s theorem,
 \begin{align}
     \sqrt{n}\frac{Z_1Y_1+\dots+Z_nY_n}{Z_1^2+\dots+Z_n^2}\xrightarrow{d}  N(0, 1).
 \end{align}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{} %4.5
+
+\begin{align}
+    P(X_{(j)}\le x)
+        &= \sum_{r=j}^n P(X_{(r)}\le x, X_{(r+1)}>x) \\
+        &= \sum_{r=j}^n \binom{n}{r}(F(x))^r(1-F(x))^{n-r}.
+\end{align}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{} %4.6
