@@ -45,3 +45,26 @@ Then,
 \begin{equation}
     \sum_{i=0}^n \frac{n^i}{i!}e^{-n} =: P(Y_n\le n) = P(Z_n\le 0) \rightarrow \Phi(0) = \frac{1}{2}.
 \end{equation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{} %4.4
+
+\begin{align}
+    Var(Z_iY_i) = E((Z_iY_i)^2) - (E(Z_iY_i))^2 = \sigma^4.
+\end{align}
+By CLT,
+\begin{align}
+    \frac{Z_1Y_1+\dots+Z_nY_n}{\sqrt{n}}\xrightarrow{d} N(0, \sigma^4).
+\end{align}
+By Weak Law of Large Number,
+\begin{align}
+    \frac{Z_1^2+\dots+Z_n^2}{n}\xrightarrow{p} \sigma^2.
+\end{align}
+Since function $1/x$ is continuous at $\sigma^2$, we have
+\begin{align}
+    \frac{n}{Z_1^2+\dots+Z_n^2}\xrightarrow{p} \frac{1}{\sigma^2}.
+\end{align}
+By Slutsky’s theorem,
+\begin{align}
+    \sqrt{n}\frac{Z_1Y_1+\dots+Z_nY_n}{Z_1^2+\dots+Z_n^2}\xrightarrow{d}  N(0, 1).
+\end{align}
