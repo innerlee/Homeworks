@@ -91,17 +91,40 @@ By CLT,
 
 Let $g(x)=\sin^{-1}(\sqrt{x})$,
 then $g'(p)=\frac{1}{2\sqrt{p(1-p)}}\ne 0$.
-Then
+Then by Delta theorem
 \begin{align}
     \sqrt{n}(\sin^{-1}\sqrt{\bar{X_n}} - \sin^{-1}\sqrt{p})\xrightarrow{d} N(0,1/4).
 \end{align}
 
 \subsubsection{} %4.6.2
 
-Since $\frac{n}{\sigma^2}S_n\sim \chi^2_{(n-1)}$
-
 \begin{align}
     S_n
-        &= \frac{1}{n}\sum_{i=1}^n (X_i^2 - 2 X_i \bar X + \bar X^2) \\
-        &= \frac{1}{n}\sum_{i=1}^n X_i^2 - \bar X^2
+        &= \frac{1}{n}\sum_{i=1}^n ((X_i-\mu) - (\bar X - \mu))^2 \\
+        &= \frac{1}{n}\sum_{i=1}^n (X_i-\mu)^2 - (\bar X - \mu)^2.
 \end{align}
+
+By Weak Law of Large Number, $\bar X - \mu\xrightarrow{p} 0$.
+We have $\frac{(\bar X - \mu)^2}{\sqrt{n}}\xrightarrow{p} 0$ (easy to prove).
+
+Since $\big(\frac{X_i-\mu}{\sigma}\big)^2\sim\chi^2$, for all $i$,
+by CLT, we have
+\begin{equation}
+    \sqrt{n}\bigg(\frac{\sum_{i=1}^n \big(\frac{X_i-\mu}{\sigma}\big)^2}{n} - 1\bigg) \xrightarrow{d} N(0,2).
+\end{equation}
+So,
+\begin{equation}
+    \sqrt{n}\bigg(\frac{\sum_{i=1}^n (X_i-\mu)^2}{n} - \sigma^2\bigg) \xrightarrow{d} N(0,2\sigma^4).
+\end{equation}
+
+By Slutsky’s theorem,
+\begin{equation}
+    \sqrt{n}\big(S_n-\sigma^2\big) = \sqrt{n}\bigg(\frac{\sum_{i=1}^n (X_i-\mu)^2}{n} - \sigma^2\bigg) - \frac{(\bar X - \mu)^2}{\sqrt{n}}\xrightarrow{d} N(0,2\sigma^4).
+\end{equation}
+
+Let $g(x)=\log(x)$,
+then $g'(\sigma^2)=\frac{1}{\sigma^2}\ne 0$.
+Then by Delta theorem
+\begin{equation}
+    \sqrt{n}\big(\log(S_n)-\log(\sigma^2)\big) \xrightarrow{d} N(0,2).
+\end{equation}
