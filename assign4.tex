@@ -162,14 +162,9 @@ Since $\theta^n(1-\theta)^{-n}\ne0$ when $0<\theta<1$, we have
         &= \sum_{t=n}^{\infty} g(t) \binom{t-1}{n-1}(1-\theta)^{t} \\
         &= \sum_{t=n}^{\infty} g(t) \binom{t-1}{n-1}r^{t}.
 \end{align}
-for all $r$, where $0<r<1$.
-Then, $g(t)$ must be $0$ for all $t\ge n$
-(Argument as below, not sure how to prove this concisely:
-The convergence radius of the last power series is at least $1$.
-Then we can extend this power series into an complex analytic function
-at the open ball $|z|<1$.
-Since zeros of a non-constant analytic function are isolated.
-This function must be the constant $0$.
-So the power series must have $0$ as coefficients
-).
-
+for all $r$, where $0\le r<1$.
+Then, $g(t)$ must be $0$ for all $t\ge n$.
+If not, let $k$ be the smallest number such that $g(k)\ne 0$.
+then we can rewrite as $0=r^k h(r)$, where $h(0)=\binom{k-1}{n-1}g(k)\ne 0$.
+There exists an $\epsilon>0$, such that $h(r)\ne 0$ if $0\le r<\epsilon$.
+This is a contradiction because $r^k h(r)=0$ for all $0\le r<1$.
