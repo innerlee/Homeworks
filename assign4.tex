@@ -141,3 +141,35 @@ Then by Delta theorem
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{} %4.8
+
+Let $T(\vx):=\sum_{i=1}^n X_i$, then
+\begin{equation}
+    \frac{P(\vx|\theta)}{P(T(\vx)|\theta)}
+        = \frac{\prod_{i=1}^n \theta(1-\theta)^{x_i-1}}{\binom{T(\vx)-1}{n-1}\theta^n(1-\theta)^{T(\vx)-n}}
+        = \frac{1}{\binom{T(\vx)-1}{n-1}}.
+\end{equation}
+So $\sum_{i=1}^n X_i$ is a sufficient statistic.
+
+Let $g$ be a function. Then for $0<\theta<1$, let
+\begin{align}
+    0 = E_\theta(g(T))
+        &= \sum_{t=n}^{\infty} g(t) \binom{t-1}{n-1}\theta^n(1-\theta)^{t-n} \\
+        &= \theta^n(1-\theta)^{-n}\sum_{t=n}^{\infty} g(t) \binom{t-1}{n-1}(1-\theta)^{t}.
+\end{align}
+Since $\theta^n(1-\theta)^{-n}\ne0$ when $0<\theta<1$, we have
+\begin{align}
+    0
+        &= \sum_{t=n}^{\infty} g(t) \binom{t-1}{n-1}(1-\theta)^{t} \\
+        &= \sum_{t=n}^{\infty} g(t) \binom{t-1}{n-1}r^{t}.
+\end{align}
+for all $r$, where $0<r<1$.
+Then, $g(t)$ must be $0$ for all $t\ge n$
+(Argument as below, not sure how to prove this concisely:
+The convergence radius of the last power series is at least $1$.
+Then we can extend this power series into an complex analytic function
+at the open ball $|z|<1$.
+Since zeros of a non-constant analytic function are isolated.
+This function must be the constant $0$.
+So the power series must have $0$ as coefficients
+).
+
