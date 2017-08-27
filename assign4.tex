@@ -130,3 +130,14 @@ Then by Delta theorem
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{} %4.7
+
+\begin{align}
+    E(g'(x))
+        &=\int_{-\infty}^{\infty} h(x)c(\vtheta)\exp\bigg(\sum_{i=1}^{k}w_i(\vtheta)T_i(x)\bigg)g'(x)dx \\
+        &=-\int_{-\infty}^{\infty} \bigg(h(x)c(\vtheta)\exp\bigg(\sum_{i=1}^{k}w_i(\vtheta)T_i(x)\bigg)\bigg)'g(x)dx \\
+        &=-\int_{-\infty}^{\infty} g(x)c(\vtheta)\exp\bigg(\sum_{i=1}^{k}w_i(\vtheta)T_i(x)\bigg)\bigg(h'(x)+h(x)\sum_{i=1}^k w_i(\vtheta)T_i'(x)\bigg)dx \\
+        &=-E\bigg[g(x)\bigg(\frac{h'(x)}{h(x)}+\sum_{i=1}^k w_i(\vtheta)T_i'(x)\bigg)\bigg]
+\end{align}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{} %4.8
