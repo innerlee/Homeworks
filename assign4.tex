@@ -171,3 +171,48 @@ This is a contradiction because $r^k h(r)=0$ for all $0\le r<1$.
 
 We have $P_\theta(g(T)=0)=1$ for all $\theta$.
 So, $\sum_{i=1}^n X_i$ is complete.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{} %4.9
+
+Let $n=\sum_{i=1}^4 x_i$. Denote $\vx=(\vx_1,\dots,\vx_N)$,
+and $\vx_t=(x_{1,t}, \dots, x_{4,t})$.
+\begin{align}
+    f(\vx|\theta)
+        &= \prod_{t=1}^N \frac{n!}{x_{1,t}!x_{2,t}!x_{3,t}!x_{4,t}!}
+            \bigg(\frac{1}{2}+\frac{\theta}{4}\bigg)^{x_{1,t}}
+            \bigg(\frac{1}{4}-\frac{\theta}{4}\bigg)^{x_{2,t}}
+            \bigg(\frac{1}{4}-\frac{\theta}{4}\bigg)^{x_{3,t}}
+            \bigg(\frac{\theta}{4}\bigg)^{n-\sum_{i=1}^3 x_{i,t}} \\
+        &=  h(\vx)
+            \bigg(\frac{1}{2}+\frac{\theta}{4}\bigg)^{\sum_{t=1}^N x_{1,t}}
+            \bigg(\frac{1}{4}-\frac{\theta}{4}\bigg)^{\sum_{t=1}^N x_{2,t} + x_{3,t}}
+            \bigg(\frac{\theta}{4}\bigg)^{nN-\sum_{i=1}^3\sum_{t=1}^N  x_{i,t}}.
+\end{align}
+By the factorization theorem,
+$\big(\sum_{t=1}^N x_{1,t}, \sum_{t=1}^N x_{2,t} + x_{3,t}\big)$
+is an sufficient statistic.
+
+To show it is also minimal, we compute
+\begin{align}
+    \frac{f(\vx|\theta)}{f(\vy|\theta)}
+        &= \frac{
+            h(\vx)
+            \big(\frac{1}{2}+\frac{\theta}{4}\big)^{\sum_{t=1}^N x_{1,t}}
+            \big(\frac{1}{4}-\frac{\theta}{4}\big)^{\sum_{t=1}^N x_{2,t} + x_{3,t}}
+            \big(\frac{\theta}{4}\big)^{nN-\sum_{i=1}^3\sum_{t=1}^N  x_{i,t}}
+        }{
+            h(\vy)
+            \big(\frac{1}{2}+\frac{\theta}{4}\big)^{\sum_{t=1}^N y_{1,t}}
+            \big(\frac{1}{4}-\frac{\theta}{4}\big)^{\sum_{t=1}^N y_{2,t} + y_{3,t}}
+            \big(\frac{\theta}{4}\big)^{nN-\sum_{i=1}^3\sum_{t=1}^N  y_{i,t}}
+        }.
+\end{align}
+It is independent of $\theta$ iff
+$\sum_{t=1}^N x_{1,t} = \sum_{t=1}^N y_{1,t}$ and
+$\sum_{t=1}^N x_{2,t} + x_{3,t} = \sum_{t=1}^N y_{2,t} + y_{3,t}$.
+So, $\big(\sum_{t=1}^N x_{1,t}, \sum_{t=1}^N x_{2,t} + x_{3,t}\big)$
+is also minimal.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{} %4.10
