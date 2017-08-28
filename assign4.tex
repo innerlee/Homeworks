@@ -216,3 +216,43 @@ is also minimal.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{} %4.10
+
+\subsubsection{} %4.10.1
+
+\begin{align}
+    f(x,n|\theta)
+        &= p_n \binom{n}{x} \theta^x(1-\theta)^{n-x}.
+\end{align}
+So,
+\begin{align}
+    \frac{f(x,n|\theta)}{f(y, m|\theta)}
+    &= \frac{ p_n \binom{n}{x} \theta^x(1-\theta)^{n-x}}
+        {p_m \binom{m}{y} \theta^y(1-\theta)^{m-y}} \\
+    &= \frac{ p_n \binom{n}{x}} {p_m \binom{m}{y}}
+        \theta^{x-y}(1-\theta)^{(n-m)-(x-y)}
+\end{align}
+It is independent of $\theta$ iff $x=y$ and $n=m$.
+So $(X, N)$ is a minimal sufficient.
+
+Since the distribution of $N$ does not depend on $\theta$,
+by definition $N$ is ancillary for $\theta$.
+
+\subsubsection{} %4.10.2
+
+\begin{align}
+    E\bigg[\frac{X}{N}\bigg]
+        &= \sum_{n=1}^\infty \sum_{x=0}^n f(x,n) \frac{x}{n} \\
+        &= \sum_{n=1}^\infty \sum_{x=0}^n p_n \binom{n}{x} \theta^x(1-\theta)^{n-x} \frac{x}{n} \\
+        &= \theta \sum_{n=1}^\infty p_n \sum_{x=1}^n \binom{n-1}{x-1} \theta^{x-1}(1-\theta)^{n-x} \\
+        &= \theta.
+\end{align}
+So $\frac{X}{N}$ is unbiased.
+\begin{align}
+    E\bigg[\bigg(\frac{X}{N}\bigg)^2\bigg]
+        &= \sum_{n=1}^\infty \sum_{x=0}^n p_n \binom{n}{x} \theta^x(1-\theta)^{n-x} \bigg(\frac{x}{n}\bigg)^2 \\
+        &= \theta \sum_{n=1}^\infty \frac{p_n}{n} \sum_{x=1}^n \binom{n-1}{x-1} \theta^{x-1}(1-\theta)^{n-x}[1+(x-1)] \\
+        &= \theta \sum_{n=1}^\infty \frac{p_n}{n}
+            + \theta \sum_{n=1}^\infty\frac{p_n(n-1)\theta}{n} \\
+        &= (\theta - \theta^2) E\bigg[\frac{1}{N}\bigg] + \theta^2. \\
+\end{align}
+So $Var\big(\frac{X}{N}\big) = E\big[\big(\frac{X}{N}\big)^2\big] - \big(E\big[\frac{X}{N}\big]\big)^2=\theta(1-\theta)E\big[\frac{1}{N}\big]$.
