@@ -260,7 +260,12 @@ So $Var\big(\frac{X}{N}\big) = E\big[\big(\frac{X}{N}\big)^2\big] - \big(E\big[\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{} %4.11
 
-\todo
+First we need to show that $X_{(m+1)}$ is an unbiased estimator for $\mu$.
+If $\mu=0$, then $E[X_{(m+1)}]$ must be $0$ because of mirror symmetry along $0$.
+For general $\mu$, $E[X_{(m+1)}]=\mu$ by translation property.
+
+Then we only need to show that $\bar{X}_{2m+1}$ is UMVUE.
+This is easy to check because it attains the Cram\'er-Rao bound.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{} %4.12
