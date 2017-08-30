@@ -296,3 +296,33 @@ The right-hand side do not depend on $\sigma$.
 
 Easy to check $R$ and $S$ satisfy the condition in previous subquestion.
 Then $R/S$ is an ancillary statistic.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{} %4.13
+
+\subsubsection{} %4.13.1
+
+For $0<p<1$, we must have
+\begin{align}
+    0
+        &=E[U(X)] \\
+        &= p U(-1) + \sum_{k\ge 0} (1-p)^2 p^k U(k) \\
+        &= p U(-1) + \sum_{k\ge 0} (1-2p+p^2) p^k U(k) \\
+        &= p U(-1) + \sum_{k\ge 0} p^k U(k) - 2 \sum_{k\ge 1} p^k U(k-1) + \sum_{k\ge 2} p^k U(k-2) \\
+        &= U(0) + p\big(U(-1)+U(1)-2U(0)\big) + \sum_{p\ge2}p^k\big(U(k) -2U(k-1) +U(k-2)\big).
+\end{align}
+The coefficients before $p$ must be $0$. So,
+\begin{align}
+    U(0) &= 0, \\
+    U(k) -2U(k-1) +U(k-2) &= 0, \quad k\ge 1.
+\end{align}
+From the relation, we can compute
+\begin{align}
+    U(1) &= -U(-1), \\
+    U(2) &= -2U(-1), \\
+    U(3) &= -3U(-1), \\
+    \dots&\dots
+\end{align}
+Easy to prove by induction that $U(k)=-kU(-1)$.
+
+\subsubsection{} %4.13.2
