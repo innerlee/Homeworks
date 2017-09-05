@@ -3,11 +3,38 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{} %1.1
 
-$(M^{2n}, \omega)$, $M$ closed, $\omega$ \emph{symplectic}.
+$(M^{2n}, \omega)$, $M$ closed, $\omega$ \textbf{symplectic}.
 
 \begin{framed}
     A symplectic form is a $2$-form satisfying an algebraic condition --
     nondegeneracy -- and an analytical condition -- closedness.
-
-    $d\omega=0$, $\omega^n$ is a volume form.
+    \ie, $d\omega=0$, and $\omega^n$ is a volume form.
 \end{framed}
+
+Let $\phi$ be a symplectomorphism of $(M, \omega)$.
+$H:M\to\real$ be a function.
+Then there exists vector field $V_H$,
+called \textbf{Hamiltonian vector field}, \st $dH=\omega(V_H,\cdot)$.
+Let $\phi_H$ be the flow of $V_H$,
+
+\begin{framed}
+    Say $M$ compact, then $\forall V\in\Gamma(M,T_M)$,
+    $\exists$ \textbf{flow} $\phi:M\times\real\to M$, where
+    $f_t=\phi(\cdot, t)\in \Diff(M)$, \st
+    $f_0=\id_M, \frac{df_t}{dt}\big|_{t=0}=V, f_{t_1+t_2}=f_{t_1}\circ f_{t_2}$.
+\end{framed}
+
+then $f_t=\phi_H(\cdot, t)$ is a symplectomorphism, $\forall t$.
+
+\begin{framed}
+    We have $\frac{d}{dt}f_t^*(\omega) = f_t^*\cL_{V_H}\omega
+    =f_t^*(d\iota_{V_H}\omega+\iota_{V_H}d\omega) = 0$.
+\end{framed}
+
+A vector field $V$ on $M$ preserving $\omega$ is called \textbf{symplectic vector field}.
+It is equivalent to the condition that $\omega(V, \cdot)$ is closed.
+However, it is not necessarily exact.
+
+\begin{conj}[A]
+
+\end{conj}
