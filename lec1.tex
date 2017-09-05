@@ -35,6 +35,15 @@ A vector field $V$ on $M$ preserving $\omega$ is called \textbf{symplectic vecto
 It is equivalent to the condition that $\omega(V, \cdot)$ is closed.
 However, it is not necessarily exact.
 
-\begin{conj}[A]
+Let $H_t:M\to\real$ be a $1$-parameter family of Hamiltonian function, $t\in[0,1]$.
+$\frac{d\phi_{H_t}}{dt}:=V_{H_t}$.
+Define $\phi_H:=\phi_{H_1}$.
 
+\begin{conj}[A]
+    $(M^{2n}, \omega)$ is symplectic. $M$ is closed.
+    $\phi_H$ is non-degenerately defined by $H_t$.
+    Suppose all fixed points of $\phi_H$ is non-degenerate, then
+    \begin{equation}
+        |\Fix~\phi_H | \ge \sum_i b_i(M;\real).
+    \end{equation}
 \end{conj}
