@@ -1,94 +1,73 @@
-\section{Arnold Conjecture}
+\section{Note 1}
+
+References: You can find the algorithms UCB1 and UCB2 in \cite{Auer2002}.
+A good reference on the bandit problem is \cite{MAL024}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Arnold Conjecture (A)} %1.1
+\subsection{Upper Bound of UCB1} %1.1
 
-$(M^{2n}, \omega)$, $M$ closed, $\omega$ \textbf{symplectic}.
+\begin{alg}[UCB1] \leavevmode
+    \begin{framed}
+        \begin{algorithmic}
+            \For{$t=1,\dots,K$}
+                \State Play arm $t$
+            \EndFor
+            \For{$t=K+1,\dots,T$}
+                \State Play arm $i\in\argmax \bar x_i + \sqrt{\frac{2\ln t}{T_i(t)}}$
+            \EndFor
+        \end{algorithmic}
+    \end{framed}
+\end{alg}
 
-\begin{framed}
-    A symplectic form is a $2$-form satisfying an algebraic condition --
-    nondegeneracy -- and an analytical condition -- closedness.
-    \ie, $d\omega=0$, and $\omega^n$ is a volume form.
-\end{framed}
+\textbf{Remark}
+Here,
+the term $\bar x_i$ is \emph{exploitation},
+$\sqrt{\frac{2\ln t}{T_i(t)}}$ is \emph{exploration},
+and $+$ means \emph{optimistic}.
 
-Let $\phi$ be a symplectomorphism of $(M, \omega)$.
-$H:M\to\real$ be a function.
-Then there exists vector field $V_H$,
-called \textbf{Hamiltonian vector field}, \st $dH=\omega(V_H,\cdot)$.
-Let $\phi_H$ be the flow of $V_H$,
+\textbf{Notation}
+\begin{itemize}
+    \item $K$ arms.
+        Arm $i$ has fixed, unknown reward distribution $p_i$,
+        with expectation $\mu_i$.
+        Assume the support of $p_i$ is a subset of $[0,1]$, and
+        also assume that not all $\mu_i$ are equal to each other.
+    \item At time $t$, playing arm $i$ yields reward $X_{i,t}\sim p_i$.
+    \item $\mu_*:=\max_{i\in[k]}\mu_i$, where $[k]:=\{1,\dots,k\}$.
+    \item $\Delta_i:=\mu_* - \mu_i$,
+        $\Delta_{\text{min}}:=\min_{i:\Delta_i>0}\Delta_i$,
+        $\Delta_{\text{max}}:=\max_i \Delta_i$.
+    \item $I_t$ is the index of arm that was chosen at time $t$.
+    \item $T_i(t)$ is the number of times the $i$-th arm was played by time $t$,
+        and let $T_i:=T_i(T)$.
+    \item Pseudo-regret
+        \begin{equation}
+            R:=T\mu_*-\sum_{t=1}^T E[\mu_{I_t}]
+            = \sum_{i:\Delta_i>0} E[T_i]\cdot\Delta_i.
+        \end{equation}
+\end{itemize}
 
-\begin{framed}
-    Say $M$ compact, then $\forall V\in\Gamma(M,T_M)$,
-    $\exists$ \textbf{flow} $\phi:M\times\real\to M$, where
-    $f_t=\phi(\cdot, t)\in \Diff(M)$, \st
-    $f_0=\id_M, \frac{df_t}{dt}\big|_{t=0}=V, f_{t_1+t_2}=f_{t_1}\circ f_{t_2}$.
-\end{framed}
-
-then $f_t=\phi_H(\cdot, t)$ is a symplectomorphism, $\forall t$.
-
-\begin{framed}
-    \cite[P105]{da2001lectures}
-    We have $\frac{d}{dt}f_t^*(\omega) = f_t^*\cL_{V_H}\omega
-    =f_t^*(d\iota_{V_H}\omega+\iota_{V_H}d\omega) = 0$.
-\end{framed}
-
-A vector field $V$ on $M$ preserving $\omega$ is called \textbf{symplectic vector field}.
-It is equivalent to the condition that $\omega(V, \cdot)$ is closed.
-However, it is not necessarily exact.
-
-Let $H_t:M\to\real$ be a $1$-parameter family of Hamiltonian function, $t\in[0,1]$.
-$\frac{d\phi_{H_t}}{dt}:=V_{H_t}$.
-Define $\phi_H:=\phi_{H_1}$.
-
-\begin{conj}[A]
-    $(M^{2n}, \omega)$ is symplectic. $M$ is closed.
-    $\phi_H$ is non-degenerately defined by $H_t$.
-    Suppose all fixed points of $\phi_H$ is non-degenerate, then
+\begin{thm}
+    UCB1 has pseudo-regret
     \begin{equation}
-        |\Fix~\phi_H | \ge \sum_i b_i(M;\real).
+        R \le \cO\bigg(\sum_{i:\Delta_i>0} \frac{\ln T}{\Delta_i}+\Delta_i\bigg)
+            \le \cO\bigg(\frac{K\ln T}{\Delta_\text{min}}+K\Delta_\text{max}\bigg).
     \end{equation}
-\end{conj}
-
-Compare with a general diffeomorphism $f:M\to M$.
-Suppose all fixed points are non-degenerate.
-By Lefschetz fixed point theorem,
-
-\begin{framed}
-    \missref
-\end{framed}
-
-\begin{equation}
-    \#\Fix(f) = \sum(-1)^i b_i(M).
-\end{equation}
-
-\textbf{Remark}.
-\warn
-One can find $f$ that achieves the lower bound.
-The lower bound fails in general for non-Hamiltonian symplectomorphisms.
-
-\textbf{Example}
-
-$(T^2,\omega)$, $\phi$ is a symplectomorphism.
-If $\phi$ is Hamiltonian, then $\phi$ has at least $2$ fixed points.
-\eg,
-take $H$ to be Morse function,
-then fixed points of $H$ are two critical points of $H$.
-
-\todo (need drawing)
-Let $\omega=dx\wedge dy$.
-$\phi$ is not Hamiltonian.
-$\omega(\cdot, V)=dy$ is a non-exact closed form.
-
-
-\begin{conj}[Generalized Arnold Conjecture]
-    $\phi$: symplectomorphism that is isotopic to $\Id$.
+\end{thm}
+\begin{proof}
+    We show that for all sub-optimal arm $i$,
     \begin{equation}
-        |\Fix~\phi | \ge \sum_i b_i(M;\Lambda)
+        E[T_i] \le \frac{8\ln T}{\Delta_i^2} + \frac{\pi^2}{9}.
     \end{equation}
-    where $\Lambda$ is a certain local coefficient depending on the
-    cohomology class of $\omega(V,\cdot)$.
-\end{conj}
 
-\textbf{Remark}. Complicated local coefficient tends to lower $b_i$.
+    \begin{align}
+        E[T_i]
+            &= \sum_{t=1}^T \Pr[I_t=i] \\
+            &\le l + \sum_{t=l+1}^T \Pr[I_t=i, T_i>l] \\
+            &\le l + \sum_{t=l+1}^T \Pr\bigg[\bar X_i + \sqrt{\frac{2\ln t}{T_i(t)}}\ge \bar X_{i*}+\sqrt{\frac{2\ln t}{T_{i*}(t)}}\bigg|T_i>l\bigg]
+    \end{align}
+\end{proof}
 
-\subsubsection{Lagrangian}
+\textbf{Remark}
+We have linear dependence on $K$,
+and log dependence on $T$.
