@@ -1,7 +1,7 @@
 \section{Arnold Conjecture}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{} %1.1
+\subsection{Arnold Conjecture (A)} %1.1
 
 $(M^{2n}, \omega)$, $M$ closed, $\omega$ \textbf{symplectic}.
 
@@ -65,3 +65,30 @@ By Lefschetz fixed point theorem,
 \warn
 One can find $f$ that achieves the lower bound.
 The lower bound fails in general for non-Hamiltonian symplectomorphisms.
+
+\textbf{Example}
+
+$(T^2,\omega)$, $\phi$ is a symplectomorphism.
+If $\phi$ is Hamiltonian, then $\phi$ has at least $2$ fixed points.
+\eg,
+take $H$ to be Morse function,
+then fixed points of $H$ are two critical points of $H$.
+
+\todo (need drawing)
+Let $\omega=dx\wedge dy$.
+$\phi$ is not Hamiltonian.
+$\omega(\cdot, V)=dy$ is a non-exact closed form.
+
+
+\begin{conj}[Generalized Arnold Conjecture]
+    $\phi$: symplectomorphism that is isotopic to $\Id$.
+    \begin{equation}
+        |\Fix~\phi | \ge \sum_i b_i(M;\Lambda)
+    \end{equation}
+    where $\Lambda$ is a certain local coefficient depending on the
+    cohomology class of $\omega(V,\cdot)$.
+\end{conj}
+
+\textbf{Remark}. Complicated local coefficient tends to lower $b_i$.
+
+\subsubsection{Lagrangian}
