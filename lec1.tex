@@ -13,7 +13,7 @@ A good reference on the bandit problem is \cite{MAL024}.
                 \State Play arm $t$
             \EndFor
             \For{$t=K+1,\dots,T$}
-                \State Play arm $i\in\argmax \bar x_i + \sqrt{\frac{2\ln t}{T_i(t)}}$
+                \State Play arm $i\in\argmax \bar x_{i,t-1} + \sqrt{\frac{2\ln t}{T_i(t-1)}}$
             \EndFor
         \end{algorithmic}
     \end{framed}
@@ -21,8 +21,8 @@ A good reference on the bandit problem is \cite{MAL024}.
 
 \textbf{Remark}
 Here,
-the term $\bar x_i$ is \emph{exploitation},
-$\sqrt{\frac{2\ln t}{T_i(t)}}$ is \emph{exploration},
+the term $\bar x_{i,t-1}$ is \emph{exploitation},
+$\sqrt{\frac{2\ln t}{T_i(t-1)}}$ is \emph{exploration},
 and $+$ means \emph{optimistic}.
 
 \textbf{Notation}
@@ -33,12 +33,13 @@ and $+$ means \emph{optimistic}.
         Assume the support of $p_i$ is a subset of $[0,1]$, and
         also assume that not all $\mu_i$ are equal to each other.
     \item At time $t$, playing arm $i$ yields reward $X_{i,t}\sim p_i$.
+    \item $\bar X_{i,t}$ be the sample mean of rewards from arm $i$ during first $t$ plays.
     \item $\mu_*:=\max_{i\in[k]}\mu_i$, where $[k]:=\{1,\dots,k\}$.
     \item $\Delta_i:=\mu_* - \mu_i$,
         $\Delta_{\text{min}}:=\min_{i:\Delta_i>0}\Delta_i$,
         $\Delta_{\text{max}}:=\max_i \Delta_i$.
     \item $I_t$ is the index of arm that was chosen at time $t$.
-    \item $T_i(t)$ is the number of times the $i$-th arm was played by time $t$,
+    \item $T_i(t)$ is the number of times the $i$-th arm was played during first $t$ plays,
         and let $T_i:=T_i(T)$.
     \item Pseudo-regret
         \begin{equation}
@@ -64,21 +65,46 @@ and $+$ means \emph{optimistic}.
         E[T_i]
             &= \sum_{t=1}^T \Pr[I_t=i] \\
             &\le l + \sum_{t=l+1}^T \Pr[I_t=i, T_i>l] \\
-            &\le l + \sum_{t=l+1}^T \Pr\bigg[\bar X_i + \sqrt{\frac{2\ln t}{T_i(t)}}\ge \bar X_{i*}+\sqrt{\frac{2\ln t}{T_{i*}(t)}}\bigg|T_i>l\bigg]
+            &\le l + \sum_{t=l+1}^T \Pr\bigg[\bar X_{i,t-1} + \sqrt{\frac{2\ln t}{T_i(t-1)}}\ge \bar X_{*,t-1}+\sqrt{\frac{2\ln t}{T_{*}(t-1)}}\bigg|T_i>l\bigg]. \label{eq:1_1}
     \end{align}
-    Observe that $\bar X_i + \sqrt{\frac{2\ln t}{T_i(t)}}\ge \bar X_{i*}+\sqrt{\frac{2\ln t}{T_{i*}(t)}}$
+    Observe that $\bar X_{i,t-1} + \sqrt{\frac{2\ln t}{T_i(t-1)}}\ge \bar X_{*,t-1}+\sqrt{\frac{2\ln t}{T_{*}(t-1)}}$
     fails when the following three conditions hold,
     \begin{align}
-        \bar X_{i*} + \sqrt{\frac{2\ln t}{T_{i*}(t)}} &> \mu_*  \\
-        \bar X_{i} + \sqrt{\frac{2\ln t}{T_{i}(t)}} &< \mu_i + 2\sqrt{\frac{2\ln t}{T_{i}(t)}} \\
-        \mu_* &\ge \mu_i + 2\sqrt{\frac{2\ln t}{T_{i}(t)}}
+        \bar X_{*,t-1} + \sqrt{\frac{2\ln t}{T_{*}(t-1)}} &> \mu_*,  \\
+        \bar X_{i,t-1} + \sqrt{\frac{2\ln t}{T_{i}(t-1)}} &< \mu_i + 2\sqrt{\frac{2\ln t}{T_{i}(t-1)}}, \label{eq:1_2} \\
+        \mu_* &\ge \mu_i + 2\sqrt{\frac{2\ln t}{T_{i}(t-1)}}. \label{eq:1_3}
     \end{align}
-    We need Chernoff-Hoeffding bound.
+    Note that if $l$ is large enough,
+    say $l=\lceil (8\ln T)/\Delta_i^2\rceil$,
+    the third inequality will hold.
+    In this case,
+    \eqref{eq:1_1} is possibly true only if we either break \eqref{eq:1_2} or break \eqref{eq:1_3}.
+    We use the Chernoff-Hoeffding bound.
     \begin{framed}
-        \begin{fact}
-            Let
+        \begin{fact}[Chernoff-Hoeffding bound]
+            Let $X_1, \dots, X_n$ be independent random variables with common range $[0,1]$.
+            The empirical mean is $\bar X=\frac{1}{n}(X_1+\cdots+ X_n)$.
+            Then for all $a\ge0$,
+            \begin{equation}
+                \Pr[\bar X\ge E[\bar X] + a] \le e^{-2na^2}, \quad
+                \Pr[\bar X\le E[\bar X] - a] \le e^{-2na^2}.
+            \end{equation}
         \end{fact}
     \end{framed}
+    So,
+    \begin{align}
+        \Pr\bigg[\bar X_{*,t-1} \le \mu_* - \sqrt{\frac{2\ln t}{T_{*}(t-1)}}\bigg]
+            &\le e^{-4\ln t} = t^{-4}, \\
+        \Pr\bigg[\bar X_{i,t-1} \ge \mu_i + \sqrt{\frac{2\ln t}{T_{i}(t-1)}}\bigg]
+            &\le e^{-4\ln t} = t^{-4}.
+    \end{align}
+    So,
+    \begin{align}
+        E[T_i]
+            &\le \bigg\lceil \frac{8\ln T}{\Delta_i^2}\bigg\rceil + \sum_{t=\lceil (8\ln T)/\Delta_i^2\rceil+1}^T 2t^{-4} \\
+            &\le \frac{8\ln T}{\Delta_i^2} + 1 + 2\sum_{t=1}^\infty t^{-4} \\
+            &= \frac{8\ln T}{\Delta_i^2} + 1 + \frac{\pi^4}{45}.
+    \end{align}
 \end{proof}
 
 \textbf{Remark}
