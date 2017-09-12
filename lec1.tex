@@ -13,7 +13,7 @@ A good reference on the bandit problem is \cite{MAL024}.
                 \State Play arm $t$
             \EndFor
             \For{$t=K+1,\dots,T$}
-                \State Play arm $i\in\argmax \bar x_{i,t-1} + \sqrt{\frac{2\ln t}{T_i(t-1)}}$
+                \State Play arm $i\in\argmax \bar x_{i,T_i(t-1)} + \sqrt{\frac{2\ln t}{T_i(t-1)}}$
             \EndFor
         \end{algorithmic}
     \end{framed}
@@ -21,7 +21,7 @@ A good reference on the bandit problem is \cite{MAL024}.
 
 \textbf{Remark}
 Here,
-the term $\bar x_{i,t-1}$ is \emph{exploitation},
+the term $\bar x_{i,T_i(t-1)}$ is \emph{exploitation},
 $\sqrt{\frac{2\ln t}{T_i(t-1)}}$ is \emph{exploration},
 and $+$ means \emph{optimistic}.
 
@@ -33,8 +33,7 @@ and $+$ means \emph{optimistic}.
         Assume the support of $p_i$ is a subset of $[0,1]$, and
         also assume that not all $\mu_i$ are equal to each other.
     \item At time $t$, playing arm $i$ yields reward $X_{i,t}\sim p_i$.
-    \item $\bar X_{i,t}$ be the sample mean of rewards from arm $i$ during first $t$ plays.
-        Note that the actual times arm $i$ was played may be less than $t$.
+    \item $\bar X_{i,s}$ be the sample mean of rewards from the first $s$ plays of arm $i$.
     \item $\mu_*:=\max_{i\in[k]}\mu_i$, where $[k]:=\{1,\dots,k\}$.
     \item $\Delta_i:=\mu_* - \mu_i$,
         $\Delta_{\text{min}}:=\min_{i:\Delta_i>0}\Delta_i$,
@@ -66,13 +65,21 @@ and $+$ means \emph{optimistic}.
         E[T_i]
             &= \sum_{t=1}^T \Pr[I_t=i] \\
             &\le l + \sum_{t=l+1}^T \Pr[I_t=i, T_i>l] \\
-            &\le l + \sum_{t=l+1}^T \Pr\bigg[\bar X_{i,t-1} + \sqrt{\frac{2\ln t}{T_i(t-1)}}\ge \bar X_{*,t-1}+\sqrt{\frac{2\ln t}{T_{*}(t-1)}}\bigg|T_i>l\bigg]. \label{eq:1_1}
+            &\le l + \sum_{t=l+1}^T \Pr\Bigg[\bar X_{i,T_i(t-1)} +
+                \sqrt{\frac{2\ln t}{T_i(t-1)}}\ge \bar X_{*,T_*(t-1)}+
+                \sqrt{\frac{2\ln t}{T_{*}(t-1)}}~\Bigg|~T_i>l\Bigg] \\
+            &\le l + \sum_{t=l+1}^T \sum_{s_i=l}^{t-1} \sum_{s=1}^{t-1}
+                \Pr\Bigg[\bar X_{i,s_i} + \sqrt{\frac{2\ln t}{s_i}}\ge
+                \bar X_{*,s}+\sqrt{\frac{2\ln t}{s}}~\Bigg|~T_i>l\Bigg]. \label{eq:1_1}
     \end{align}
-    Observe that $\bar X_{i,t-1} + \sqrt{\frac{2\ln t}{T_i(t-1)}}\ge \bar X_{*,t-1}+\sqrt{\frac{2\ln t}{T_{*}(t-1)}}$
+    The last line is because
+    we do not know the distribution of $T_i(t-1)$ and $T_*(t-1)$,
+    so we enumerate the value and condition on them.
+    Observe that $\bar X_{i,T_i(t-1)} + \sqrt{\frac{2\ln t}{T_i(t-1)}}\ge \bar X_{*,T_*(t-1)}+\sqrt{\frac{2\ln t}{T_{*}(t-1)}}$
     fails when the following three conditions hold,
     \begin{align}
-        \bar X_{*,t-1} + \sqrt{\frac{2\ln t}{T_{*}(t-1)}} &> \mu_*,  \\
-        \bar X_{i,t-1} + \sqrt{\frac{2\ln t}{T_{i}(t-1)}} &< \mu_i + 2\sqrt{\frac{2\ln t}{T_{i}(t-1)}}, \label{eq:1_2} \\
+        \bar X_{*,T_*(t-1)} + \sqrt{\frac{2\ln t}{T_{*}(t-1)}} &> \mu_*,  \\
+        \bar X_{i,T_i(t-1)} + \sqrt{\frac{2\ln t}{T_{i}(t-1)}} &< \mu_i + 2\sqrt{\frac{2\ln t}{T_{i}(t-1)}}, \label{eq:1_2} \\
         \mu_* &\ge \mu_i + 2\sqrt{\frac{2\ln t}{T_{i}(t-1)}}. \label{eq:1_3}
     \end{align}
     Note that if $l$ is large enough,
@@ -94,9 +101,9 @@ and $+$ means \emph{optimistic}.
     \end{framed}
     So,
     \begin{align}
-        \Pr\bigg[\bar X_{*,t-1} \le \mu_* - \sqrt{\frac{2\ln t}{T_{*}(t-1)}}\bigg]
+        \Pr\bigg[\bar X_{*,T_*(t-1)} \le \mu_* - \sqrt{\frac{2\ln t}{T_{*}(t-1)}}\bigg]
             &\le e^{-4\ln t} = t^{-4}, \\
-        \Pr\bigg[\bar X_{i,t-1} \ge \mu_i + \sqrt{\frac{2\ln t}{T_{i}(t-1)}}\bigg]
+        \Pr\bigg[\bar X_{i,T_i(t-1)} \ge \mu_i + \sqrt{\frac{2\ln t}{T_{i}(t-1)}}\bigg]
             &\le e^{-4\ln t} = t^{-4}.
     \end{align}
     So,
