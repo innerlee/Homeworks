@@ -66,6 +66,19 @@ and $+$ means \emph{optimistic}.
             &\le l + \sum_{t=l+1}^T \Pr[I_t=i, T_i>l] \\
             &\le l + \sum_{t=l+1}^T \Pr\bigg[\bar X_i + \sqrt{\frac{2\ln t}{T_i(t)}}\ge \bar X_{i*}+\sqrt{\frac{2\ln t}{T_{i*}(t)}}\bigg|T_i>l\bigg]
     \end{align}
+    Observe that $\bar X_i + \sqrt{\frac{2\ln t}{T_i(t)}}\ge \bar X_{i*}+\sqrt{\frac{2\ln t}{T_{i*}(t)}}$
+    fails when the following three conditions hold,
+    \begin{align}
+        \bar X_{i*} + \sqrt{\frac{2\ln t}{T_{i*}(t)}} &> \mu_*  \\
+        \bar X_{i} + \sqrt{\frac{2\ln t}{T_{i}(t)}} &< \mu_i + 2\sqrt{\frac{2\ln t}{T_{i}(t)}} \\
+        \mu_* &\ge \mu_i + 2\sqrt{\frac{2\ln t}{T_{i}(t)}}
+    \end{align}
+    We need Chernoff-Hoeffding bound.
+    \begin{framed}
+        \begin{fact}
+            Let
+        \end{fact}
+    \end{framed}
 \end{proof}
 
 \textbf{Remark}
