@@ -352,3 +352,18 @@ And we get what we want.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{} %4.15
+
+$T:=\sqrt{n}(\bar X - \mu) + \mu \sim N(\mu, 1)$ is a complete sufficient statistic.
+We want a function $h(\bar X)$, \st
+\begin{align}
+    E[h(T)]
+        &= \frac{1}{\sqrt{2\pi}}\int_{-\infty}^\infty
+            h(T) e^{\frac{(T-\mu)^2}{2}}dT \\
+        &= P(X_1\le u) \\
+        &= \frac{1}{\sqrt{2\pi}}\int_{-\infty}^u e^{\frac{(X_1-\mu)^2}{2}} d X_1
+\end{align}
+So, we know $h(T)=\doubleone(T\le u)=\doubleone(\sqrt{n}(\bar X - \mu) + \mu \le u)$
+is the UMVUE of $\Phi(u-\mu)$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{} %4.16
