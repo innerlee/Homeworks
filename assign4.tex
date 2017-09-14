@@ -327,64 +327,28 @@ Easy to prove by induction that $U(k)=-kU(-1)$.
 
 \subsubsection{} %4.13.2
 
-\todo
-
+$\delta_0$ is an unbiased estimator of $p$.
+\begin{align}
+    Cov[\delta_0, U(X)] = E \delta_0 U(X) = U(-1).
+\end{align}
+So if $U(-1)\ne 0$, $\delta_0$ is not UMVUE because it correlates with
+an unbiased estimator of $0$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{} %4.14
 
+$\sum_{i=1}^n X_i$ is a complete sufficient statistic.
+Since
 \begin{align}
-    L(p|\mX) = \prod_{i=1}^n f(X_i|p) = \prod_{i=1}^N p^{X_i}(1-p)^{1-X_i}
-        = p^{n\bar X}(1-p)^{n-n\bar X}.
+    E \Big(\sum_{i=1}^n X_i\Big)^2
+        &= n E X^2 + n(n-1) (E X)^2 \\
+        &= np + n(n-1)p^2.
 \end{align}
-So,
+So
 \begin{align}
-    \frac{\partial}{\partial p}\log L(p|\mX)
-        &= \frac{n\bar X}{p} - \frac{n - n\bar X}{1-p} \\
-        &= \frac{n(\bar X-p)}{p(1-p)}.
+    E \Bigg[\frac{n \sum_{i=1}^n X_i - \Big(\sum_{i=1}^n X_i\Big)^2 }{n(n-1)}\Bigg] = p(1-p).
 \end{align}
-If the Cram\'er-Rao Lower Bound is attainable, there exist $a(p)$, \st,
-\begin{equation}
-    a(p)[W(\mX)-p(1-p)]=\frac{n(\bar X-p)}{p(1-p)}.
-\end{equation}
-Let $a(p)=\frac{n}{p(1-p)b(p)}$, we need to find $b(p)$, \st,
-\begin{equation}
-    W(\mX)= p(1-p) + b(p)\bar X-b(p)p.
-\end{equation}
-This is not possible $W(\mX)$ would depend on $p$ no matter how we choose $b(p)$.
-So $p(1-p)$ do not have a UMVUE.
+And we get what we want.
 
-% We want find an estimator $W$, \st $E[W(X)]=p(1-p)$.
-% So
-% \begin{equation}
-%     (E[W(X)])'=1-2p.
-% \end{equation}
-% \begin{align}
-%     E_p\bigg(\bigg(\frac{\partial}{\partial p}\log\prod_{i=1}^n f(X_i|p)\bigg)^2\bigg)
-%         &= -n E_p\bigg(\frac{\partial^2}{\partial p^2} \log f(X|p)\bigg) \\
-%         &= -n E_p\bigg(\frac{\partial^2}{\partial p^2} \log p^{X}(1-p)^{1-X}\bigg) \\
-%         &= n\bigg(\frac{1}{p}+\frac{1}{1-p}\bigg)
-% \end{align}
-% By Cram\`er-Rao Inequality,
-% \begin{align}
-%     \Var_p (W(X)) \ge
-%         \frac{(1-2p)^2}{n\big(\frac{1}{p}+\frac{1}{1-p}\big)}
-%         = \frac{p(1-p)(1-2p)}{n}.
-% \end{align}
-
-% Since $\Var X = p(1-p)$,
-% let $W(X)=\frac{1}{n-1}\sum_{i=1}^n(X_i-\bar X)^2$.
-
-% Since $\bar X\sim Binomial(n, p)$, we have
-% \begin{align}
-%     Var_p(W(X))
-%         &= E[(\bar X - \bar X ^2)^2] - (E[\bar X - \bar X ^2])^2 \\
-%         &= E[\bar X ^2] +E[\bar X^4] -2E[\bar X ^3] - (E[\bar X] - E[\bar X ^2])^2 \\
-% \end{align}
-% Since
-% \begin{align}
-%     E[X] &= np \\
-%     E[X^2] &= n(n-1)p^2 + E[X] \\
-%     E[X^3] &= n(n-1)(n-2)p^3 +3 E[X^2] -2 E[X] \\
-%     E[X^4] &= n(n-1)(n-2)(n-3)p^4 +6E[X^3] -11 E[X^2] +6E[X]
-% \end{align}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{} %4.15
