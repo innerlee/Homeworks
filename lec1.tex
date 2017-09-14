@@ -13,7 +13,7 @@ A good reference on the bandit problem is \cite{MAL024}.
                 \State Play arm $t$
             \EndFor
             \For{$t=K+1,\dots,T$}
-                \State Play arm $i\in\argmax \bar x_{i,T_i(t-1)} + \sqrt{\frac{2\ln t}{T_i(t-1)}}$
+                \State Play arm $i\in\argmax \bar x_{i}(t-1) + \sqrt{\frac{2\ln t}{T_i(t-1)}}$
             \EndFor
         \end{algorithmic}
     \end{framed}
@@ -33,6 +33,7 @@ and $+$ means \emph{optimistic}.
         Assume the support of $p_i$ is a subset of $[0,1]$, and
         also assume that not all $\mu_i$ are equal to each other.
     \item At time $t$, playing arm $i$ yields reward $X_{i,t}\sim p_i$.
+    \item $\bar X_{i}(t)$ be the sample mean of rewards from arm $i$ during first $t$ plays of the game.
     \item $\bar X_{i,s}$ be the sample mean of rewards from the first $s$ plays of arm $i$.
     \item $\mu_*:=\max_{i\in[k]}\mu_i$, where $[k]:=\{1,\dots,k\}$.
     \item $\Delta_i:=\mu_* - \mu_i$,
@@ -46,7 +47,25 @@ and $+$ means \emph{optimistic}.
             R:=T\mu_*-\sum_{t=1}^T E[\mu_{I_t}]
             = \sum_{i:\Delta_i>0} E[T_i]\cdot\Delta_i.
         \end{equation}
+        The sample space consists of experiments of \emph{infinite} plays.
 \end{itemize}
+\
+
+\begin{lem}
+    In UCB1, if $T=\infty$, then each arm is played infinite times.
+\end{lem}
+\begin{proof}
+    Otherwise, suppose arm $i$ was played finite times.
+    Then $\sqrt{\frac{2\ln t}{T_i(t-1)}} \to \infty$.
+    There must be one arm $j$, \st $T_j(t)\ge\ln t$
+    (If not, $K\ln t < t$ when $t$ is large, a contradiction).
+    Then $\sqrt{\frac{2\ln t}{T_j(t-1)}} \le C$ for some constant when $t$ is large.
+    So, after a long time, there is no reason for playing arm $j$
+    rather than playing arm $i$.
+\end{proof}
+
+So, random variables $\bar X_{i,s}$ are well defined for all
+$i=1,\dots,K$ and $s=1,2,\dots$.
 
 \begin{thm}
     UCB1 has pseudo-regret
@@ -58,35 +77,42 @@ and $+$ means \emph{optimistic}.
 \begin{proof}
     We show that for all sub-optimal arm $i$,
     \begin{equation}
-        E[T_i] \le \frac{8\ln T}{\Delta_i^2} + \frac{\pi^2}{9}.
+        E[T_i] \le \frac{8\ln T}{\Delta_i^2} + 1 + \frac{\pi^2}{3}.
     \end{equation}
 
     \begin{align}
         E[T_i]
             &= \sum_{t=1}^T \Pr[I_t=i] \\
-            &\le l + \sum_{t=l+1}^T \Pr[I_t=i, T_i>l] \\
-            &\le l + \sum_{t=l+1}^T \Pr\Bigg[\bar X_{i,T_i(t-1)} +
-                \sqrt{\frac{2\ln t}{T_i(t-1)}}\ge \bar X_{*,T_*(t-1)}+
-                \sqrt{\frac{2\ln t}{T_{*}(t-1)}}~\Bigg|~T_i>l\Bigg] \\
+            &\le l + \sum_{t=l+1}^T \Pr[I_t=i, T_i(t-1)\ge l] \\
+            &\le l + \sum_{t=l+1}^T \Pr\Bigg[\bar X_{i}(t-1) +
+                \sqrt{\frac{2\ln t}{T_i(t-1)}}\ge \bar X_{*}(t-1)+
+                \sqrt{\frac{2\ln t}{T_{*}(t-1)}}, T_i(t-1)\ge l\Bigg] \label{eq:1_1_1}\\
             &\le l + \sum_{t=l+1}^T \sum_{s_i=l}^{t-1} \sum_{s=1}^{t-1}
                 \Pr\Bigg[\bar X_{i,s_i} + \sqrt{\frac{2\ln t}{s_i}}\ge
-                \bar X_{*,s}+\sqrt{\frac{2\ln t}{s}}~\Bigg|~T_i>l\Bigg]. \label{eq:1_1}
+                \bar X_{*,s}+\sqrt{\frac{2\ln t}{s}}\Bigg]. \label{eq:1_1_2}
     \end{align}
-    The last line is because
-    we do not know the distribution of $T_i(t-1)$ and $T_*(t-1)$,
-    so we enumerate the value and condition on them.
-    Observe that $\bar X_{i,T_i(t-1)} + \sqrt{\frac{2\ln t}{T_i(t-1)}}\ge \bar X_{*,T_*(t-1)}+\sqrt{\frac{2\ln t}{T_{*}(t-1)}}$
+    From \eqref{eq:1_1_1} to \eqref{eq:1_1_2} is because the event
+    \begin{equation}
+        \Bigg\{\bar X_{i}(t-1) + \sqrt{\frac{2\ln t}{T_i(t-1)}}\ge
+        \bar X_{*}(t-1)+\sqrt{\frac{2\ln t}{T_{*}(t-1)}}, T_i(t-1)\ge l\Bigg\}
+    \end{equation}
+    is a subset of
+    \begin{equation}
+        \cup_{s_i=l}^{t-1} \cup_{s=1}^{t-1}\Bigg\{\bar X_{i,s_i} + \sqrt{\frac{2\ln t}{s_i}}\ge
+        \bar X_{*,s}+\sqrt{\frac{2\ln t}{s}}\Bigg\}.
+    \end{equation}
+    Observe that $\bar X_{i,s_i} + \sqrt{\frac{2\ln t}{s_i}}\ge\bar X_{*,s}+\sqrt{\frac{2\ln t}{s}}$
     fails when the following three conditions hold,
     \begin{align}
-        \bar X_{*,T_*(t-1)} + \sqrt{\frac{2\ln t}{T_{*}(t-1)}} &> \mu_*,  \\
-        \bar X_{i,T_i(t-1)} + \sqrt{\frac{2\ln t}{T_{i}(t-1)}} &< \mu_i + 2\sqrt{\frac{2\ln t}{T_{i}(t-1)}}, \label{eq:1_2} \\
-        \mu_* &\ge \mu_i + 2\sqrt{\frac{2\ln t}{T_{i}(t-1)}}. \label{eq:1_3}
+        \bar X_{*,s} + \sqrt{\frac{2\ln t}{s}} &> \mu_*,  \\
+        \bar X_{i,s_i} + \sqrt{\frac{2\ln t}{s_i}} &< \mu_i + 2\sqrt{\frac{2\ln t}{s_i}}, \label{eq:1_2} \\
+        \mu_* &\ge \mu_i + 2\sqrt{\frac{2\ln t}{s_i}}. \label{eq:1_3}
     \end{align}
     Note that if $l$ is large enough,
     say $l=\lceil (8\ln T)/\Delta_i^2\rceil$,
     the third inequality will hold.
     In this case,
-    \eqref{eq:1_1} is possibly true only if we either break \eqref{eq:1_2} or break \eqref{eq:1_3}.
+    \eqref{eq:1_1_2} is possibly true only if we either break \eqref{eq:1_2} or break \eqref{eq:1_3}.
     We use the Chernoff-Hoeffding bound.
     \begin{framed}
         \begin{fact}[Chernoff-Hoeffding bound]
@@ -101,17 +127,21 @@ and $+$ means \emph{optimistic}.
     \end{framed}
     So,
     \begin{align}
-        \Pr\bigg[\bar X_{*,T_*(t-1)} \le \mu_* - \sqrt{\frac{2\ln t}{T_{*}(t-1)}}\bigg]
+        \Pr\Bigg[~\bar X_{*,s} \le \mu_* - \sqrt{\frac{2\ln t}{s}}~\Bigg]
             &\le e^{-4\ln t} = t^{-4}, \\
-        \Pr\bigg[\bar X_{i,T_i(t-1)} \ge \mu_i + \sqrt{\frac{2\ln t}{T_{i}(t-1)}}\bigg]
+        \Pr\Bigg[~\bar X_{i,s_i} \ge \mu_i + \sqrt{\frac{2\ln t}{s_i}}~\Bigg]
             &\le e^{-4\ln t} = t^{-4}.
     \end{align}
-    So,
+    Then,
     \begin{align}
         E[T_i]
-            &\le \bigg\lceil \frac{8\ln T}{\Delta_i^2}\bigg\rceil + \sum_{t=\lceil (8\ln T)/\Delta_i^2\rceil+1}^T 2t^{-4} \\
-            &\le \frac{8\ln T}{\Delta_i^2} + 1 + 2\sum_{t=1}^\infty t^{-4} \\
-            &= \frac{8\ln T}{\Delta_i^2} + 1 + \frac{\pi^4}{45}.
+            &\le \bigg\lceil \frac{8\ln T}{\Delta_i^2}\bigg\rceil +
+            \sum_{t=\lceil (8\ln T)/\Delta_i^2\rceil+1}^T
+            \sum_{s_i=l}^{t-1} \sum_{s=1}^{t-1}
+            2t^{-4} \\
+            &\le \frac{8\ln T}{\Delta_i^2} + 1 +
+            2\sum_{t=1}^\infty \sum_{s_i=1}^{t} \sum_{s=1}^{t}t^{-4} \\
+            &= \frac{8\ln T}{\Delta_i^2} + 1 + \frac{\pi^2}{3}.
     \end{align}
 \end{proof}
 
