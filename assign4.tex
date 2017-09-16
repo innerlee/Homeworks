@@ -368,3 +368,50 @@ is the UMVUE of $\Phi(u-\mu)$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{} %4.16
+
+\subsubsection{} %4.16.1
+
+$X_i$ can be seen as first drawing from an exponential distribution with
+parameter $\theta_2$,
+and then shift the result by $\theta_1$.
+So, the distribution of $\min_{i=1}^n(X_i-\theta_1)$ is exponential
+distribution with parameter $n\theta_2$.
+So the pdf for $X_{(1)}$ is
+\begin{equation}
+    g_{\theta_1,\theta_2} (y) = \frac{1}{n\theta_2}\exp\bigg(-\frac{y-\theta_1}{n\theta_2}\bigg)
+\end{equation}
+By the memoryless property of exponential distribution,
+we have the distribution of $\sum_{i=1}^n X_i-X_{(1)}$
+conditioned on $X_{(1)}$ is $Gamma(n-1, \theta_2)$.
+\ie, the sum of $n-1$ exponential random variables $X_i-X_{(1)}$ where $X_i\ne X_{(1)}$.
+\begin{align}
+    h_{\theta_1,\theta_2}\bigg(\sum_{i=1}^n X_i-X_{(1)}=x\bigg|X_{(1)}=y\bigg)
+        &= \frac{1}{\Gamma(n-1)\theta_2^{n-1}}x^{n-2} e^{-\frac{x}{\theta_2}}.\label{eq:116}
+\end{align}
+The joint pdf of  $\big(X_{(1)}, \sum_{i=1}^n X_i-X_{(1)}\big)$ is
+\begin{align}
+    &f_{\theta_1,\theta_2}\Big(X_{(1)}=y, \sum_{i=1}^n X_i-X_{(1)}=x\Big) \\
+        &= g_{\theta_1,\theta_2} (y) h_{\theta_1,\theta_2}(y|x) \\
+        &= \frac{1}{n\theta_2}e^{-\frac{y-\theta_1}{n\theta_2}}
+        \frac{1}{\Gamma(n-1)\theta_2^{n-1}}x^{n-2} e^{-\frac{x}{\theta_2}} \\
+        &= \frac{x^{n-2}}{n\Gamma(n-1)\theta_2^n}e^{\frac{\theta_1}{n\theta_2}}e^{-\frac{x}{\theta_2}-\frac{y}{n\theta_2}}
+\end{align}
+It belongs to exponential family,
+so $(y, x)=\big(X_{(1)}, \sum_{i=1}^n X_i-X_{(1)}\big)$ is complete.
+
+\subsubsection{} %4.16.2
+
+Obvious from Equation~\eqref{eq:116}.
+
+\subsubsection{} %4.16.3
+
+Since
+\begin{align}
+    E[X_{(1)}] &
+        = n\theta_2 + \theta_1, \\
+    E\bigg[\sum_{i=1}^n X_i-X_{(1)}\bigg]
+        &= (n-1)\theta_2.
+\end{align}
+
+So, UMVUE for $\theta_1$ is $X_{(1)} - \frac{n}{n-1}\sum_{i=1}^n\big(X_i-X_{(1)}\big)$,
+and UMVUE for $\theta_2$ is $\frac{1}{n-1}\sum_{i=1}^n\big(X_i-X_{(1)}\big)$.
