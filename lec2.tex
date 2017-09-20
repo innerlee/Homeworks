@@ -42,3 +42,39 @@ Bernoulli distributions with parameter $p$ and $q$ respectively. \ie,
 \begin{equation}
     \kl(p,q) := p\ln\frac{p}{q} +(1-p)\ln \frac{1-p}{1-q}.
 \end{equation}
+The $l_1$-distance between these two distributions is
+\begin{align}
+    \|p-q\|_1 = |p-q|+|(1-p)-(1-q)| = 2|p-q|.
+\end{align}
+We have some relations between these two distances,
+\begin{align}
+    2(p-q)^2 \le \kl(p,q) \le \frac{(p-q)^2}{q(1-q)}.
+\end{align}
+The first inequality comes from Pinsker's inequality,
+and the second one comes from $\ln x\le x-1$.
+\begin{framed}
+    \begin{fact}[Pinsker's Inequality]
+        $P, Q$ are two probability distributions. Then
+        \begin{align}
+            l_1(P, Q) \le \sqrt{2\,\kl(P,Q)}.
+        \end{align}
+    \end{fact}
+\end{framed}
+
+\begin{thm}
+    Suppose that we have $K$ arms,
+    each with a Bernoulli reward distribution.
+    For any algorithm satisfying
+    \begin{align}
+        E[T_i(n)] \le n^{o(1)}, \quad\forall i ~\text{with}~ \Delta_i>0
+    \end{align}
+    then,
+    \begin{align}
+        \liminf_{n\to\infty} \frac{\Rbar_n}{\ln n} \ge \sum_{i:\Delta_i>0} \frac{\Delta_i}{\kl(\mu_i,\mu_*)}.
+    \end{align}
+\end{thm}
+Here, $E[T_i(n)] \le n^{o(1)}$ means $E[T_i(n)] \le o(n^\alpha), \forall \alpha\in(0,1)$.
+We only prove the case of two arms.
+\begin{proof}
+
+\end{proof}
