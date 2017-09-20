@@ -43,7 +43,7 @@ and $+$ means \emph{optimistic}.
         and let $T_i:=T_i(T)$.
     \item Pseudo-regret
         \begin{equation}
-            R:=T\mu_*-\sum_{t=1}^T E[\mu_{I_t}]
+            \Rbar:=T\mu_*-\sum_{t=1}^T E[\mu_{I_t}]
             = \sum_{i:\Delta_i>0} E[T_i]\cdot\Delta_i.
         \end{equation}
         The sample space consists of experiments of \emph{infinite} plays.
@@ -70,7 +70,7 @@ $i=1,\dots,K$ and $s=1,2,\dots$.\\
 \begin{thm}
     UCB1 has pseudo-regret
     \begin{equation}
-        R \le \cO\bigg(\sum_{i:\Delta_i>0} \frac{\ln T}{\Delta_i}+\Delta_i\bigg)
+        \Rbar \le \cO\bigg(\sum_{i:\Delta_i>0} \frac{\ln T}{\Delta_i}+\Delta_i\bigg)
             \le \cO\bigg(\frac{K\ln T}{\Delta_\text{min}}+K\Delta_\text{max}\bigg).
     \end{equation}
 \end{thm}

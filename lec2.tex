@@ -6,13 +6,13 @@
 
 For UCB1, we have proved the \textbf{problem dependent bound}
 \begin{equation}
-    R\le 8 \sum_{i:\Delta_i>0} \bigg(~\frac{\ln n}{\Delta_i}+\Delta_i\bigg).
+    \Rbar_n\le 8 \sum_{i:\Delta_i>0} \bigg(~\frac{\ln n}{\Delta_i}+\Delta_i\bigg).
 \end{equation}
 There are also \textbf{problem independent bounds}.
 
 \begin{thm}[Problem Independent Bound of UCB1]
     \begin{equation}
-        R\le\cO(\sqrt{kn\ln n}).
+        \Rbar_n\le\cO(\sqrt{kn\ln n}).
     \end{equation}
 \end{thm}
 \begin{proof}
@@ -23,7 +23,7 @@ There are also \textbf{problem independent bounds}.
     \end{align}
     Then,
     \begin{align}
-        R
+        \Rbar_n
             &= \sum_{i:\Delta_i>0} \Delta_i E[T_i(n)] \\
             &\le c_1 \sum_{i:\Delta_i>0} \Delta_i \sqrt{E[T_i(n)] \frac{8\ln n}{\Delta_i^2}} \\
             &= c_1 \sum_{i:\Delta_i>0} 1\cdot \sqrt{8 E[T_i(n)] \ln n} \\
@@ -35,3 +35,10 @@ There are also \textbf{problem independent bounds}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Lower Bound of UCB1} %2.2
+
+For $p, q\in[0,1]$,
+we use $\kl (p, q)$ to denote the Kullback-Leibler divergence between two
+Bernoulli distributions with parameter $p$ and $q$ respectively. \ie,
+\begin{equation}
+    \kl(p,q) := p\ln\frac{p}{q} +(1-p)\ln \frac{1-p}{1-q}.
+\end{equation}
