@@ -1,0 +1,56 @@
+\newpage
+\section{Note 3 - Adversarial Bandit}
+
+\textbf{Notation}
+\begin{itemize}
+    \item $K$ arms.
+    \item At time $t$,
+        \begin{itemize}
+            \item We play arm $I_t$, and at the same time,
+                the adversarial select $(g_{1,t}, \dots, g_{K,t})$.
+            \item We receive reward $g_{I_t, t}$.
+        \end{itemize}
+        \item \textbf{Regret}
+        \begin{equation}
+            R_n := \max_i \sum_{t=1}^n g_{i,t} - \sum_{t=1}^n g_{I_t, t}.
+        \end{equation}
+        \item \textbf{Expected Regret}
+        \begin{equation}
+            E[R_n] := E\bigg[\max_i \sum_{t=1}^n g_{i,t}\bigg] - E\bigg[\sum_{t=1}^n g_{I_t, t}\bigg].
+        \end{equation}
+        \item \textbf{Pseudo-Regret}
+        \begin{equation}
+            \bar R_n := \max_i \sum_{t=1}^n E[g_{i,t}] - \sum_{t=1}^n E[g_{I_t, t}]
+                = \sum_{t=1}^n E[l_{I_t, t}] - \min_i \sum_{t=1}^n E[l_{i,t}].
+        \end{equation}
+\end{itemize}
+\
+
+\textbf{Assume}
+\begin{itemize}
+    \item $g_{i,t}\in[0,1]$.
+    \item Define loss $l_{i,t}:=1-g_{i,t}$.
+    \item $g_{i,t}, i=1,\dots,K$ is independent of $I_t$.
+    \item If $g_{i,t}, i=1,\dots,K$ is independent of $I_1, \dots, I_{t-1}$ as well,
+        it is called \textbf{oblivious}.
+        Otherwise, the adversarial is called \textbf{non-oblivious}.
+\end{itemize}
+\
+
+Note that for non-oblivious adversarial, pseudo-regret is not well-defined.
+We consider oblivious adversarial.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Exponential weights for Exploration and Exploitation} %2.1
+
+\begin{alg}[Exp3] \leavevmode
+    \begin{framed}
+        \begin{algorithmic}
+            \State Let $p_1=\big(\frac{1}{K},\dots,\frac{1}{K}\big)$,
+                and $\tilde L_{i,0}=0, \forall i\in [K]$
+            \For{$t=1,\dots,n$}
+                \State Play arm $I_t\sim p_t$
+            \EndFor
+        \end{algorithmic}
+    \end{framed}
+\end{alg}
