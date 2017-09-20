@@ -4,11 +4,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Problem Independent Bound} %2.1
 
-For UCB1, we have proved the \emph{problem dependent bound}
+For UCB1, we have proved the \textbf{problem dependent bound}
 \begin{equation}
     R\le 8 \sum_{i:\Delta_i>0} \bigg(~\frac{\ln n}{\Delta_i}+\Delta_i\bigg).
 \end{equation}
-There are also \emph{problem independent bounds}.
+There are also \textbf{problem independent bounds}.
 
 \begin{thm}[Problem Independent Bound of UCB1]
     \begin{equation}
@@ -16,6 +16,20 @@ There are also \emph{problem independent bounds}.
     \end{equation}
 \end{thm}
 \begin{proof}
+    We already know that
+    \begin{align}
+        E[T_i(n)]
+            &\le \frac{8\ln n}{\Delta_i^2} + \cO(1).
+    \end{align}
+    Then,
+    \begin{align}
+        R
+            &= \sum_{i:\Delta_i>0} \Delta_i E[T_i(n)] \\
+            &\le c_1 \sum_{i:\Delta_i>0} \Delta_i \sqrt{E[T_i(n)] \frac{8\ln n}{\Delta_i^2}} \\
+            &= c_1 \sum_{i:\Delta_i>0} 1\cdot \sqrt{8 E[T_i(n)] \ln n} \\
+            &\le c_1 \sqrt{8 K \ln n \sum_{i:\Delta_i>0} E[T_i(n)] } \\
+            &= \cO(\sqrt{kn\ln n}).
+    \end{align}
 
 \end{proof}
 
