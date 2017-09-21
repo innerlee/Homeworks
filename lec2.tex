@@ -100,10 +100,11 @@ We prove the case of two arms.
             &\quad~  P\Big(\big(I_2, X_{I_2, T_{I_2}(2)}\big)=\big(i_2, x_{i_2, T_{i_2}(2)}\big)~\Big|~
                 \big(I_1, X_{I_1, T_{I_1}(1)}\big)=\big(i_1, x_{i_1, T_{i_1}(1)}\big)\Big) \cdots \\
             &\quad~  P\Big(\big(I_2, X_{I_2, T_{I_2}(2)}\big)=\big(i_2, x_{i_2, T_{i_2}(2)}\big)~\Big|~
-                \big(I_t, X_{I_t, T_{I_t}(t)}\big)=\big(i_t, x_{i_t, T_{i_t}(t)}\big), \forall t<n\Big) \\
+                \big(I_t, X_{I_t, T_{I_t}(t)}\big)=\big(i_t, x_{i_t, T_{i_t}(t)}\big), \forall t<n\Big). \label{eq:2_34_2}
     \end{split}
     \end{equation}
     Similar equation holds for $P'(Y)$.
+    Note that for factors in~\eqref{eq:2_34_2},
     \begin{equation}
         \begin{split}
             &P\Big(\big(I_s, X_{I_s, T_{I_s}(s)}\big)=\big(i_s, x_{i_s, T_{i_s}(s)}\big)~\Big|~
@@ -117,14 +118,14 @@ We prove the case of two arms.
             &\quad~P\Big(X_{I_s, T_{I_s}(s)}=x_{i_s, T_{i_s}(s)}~\Big|~I_s=i_s\Big) \\
             &=P'\Big(I_s=i_s~\Big|~
             \big(I_t, X_{I_t, T_{I_t}(t)}\big)=\big(i_t, x_{i_t, T_{i_t}(t)}\big), \forall t<s\Big) \cdot \\
-            &\quad~P\Big(X_{I_s, T_{I_s}(s)}=x_{i_s, T_{i_s}(s)}~\Big|~I_s=i_s\Big) \\
+            &\quad~P\Big(X_{I_s, T_{I_s}(s)}=x_{i_s, T_{i_s}(s)}~\Big|~I_s=i_s\Big).
         \end{split}
     \end{equation}
-    Considering that when $I_s=1$,
+    When $I_s=1$,
     \begin{align}
         P\Big(X_{I_s, T_{I_s}(s)}=x_{1, T_{1}(s)}~\Big|~I_s=1\Big) = P'\Big(X_{I_s, T_{I_s}(s)}=x_{1, T_{1}(s)}~\Big|~I_s=1\Big),
     \end{align}
-    $P(Y)$ and $P(Y')$ only differs in terms when $I_s=2$.
+    So $P(Y)$ and $P(Y')$ only differs in terms when $I_s=2$.
     We have
     \begin{align}
         \frac{P(Y)}{P'(Y)}
@@ -149,11 +150,11 @@ We prove the case of two arms.
     \begin{equation}
         f_n:=\frac{1-\epsilon}{\kl(\mu_2,\mu_2')}\ln n.
     \end{equation}
-    Observe Equation~\eqref{eq:2_42}, we also need $\hat\kl_{T_2(n)}$ be upper bounded,
-    so that when $P'(Y)$ is small, we can infer that $P(Y)$ is also small.
-    Consider event $C_n$,
+    Observe Equation~\eqref{eq:2_42}, we need $\hat\kl_{T_2(n)}$ be upper bounded,
+    such that when $P'(Y)$ is small, we can infer that $P(Y)$ is also small.
+    Consider the event $C_n$,
     \begin{align}
-        C_n=\bigg\{ T_2(n)<f_n
+        C_n:=\bigg\{ T_2(n)<f_n
             ~~\text{and}~~
             \hat \kl_{T_2(n)} \le \Big(1-\frac{\epsilon}{2}\Big)\ln n \bigg\}.
     \end{align}
