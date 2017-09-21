@@ -177,11 +177,7 @@ We only prove the case of two arms.
     \end{equation}
 
     Next we deal with the upper bound condition on $\hat \kl_{T_2(n)}$.
-    We need the following constraint on $\mu_2'$,
-    \begin{align}
-        \kl(\mu_2, \mu_2')\le(1+\epsilon)\kl(\mu_2,\mu_1), ~~ \text{for given}\; \epsilon>0.
-    \end{align}
-    Observe that
+    First observe that
     \begin{align}
         P(C_n)
             &\ge P\bigg(T_2(n)<f_n~~\text{and}~~\max_{s\le f_n}\hat\kl_s\le\Big(1-\frac{\epsilon}{2}\Big)\ln n\bigg) \\
@@ -219,5 +215,19 @@ We only prove the case of two arms.
     \begin{equation}
         P(T_2(n)<f_n)=o(1).
     \end{equation}
-
+    By Markov inequality,
+    \begin{align}
+        P(T_2(n)\ge f_n)
+            &=1-o(1) \\
+            &\le \frac{E[T_2(n)]}{f_n} \\
+            &= \frac{\kl(\mu_2,\mu_2')}{(1-\epsilon)\ln n}E[T_2(n)]
+    \end{align}
+    If in addition, $\mu_2'$ satisfies
+    \begin{align}
+        \kl(\mu_2, \mu_2')\le(1+\epsilon)\kl(\mu_2,\mu_1),
+    \end{align}
+    we have
+    \begin{align}
+        E[T_2(n)]\ge(1-o(1))\frac{1-\epsilon}{1+\epsilon}\frac{\ln n}{\kl(\mu_2,\mu_1)}.
+    \end{align}
 \end{proof}
