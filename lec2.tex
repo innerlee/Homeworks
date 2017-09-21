@@ -127,20 +127,20 @@ We only prove the case of two arms.
     $P(Y)$ and $P(Y')$ only differs in terms when $I_s=2$.
     We have
     \begin{align}
-        \frac{P'(Y)}{P(Y)}
-            &= \frac{\prod_{i=1}^{T_2(n)}P'\big(X_{2, i}\big)}{\prod_{i=1}^{T_2(n)}P\big(X_{2, i}\big)} \\
-            &= \frac{\mu_2'^{\sum_{i=1}^{T_2(n)} X_{2,i}}(1-\mu_2')^{n-\sum_{i=1}^{T_2(n)} X_{2,i}}}
-                {\mu_2^{\sum_{i=1}^{T_2(n)} X_{2,i}}(1-\mu_2)^{n-\sum_{i=1}^{T_2(n)} X_{2,i}}} \\
-            &= \exp\bigg(-\ln
+        \frac{P(Y)}{P'(Y)}
+            &= \frac{\prod_{i=1}^{T_2(n)}P\big(X_{2, i}\big)}{\prod_{i=1}^{T_2(n)}P'\big(X_{2, i}\big)} \\
+            &= \frac{\mu_2^{\sum_{i=1}^{T_2(n)} X_{2,i}}(1-\mu_2)^{n-\sum_{i=1}^{T_2(n)} X_{2,i}}}
+                {\mu_2'^{\sum_{i=1}^{T_2(n)} X_{2,i}}(1-\mu_2')^{n-\sum_{i=1}^{T_2(n)} X_{2,i}}} \\
+            &= \exp\bigg(\ln
                 \frac{\mu_2^{\sum_{i=1}^{T_2(n)} X_{2,i}}(1-\mu_2)^{n-\sum_{i=1}^{T_2(n)} X_{2,i}}}
                 {\mu_2'^{\sum_{i=1}^{T_2(n)} X_{2,i}}(1-\mu_2')^{n-\sum_{i=1}^{T_2(n)} X_{2,i}}}\bigg) \\
-            &= \exp\bigg(-\sum_{i=1}^{T_2(n)} \ln
+            &= \exp\Bigg(\sum_{i=1}^{T_2(n)} \ln
                 \frac{\mu_2^{X_{2,i}}(1-\mu_2)^{1-X_{2,i}}}
-                {\mu_2'^{X_{2,i}}(1-\mu_2')^{1-X_{2,i}}}\bigg) \\
-            &= \exp\bigg(-\sum_{i=1}^{T_2(n)} \ln
+                {\mu_2'^{X_{2,i}}(1-\mu_2')^{1-X_{2,i}}}\Bigg) \\
+            &= \exp\Bigg(\sum_{i=1}^{T_2(n)} \ln
                 \frac{\mu_2 X_{2,i} + (1-\mu_2) (1-X_{2,i})}
-                {\mu_2' X_{2,i} + (1-\mu_2')(1-X_{2,i})}\bigg) \\
-            &= \exp\big(-\hat\kl_{T_2(n)}\big).\label{eq:2_42}
+                {\mu_2' X_{2,i} + (1-\mu_2')(1-X_{2,i})}\Bigg) \\
+            &= \exp\big(\hat\kl_{T_2(n)}\big).\label{eq:2_42}
     \end{align}
     The random variable $T_2(n)$ is a function of random variable $Y$.
     By changing of measure,
@@ -159,11 +159,11 @@ We only prove the case of two arms.
     \end{align}
     We have
     \begin{align}
-        P'(C_n)
-            &= \sum_{Y\subset C_n} P'(Y) \\
-            &= \sum_{Y\subset C_n} P(Y) \exp\big(-\hat\kl_{T_2(n)}\big) \\
-            &\ge e^{-(1-\frac{\epsilon}{2})\ln n} P(C_n) \\
-            &= n^{-(1-\frac{\epsilon}{2})} P(C_n).
+        P(C_n)
+            &= \sum_{Y\subset C_n} P(Y) \\
+            &= \sum_{Y\subset C_n} P'(Y) \exp\big(\hat\kl_{T_2(n)}\big) \\
+            &\le e^{(1-\frac{\epsilon}{2})\ln n} P'(C_n) \\
+            &= n^{(1-\frac{\epsilon}{2})} P'(C_n).
     \end{align}
     By Markov's inequality,
     \begin{align}
