@@ -146,7 +146,18 @@ We only prove the case of two arms.
             ~~\text{and}~~
             \hat \kl_{T_2(n)} \le \Big(1-\frac{\epsilon}{2}\Big)\ln n \bigg\}.
     \end{align}
+    First change of measure,
     \begin{align}
-        P()
+        P'(C_n)
+            &= E\big[\doubleone_{C_n} \exp(-\hat\kl_{T_2(n)})\big] \\
+            &\ge e^{-(1-\frac{\epsilon}{2})\ln n} P(C_n) \\
+            &= n^{-(1-\frac{\epsilon}{2})} P(C_n).
     \end{align}
+    By Markov's inequality,
+    \begin{align}
+        P(C_n)
+            &\le n^{1-\frac{\epsilon}{2}} P'(C_n) \\
+            &\le
+    \end{align}
+
 \end{proof}
