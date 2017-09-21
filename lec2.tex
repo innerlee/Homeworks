@@ -140,12 +140,37 @@ We only prove the case of two arms.
             &= \exp\bigg(-\sum_{i=1}^{T_2(n)} \ln
                 \frac{\mu_2 X_{2,i} + (1-\mu_2) (1-X_{2,i})}
                 {\mu_2' X_{2,i} + (1-\mu_2')(1-X_{2,i})}\bigg) \\
-            &= \exp\big(-\hat\kl_{T_2(n)}\big).
+            &= \exp\big(-\hat\kl_{T_2(n)}\big).\label{eq:2_42}
     \end{align}
     The random variable $T_2(n)$ is a function of random variable $Y$.
     By changing of measure,
     we can relate $T_2(n)$ of instance 1 to that of instance 2.
-
+    Specifically, we want $P[T_2(n)<f_n]=o(1)$, where
+    \begin{equation}
+        f_n:=\frac{1-\epsilon}{\kl(\mu_2,\mu_2')}\ln n.
+    \end{equation}
+    Observe Equation~\eqref{eq:2_42}, we also need $\hat\kl_{T_2(n)}$ be upper bounded,
+    so that when $P'(Y)$ is small, we can infer that $P(Y)$ is also small.
+    Consider event $C_n$,
+    \begin{align}
+        C_n=\bigg\{ T_2(n)<f_n
+            ~~\text{and}~~
+            \hat \kl_{T_2(n)} \le \Big(1-\frac{\epsilon}{2}\Big)\ln n \bigg\}.
+    \end{align}
+    We have
+    \begin{align}
+        P'(C_n)
+            &= \sum_{Y\subset C_n} P'(Y) \\
+            &= \sum_{Y\subset C_n} P(Y) \exp\big(-\hat\kl_{T_2(n)}\big) \\
+            &\ge e^{-(1-\frac{\epsilon}{2})\ln n} P(C_n) \\
+            &= n^{-(1-\frac{\epsilon}{2})} P(C_n).
+    \end{align}
+    By Markov's inequality,
+    \begin{align}
+        P(C_n)
+            &\le n^{1-\frac{\epsilon}{2}} P'(C_n) \\
+            &\le
+    \end{align}
 
     This is done by the constraint
     \begin{align}
@@ -193,11 +218,7 @@ We only prove the case of two arms.
     we have changed the the probability of event $\{X_{2,i}=1\}$ from $\mu_2'$ to $\mu_2$.
     So $\hat\kl_s$ is the (unnormalized) empirical estimate of $\kl(\mu_2,\mu_2')$.
 
-    Let
-    \begin{equation}
-        f_n:=\frac{1-\epsilon}{\kl(\mu_2,\mu_2')}\ln n.
-    \end{equation}
-    We want $P[T_2(n)<f_n]=o(1)$.
+
     It is easy to guess that $P'[T_2(n)<f_n]=o(1)$.
     If we want to use change of measure to bound $P[T_2(n)<f_n]$,
     we also need to bound $\hat\kl_{T_2(n)}$.
@@ -208,23 +229,6 @@ We only prove the case of two arms.
     So this extra condition for $\hat\kl_{T_2(n)}$ poses no threat.
 
     So, step 1, the probability of the following event is $o(1)$,
-    \begin{align}
-        C_n=\bigg\{ T_2(n)<f_n
-            ~~\text{and}~~
-            \hat \kl_{T_2(n)} \le \Big(1-\frac{\epsilon}{2}\Big)\ln n \bigg\}.
-    \end{align}
-    First change of measure,
-    \begin{align}
-        P'(C_n)
-            &= E\big[\doubleone_{C_n} \exp(-\hat\kl_{T_2(n)})\big] \\
-            &\ge e^{-(1-\frac{\epsilon}{2})\ln n} P(C_n) \\
-            &= n^{-(1-\frac{\epsilon}{2})} P(C_n).
-    \end{align}
-    By Markov's inequality,
-    \begin{align}
-        P(C_n)
-            &\le n^{1-\frac{\epsilon}{2}} P'(C_n) \\
-            &\le
-    \end{align}
+
 
 \end{proof}
