@@ -173,7 +173,7 @@ We only prove the case of two arms.
     by assumption, we have $E'[T_1(n)]\le o(n^\alpha), \forall \alpha\in(0,1)$.
     So
     \begin{equation}
-        P(C_n)=o(1).
+        P(C_n)=o(1). \label{eq:2_52}
     \end{equation}
 
     Next we deal with the upper bound condition on $\hat \kl_{T_2(n)}$.
@@ -181,7 +181,43 @@ We only prove the case of two arms.
     \begin{align}
         \kl(\mu_2, \mu_2')\le(1+\epsilon)\kl(\mu_2,\mu_1), ~~ \text{for given}\; \epsilon>0.
     \end{align}
-
-
+    Observe that
+    \begin{align}
+        P(C_n)
+            &\ge P\bigg(T_2(n)<f_n~~\text{and}~~\max_{s\le f_n}\hat\kl_s\le\Big(1-\frac{\epsilon}{2}\Big)\ln n\bigg) \\
+            &=  P\bigg(T_2(n)<f_n~~\text{and}~~\frac{1}{f_n}\max_{s\le f_n}\hat\kl_s\le\frac{1-\frac{\epsilon}{2}}{1-\epsilon}\kl(\mu_2,\mu_2')\bigg)\label{eq:2_54}
+    \end{align}
+    And also note that in instance 1,
+    $\kl_s$ is the unnormalized empirical estimation of $\hat\kl(\mu_2,\mu_2')$,
+    \begin{align}
+        \hat\kl_s
+            &= \sum_{i=1}^s \ln
+                \frac{\mu_2 X_{2,i} + (1-\mu_2) (1-X_{2,i})}
+                {\mu_2' X_{2,i} + (1-\mu_2')(1-X_{2,i})} \\
+            &= \bigg(\sum_{i=1}^s X_{2,i}\bigg)\ln\frac{\mu_2}{\mu_2'} +
+                \bigg(s-\sum_{i=1}^s X_{2,i}\bigg)\ln\frac{1-\mu_2}{1-\mu_2'}.
+    \end{align}
+    By the maximal version of the strong law of large numbers,
+    \begin{framed}
+        \begin{fact}[Maximal Version of Strong Law of Large Numbers]
+            For any sequence $X_t$ of independent real random variables with positive mean $\mu>0$,
+            then
+            \begin{equation}
+                \lim_{n\to\infty}\frac{1}{n}\sum_{t=1}^n X_t=\mu
+            \end{equation}
+            almost surely implies
+            \begin{equation}
+                \lim_{n\to\infty}\frac{1}{n}\max_{s=1,\dots,n}\sum_{t=1}^n X_t=\mu.
+            \end{equation}
+        \end{fact}
+    \end{framed}
+    \begin{align}
+        \lim_{n\to\infty}P\bigg(\frac{1}{f_n}\max_{s\le f_n}\hat\kl_s<\frac{1-\frac{\epsilon}{2}}{1-\epsilon}\kl(\mu_2,\mu_2')\bigg)=1. \label{eq:2_60}
+    \end{align}
+    By \eqref{eq:2_52}, \eqref{eq:2_54} and \eqref{eq:2_60},
+    we have
+    \begin{equation}
+        P(T_2(n)<f_n)=o(1).
+    \end{equation}
 
 \end{proof}
