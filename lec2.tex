@@ -38,13 +38,13 @@ There are also \textbf{problem independent bounds}.
 
 For $p, q\in[0,1]$,
 we use $\kl (p, q)$ to denote the Kullback-Leibler divergence between two
-Bernoulli distributions with parameter $p$ and $q$ respectively. \ie,
+Bernoulli distributions $P$ and $Q$ with parameter $p$ and $q$ respectively. \ie,
 \begin{equation}
-    \kl(p,q) := p\ln\frac{p}{q} +(1-p)\ln \frac{1-p}{1-q}.
+    \kl(p,q) := \kl(P,Q) = p\ln\frac{p}{q} +(1-p)\ln \frac{1-p}{1-q}.
 \end{equation}
-The $l_1$-distance between these two distributions is
+The $l_1$-distance between $P$ and $Q$ is
 \begin{align}
-    \|p-q\|_1 = |p-q|+|(1-p)-(1-q)| = 2|p-q|.
+    l_1(P,Q) = |p-q|+|(1-p)-(1-q)| = 2|p-q|.
 \end{align}
 We have some relations between these two distances,
 \begin{align}
