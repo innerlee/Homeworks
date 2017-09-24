@@ -93,7 +93,7 @@ We consider oblivious adversarial.
     \end{align}
     where
     \begin{equation}
-        \Phi_t(\eta):= -\frac{1}{\eta}\ln\frac{1}{K} \sum_{i=1}^K e^{-\eta\tilde L_{i,t}}.
+        \Phi_t(\eta):= \frac{1}{\eta}\ln\frac{1}{K} \sum_{i=1}^K e^{-\eta\tilde L_{i,t}}.
     \end{equation}
     So,
     \begin{align}
@@ -133,4 +133,17 @@ We consider oblivious adversarial.
                 + E\sum_{t=1}^{n-1} ( \Phi_t(\eta_t) - \Phi_t(\eta_{t-1})).
     \end{align}
     The remaining is to show $\Phi_t'(\eta)\ge0$.
+    \begin{align}
+        \Phi_t'(\eta)
+            &= -\frac{1}{\eta^2}\ln\frac{1}{K} \sum_{i=1}^K e^{-\eta\tilde L_{i,t}}
+                - \frac{1}{\eta}\frac{\sum_{i=1}^K \tilde L_{i,t}e^{-\eta\tilde L_{i,t}}}{\sum_{i=1}^K e^{-\eta\tilde L_{i,t}}} \\
+            &= \frac{1}{\eta^2}\sum_{i=1}^K \frac{e^{-\eta\tilde L_{i,t}}}{\sum_{k=1}^K e^{-\eta\tilde L_{k,t}}}\bigg(
+                \ln e^{- \eta \tilde L_{i,t}} - \ln\frac{1}{K} \sum_{k=1}^K e^{-\eta\tilde L_{k,t}}\bigg) \\
+            &= \frac{1}{\eta^2}\kl(p_t^\eta, p_1) \\
+            &\ge 0,
+    \end{align}
+    where
+    \begin{equation}
+        p_t^\eta:=\frac{e^{-\eta\tilde L_{i,t}}}{\sum_{k=1}^K e^{-\eta\tilde L_{k,t}}}.
+    \end{equation}
 \end{proof}
