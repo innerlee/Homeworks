@@ -8,9 +8,34 @@
 \begin{align}
     d^2 (f\circ\varphi)\bigg(\frac{\partial}{\partial y^j},\frac{\partial}{\partial y^i}\bigg)
         &= \frac{\partial^2}{\partial y^j\partial y^i}f\circ\varphi \\
-        &= \frac{\partial}{\partial y^j} \sum_{k=1}^n \frac{\partial f}{\partial x^k}\circ\varphi\frac{\partial \varphi^k}{\partial y^i} \\
-        &= \sum_{l=1}^n\sum_{k=1}^n \frac{\partial^2 f}{\partial x^l\partial x^k}\circ\varphi\frac{\partial \varphi^l}{\partial y^j}\frac{\partial \varphi^k}{\partial y^i}
-            + \sum_{k=1}^n \frac{\partial f}{\partial x^k}\circ\varphi\frac{\partial^2 \varphi^k}{\partial y^j\partial y^i}. \\
+        &= \frac{\partial}{\partial y^j} \sum_{k=1}^n \bigg(\frac{\partial f}{\partial x^k}\circ\varphi\bigg)\frac{\partial \varphi^k}{\partial y^i} \\
+        &= \sum_{l=1}^n\sum_{k=1}^n \bigg(\frac{\partial^2 f}{\partial x^l\partial x^k}\circ\varphi\bigg)\frac{\partial \varphi^l}{\partial y^j}\frac{\partial \varphi^k}{\partial y^i}
+            + \sum_{k=1}^n \bigg(\frac{\partial f}{\partial x^k}\circ\varphi\bigg)\frac{\partial^2 \varphi^k}{\partial y^j\partial y^i}.
 \end{align}
 
 \subsubsection{} %1.1.2
+
+Suppose $(x^1,\dots,x^n)$ and $(y^1,\dots,y^n)$ are two charts of $M$,
+and on their intersection, we have $x=\varphi(y)$.
+The transformation of vectors is
+\begin{align}
+    \frac{\partial}{\partial y^j} (f\circ \varphi)
+        &= \sum_{i=1}^n \bigg(\frac{\partial f}{\partial x^i}\circ\varphi\bigg) \frac{\partial \varphi^i}{\partial y^j}
+\end{align}
+\ie,
+\begin{align}
+    \frac{\partial}{\partial y^j} = \frac{\partial}{\partial x^i}\frac{\partial\varphi^i}{\partial y^j}
+\end{align}
+So,
+\begin{align}
+    d^2 (f\circ\varphi)\bigg(\frac{\partial}{\partial y^j},\frac{\partial}{\partial y^i}\bigg)
+    &= \sum_{l=1}^n\sum_{k=1}^n \bigg(\frac{\partial^2 f}{\partial x^l\partial x^k}\circ\varphi\bigg)\frac{\partial \varphi^l}{\partial y^j}\frac{\partial \varphi^k}{\partial y^i}
+        + \sum_{k=1}^n \bigg(\frac{\partial f}{\partial x^k}\circ\varphi\bigg)\frac{\partial^2 \varphi^k}{\partial y^j\partial y^i}. \\
+    &= \sum_{l=1}^n\sum_{k=1}^n \bigg(\frac{\partial^2 f}{\partial x^l\partial x^k}\circ\varphi\bigg)\frac{\partial \varphi^l}{\partial y^j}\frac{\partial \varphi^k}{\partial y^i}.
+\end{align}
+And
+\begin{align}
+    (d^2 f)\bigg(\frac{\partial}{\partial x^l}\frac{\partial \varphi^l}{\partial y^j},
+        \frac{\partial}{\partial x^k}\frac{\partial \varphi^k}{\partial y^i}\bigg)
+    &= \frac{\partial^2 f}{\partial x^l\partial x^k}\frac{\partial \varphi^l}{\partial y^j}\frac{\partial \varphi^k}{\partial y^i}.
+\end{align}
