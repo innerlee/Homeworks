@@ -3,6 +3,14 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{} %1.1
 
+\subsubsection{} %1.1.1
+
 \begin{align}
-    d
+    d^2 (f\circ\varphi)\bigg(\frac{\partial}{\partial y^j},\frac{\partial}{\partial y^i}\bigg)
+        &= \frac{\partial^2}{\partial y^j\partial y^i}f\circ\varphi \\
+        &= \frac{\partial}{\partial y^j} \sum_{k=1}^n \frac{\partial f}{\partial x^k}\circ\varphi\frac{\partial \varphi^k}{\partial y^i} \\
+        &= \sum_{l=1}^n\sum_{k=1}^n \frac{\partial^2 f}{\partial x^l\partial x^k}\circ\varphi\frac{\partial \varphi^l}{\partial y^j}\frac{\partial \varphi^k}{\partial y^i}
+            + \sum_{k=1}^n \frac{\partial f}{\partial x^k}\circ\varphi\frac{\partial^2 \varphi^k}{\partial y^j\partial y^i}. \\
 \end{align}
+
+\subsubsection{} %1.1.2
