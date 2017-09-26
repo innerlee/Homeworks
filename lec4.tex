@@ -1,0 +1,133 @@
+\clearpage
+\section{Adversarial Bandit, High Probability Bound} % 4
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{High Probability Bound for Exp3.P} %2.1
+
+\begin{alg}[Exp3.P] \leavevmode
+    \begin{framed}
+        \begin{algorithmic}
+            \State Choose $\eta>0$, $\gamma,\beta\in[0,1]$
+            \State Let $p_1=\big(\frac{1}{K},\dots,\frac{1}{K}\big)$,
+                and $\tilde G_{i,0}=0, \forall i\in [K]$
+            \For{$t=1,\dots,n$}
+                \State Play arm $I_t\sim p_t$
+                \State Observe reward $g_{I_t, t}$
+                \State $\tilde g_{i,t}:=\frac{g_{i,t}\doubleone[I_t=t]+\beta}{p_{i,t}}, \forall i\in[K]$
+                \State $\tilde G_{i,t} := \tilde G_{i,t-1} + \tilde g_{i,t}, \forall i\in[K]$
+                \State $p_{i,t+1}:=(1-\gamma)\frac{\exp(-\eta\tilde G_{i,t})}{\sum_{k=1}^K \exp(-\eta\tilde G_{k,t})} + \frac{\gamma}{K}, \forall i\in[K]$
+                \State $p_{t+1} := (p_{1,t+1},\dots,p_{K,t+1})$
+            \EndFor
+        \end{algorithmic}
+    \end{framed}
+\end{alg}
+
+\begin{thm}
+    Let $\beta=\sqrt{\frac{\ln K}{nK}}$, $\eta=0.95\beta$,
+    $\gamma=1.05\sqrt{\frac{K\ln K}{n}}$, then \wprob at least $1-\delta$,
+    \begin{equation}
+        R_n\le \cO(\sqrt{nK\ln K}) + \sqrt{\frac{nK}{\ln K}}\ln\frac{1}{\delta}.
+    \end{equation}
+\end{thm}
+\begin{proof}
+    \begin{align}
+        R_n
+            &= \max_k\sum_t g_{k,t} - \sum_t g_{I_t, t} \\
+            &= \max_k\sum_t g_{k,t} + \beta K n - \sum_t E_{i\sim p_t}\tilde g_{i, t}.
+    \end{align}
+    Let $u$ denote uniform distribution over arms, and
+    $w_t=\softmax\big(\eta\tilde G_{1,t},\dots,\eta\tilde G_{K,t}\big)$
+    be the distribution of $p_t$ without mixing.
+    Then for $\eta\tilde g_{i,t}\le 1$,
+    \begin{align}
+        - E_{i\sim p_t}\tilde g_{i, t}
+            &= - (1-\gamma) E_{i\sim w_t} \tilde g_{i, t} - \gamma E_{i\sim u}\tilde g_{i, t}\\
+            &\le - (1-\gamma)\bigg( E_{i\sim w_t} \tilde g_{i, t}
+                +\frac{1}{\eta}\ln E_{i\sim w_t} e^{\eta\tilde g_{i,t}}
+                -\frac{1}{\eta}\ln E_{i\sim w_t} e^{\eta\tilde g_{i,t}}
+                \bigg) \\
+            &\le - (1-\gamma)\bigg( E_{i\sim w_t} \tilde g_{i, t}
+                +\frac{1}{\eta}\ln E_{i\sim w_t} e^{\eta\tilde g_{i,t}}
+                -\frac{1}{\eta}E_{i\sim w_t} (e^{\eta\tilde g_{i,t}}-1)
+                \bigg) \\
+            &\le - (1-\gamma)\bigg( E_{i\sim w_t} \tilde g_{i, t}
+                +\frac{1}{\eta}\ln E_{i\sim w_t} e^{\eta\tilde g_{i,t}}
+                -\frac{1}{\eta}E_{i\sim w_t} (\eta\tilde g_{i,t} + \eta^2\tilde g_{i,t}^2)
+                \bigg) \\
+            &\le (1-\gamma)\eta
+                E_{i\sim w_t} \tilde g_{i,t}^2
+                - \frac{1-\gamma}{\eta} \ln E_{i\sim w_t} e^{\eta\tilde g_{i,t}} \\
+            &= (1-\gamma)\eta
+                \sum_{i}\frac{p_{i,t}-1/K}{1-\gamma} \frac{(g_{i,t}\doubleone[I_t=t]+\beta)^2}{p_{i,t}^2}
+                - \frac{1-\gamma}{\eta} \ln E_{i\sim w_t} e^{\eta\tilde g_{i,t}} \\
+            &\le \eta \sum_{i} \frac{(g_{i,t}\doubleone[I_t=t]+\beta)^2}{p_{i,t}}
+                - \frac{1-\gamma}{\eta} \ln E_{i\sim w_t} e^{\eta\tilde g_{i,t}} \\
+            &\le \eta(1+\beta) \sum_{i} \tilde g_{i, t}
+                - \frac{1-\gamma}{\eta} \ln E_{i\sim w_t} e^{\eta\tilde g_{i,t}}.
+    \end{align}
+    So,
+    \begin{align}
+        -\sum_t E_{i\sim p_t}\tilde g_{i, t}
+            &\le \eta(1+\beta)\sum_t\sum_i \tilde g_{i, t}
+                - \frac{1-\gamma}{\eta}\sum_t \ln E_{i\sim w_t} e^{\eta\tilde g_{i,t}} \\
+            &\le \eta(1+\beta)K\max_k \tilde G_{k,n}
+                - \frac{1-\gamma}{\eta} \ln\prod_t\frac{\sum_i e^{\eta\tilde G_{i,t}}}{\sum_i e^{\eta\tilde G_{i,t-1}}} \\
+            &= \eta(1+\beta)K\max_k \tilde G_{k,n} + \frac{(1-\gamma)\ln K}{\eta}
+                - \frac{1-\gamma}{\eta} \ln\sum_i e^{\eta\tilde G_{i,n}} \\
+            &\le -(1-\gamma-\eta(1+\beta)K)\max_k \tilde G_{k,n} + \frac{\ln K}{\eta}.
+    \end{align}
+    We need a lemma.
+    \begin{lem}
+        \wprob $1-\delta$,
+        \begin{align}
+            \sum_t g_{i,t}\le \sum_t \tilde g_{i,t} + \frac{1}{\beta}\ln \frac{1}{\delta}.
+        \end{align}
+    \end{lem}
+    \begin{proof}
+        Let $E_t$ be the expectation over $g_t$ and $I_t$ conditioned on
+        $(g_1,I_1), \dots,(g_2,I_{n-1})$,
+        where $g_t=(g_{1,t},\dots,g_{K,t})$.
+        Note that $p_{i,t}$ can be determined given such information.
+        For an given $i$,
+        \begin{align}
+            &E_t \exp\bigg(\beta g_{i,t}-\beta\frac{g_{i,t}\doubleone[I_t=i]+\beta}{p_{i,t}}\bigg) \\
+            &\le\Bigg(1+\beta E_t\bigg[g_{i,t}-\frac{g_{i,t}\doubleone[I_t=i]}{p_{i,t}}\bigg]
+                +\beta^2 E_t\bigg[g_{i,t}-\frac{g_{i,t}\doubleone[I_t=i]}{p_{i,t}}\bigg]^2\Bigg)e^{-\frac{\beta^2}{p_{i,t}}} \\
+            &=\Bigg(1+\beta^2 E_t[g_{i,t}^2] - 2\beta^2 E_t\bigg[\frac{g_{i,t}^2\doubleone[I_t=i]}{p_{i,t}}\bigg]
+                +\beta^2 E_t\bigg[\frac{g_{i,t}\doubleone[I_t=i]}{p_{i,t}}\bigg]^2\Bigg)e^{-\frac{\beta^2}{p_{i,t}}} \\
+            &\le\Bigg(1+\beta^2 \frac{E_t g_{i,t}^2}{p_{i,t}}\Bigg)e^{-\frac{\beta^2}{p_{i,t}}} \\
+            &\le\Bigg(1+ \frac{\beta^2}{p_{i,t}}\Bigg)e^{-\frac{\beta^2}{p_{i,t}}} \\
+            &\le 1.
+        \end{align}
+        So, by conditional expectation, we can compute
+        \begin{align}
+            E \exp\bigg(\beta\sum_t g_{i,t}-\beta\sum_t\frac{g_{i,t}\doubleone[I_t=i]+\beta}{p_{i,t}}\bigg)\le 1.
+        \end{align}
+        By Markov inequality,
+        \begin{align}
+            P\bigg(e^X>\frac{1}{\delta}\bigg) \le \delta E e^X.
+        \end{align}
+        Then, \wprob $1-\delta$,
+        \begin{align}
+            \beta\sum_t g_{i,t}-\beta\sum_t\frac{g_{i,t}\doubleone[I_t=i]+\beta}{p_{i,t}}\le\ln \frac{1}{\delta}.
+        \end{align}
+    \end{proof}
+    Note that $(1+\beta)\eta K\le\gamma\le \frac{1}{2}$.
+    So, $0\le 1-\gamma-\eta(1+\beta)K\le 1$.
+    Using the lemma and the union bound,
+    we have \wprob $1-\delta$,
+    \begin{align}
+        -\sum_t E_{i\sim p_t}\tilde g_{i, t}
+            &\le -(1-\gamma-\eta(1+\beta)K)\bigg(\max_k\sum_t g_{k,t} -\frac{1}{\beta}\ln\frac{K}{\delta} \bigg)+ \frac{\ln K}{\eta} \\
+            &\le -(1-\gamma-\eta(1+\beta)K)\max_k\sum_t g_{k,t} +\frac{1}{\beta}\ln\frac{K}{\delta}+ \frac{\ln K}{\eta}.
+    \end{align}
+    Note that $\gamma+\eta(1+\beta)K\le 1$,
+    \begin{align}
+        R_n
+            &\le\beta nK + (\gamma+\eta(1+\beta)K))\max_k\sum_t g_{k,t}+\frac{1}{\beta}\ln\frac{K}{\delta}+ \frac{\ln K}{\eta} \\
+            &\le \beta nK + \gamma n+\eta(1+\beta)Kn+\frac{1}{\beta}\ln\frac{K}{\delta}+ \frac{\ln K}{\eta}.
+    \end{align}
+    Put values of $\beta$, $\gamma$, and $\eta$ in,
+    we get the desired result.
+\end{proof}

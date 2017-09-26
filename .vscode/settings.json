@@ -3,8 +3,8 @@
   "files.exclude": {
     "**/.git": true,
     "**/.DS_Store": true,
-    "**/[^m]**.sty": true,
-    "**/m[^m]**.sty": true,
+    "**/[^m]*.sty": true,
+    "**/m[^m]*.sty": true,
     "*.out": true,
     "*.js": true,
     "*.aux": true,
