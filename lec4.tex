@@ -27,7 +27,7 @@
     Let $\beta=\sqrt{\frac{\ln K}{nK}}$, $\eta=0.95\beta$,
     $\gamma=1.05\sqrt{\frac{K\ln K}{n}}$, then \wprob at least $1-\delta$,
     \begin{equation}
-        R_n\le \cO(\sqrt{nK\ln K}) + \sqrt{\frac{nK}{\ln K}}\ln\frac{1}{\delta}.
+        R_n\le 5.15(\sqrt{nK\ln K}) + \sqrt{\frac{nK}{\ln K}}\ln\frac{1}{\delta}.
     \end{equation}
 \end{thm}
 \begin{proof}
@@ -113,7 +113,9 @@
             \beta\sum_t g_{i,t}-\beta\sum_t\frac{g_{i,t}\doubleone[I_t=i]+\beta}{p_{i,t}}\le\ln \frac{1}{\delta}.
         \end{align}
     \end{proof}
-    Note that $(1+\beta)\eta K\le\gamma\le \frac{1}{2}$.
+    Note that we only need to prove for $n\ge5.15\sqrt{nK\ln K}$.
+    In this case, it is easy to verify that
+    $(1+\beta)\eta K\le\frac{1}{2}$ and $\gamma\le 1/2$.
     So, $0\le 1-\gamma-\eta(1+\beta)K\le 1$.
     Using the lemma and the union bound,
     we have \wprob $1-\delta$,
@@ -122,7 +124,7 @@
             &\le -(1-\gamma-\eta(1+\beta)K)\bigg(\max_k\sum_t g_{k,t} -\frac{1}{\beta}\ln\frac{K}{\delta} \bigg)+ \frac{\ln K}{\eta} \\
             &\le -(1-\gamma-\eta(1+\beta)K)\max_k\sum_t g_{k,t} +\frac{1}{\beta}\ln\frac{K}{\delta}+ \frac{\ln K}{\eta}.
     \end{align}
-    Note that $\gamma+\eta(1+\beta)K\le 1$,
+    So,
     \begin{align}
         R_n
             &\le\beta nK + (\gamma+\eta(1+\beta)K))\max_k\sum_t g_{k,t}+\frac{1}{\beta}\ln\frac{K}{\delta}+ \frac{\ln K}{\eta} \\
