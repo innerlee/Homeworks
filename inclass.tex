@@ -1,0 +1,139 @@
+\section{}
+\section{}
+\section{}
+\section{}
+\section{}
+\section{Limit of function} % 6
+
+For any \(\varepsilon>0\), there is \(\delta=\sqrt{2}\varepsilon \), \st, if \(|x-1|<\delta \), then
+\[|\sqrt{1+x}-\sqrt{2}| = \frac{|x-1|}{\sqrt{1+x}+\sqrt{2}} < \epsilon. \]
+
+\section{Continuity/uniform continuity of functions} % 7
+
+\subsection{}
+yes, yes. (reason omitted, you should add by yourself)
+
+\subsection{}
+yes, no. (reason omitted, you should add by yourself)
+
+\section{Limits of multivariate functions} % 8
+
+\subsection{}
+
+no.
+
+Take the limit along the line \(y = kx\), then the limit is \(\lim_{x\to0}\frac{kx^2}{x^2 + 2k^2x^2} = \frac{k}{1 + 2k^2}\). They are different for different \(k\).
+
+\subsection{}
+
+yes.
+
+For any \(\varepsilon>0\), there is \(\delta=4\varepsilon^2 \), \st, if \(\sqrt{x^2+y^2}<\delta \), then
+\[\bigg|\frac{xy}{\sqrt{x^2+2y^2}}\bigg|\le \frac{x^2+y^2}{2\sqrt{x^2+y^2}} < \epsilon. \]
+
+
+\subsection{}
+
+no.
+
+Go along the curve \(y=kx^3\), you will find they approach different values for different \(k\).
+
+\section{Pointwise \& uniform convergence of sequence of functions} % 9
+
+\subsection{} %9a
+
+Converge pointwise, because for all \(x\in[-a,a]\),
+\[\lim_{n\to\infty}f_n(x)=\lim_{n\to\infty}\frac{1-x^{n+1}}{1-x}=\frac{1}{1-x}.\]
+
+Converge uniformly, because
+\[\sup_x \bigg|f_n(x) - \frac{1}{1-x}\bigg| =\sup_x \bigg|\sum_{i=n+1}^\infty x^i\bigg|\le \frac{|a|^{n+1}}{1-|a|},\]
+and when \(n\to\infty \) the limit is 0.
+
+\subsection{} %9b
+
+Let \(f(x) = 1\) for \(x=k\pi, k\in\mathbb{Z}\), and \(f(x) = 0\) otherwise.
+\(f_n(x)\) converges to \(f(x)\) pointwise (omitted the proof, you should do it by yourself).
+It is not uniformly convergence, because for all \(n\),
+\[\sup_x |f_n(x)-f(x)| = 1.\]
+
+\subsection{} %9c
+
+For any \(x\),
+\[|f_n(x)-f(x)|\le \sup_t |f_n(t)-f(t)|, \]
+the convergence of the right hand side to 0 implies the convergence of left hand side to 0.
+
+\section{Derivatives} % 10
+
+\subsection{} %10a
+
+We know that
+\[\lim_{h\to0}\frac{f(x_0+h)-f(x_0)}{h} = 0.\]
+
+That is, for any \(\varepsilon>0\), there exists \(1>\delta>0\), \st, for any \(|h|<\delta \),
+\[\bigg|\frac{f(x_0+h)-f(x_0)}{h}\bigg| < \varepsilon,\]
+so,
+\[|f(x_0+h)-f(x_0)|<|h|\varepsilon<\varepsilon.\]
+This means that \(f(x)\) is continuous at \(x_0\).
+
+\subsection{} %10b
+
+\[\lim_{h\to0}\frac{(x+h)^n-x^n}{h} = \lim_{h\to0}\frac{x^n + nx^{n-1}h + \cdots + nxh^{n-1} + h^n -x^n}{h}= nx^{n-1}.\]
+
+\subsection{} %10c
+
+A hint:
+
+\[\lim_{h\to0}\frac{f(x+h)g(x+h)-f(x)g(x)}{h} = \lim_{h\to0}\frac{\big(f(x+h)g(x+h)-f(x)g(x+h)\big)+\big(f(x)g(x+h)-f(x)g(x)\big)}{h}= \cdots.\]
+
+\section{Mean value theorem} % 11
+
+\subsection{} %11a
+
+Let \(F(x):=\int_a^x f(t)dt\), then \(F'(x)= f(x)\) on \((a, b)\). By mean value theorem,
+there exist some \(c\in(a,b)\), \st,
+\[f(c) = F'(c) = \frac{F(b)-F(a)}{b-a}=\frac{\int_a^b f(x)dx}{b-a}.\]
+
+\subsection{} %11b
+
+\(a=-\pi, b=\pi, f(x) = \sin x, g(x) = \cos x \).
+
+\section{Cauchy's mean value theorem} % 12
+
+We prove for the case \(\lim_{x\to c}f(x)=\lim_{x\to c}g(x)=0\). The \(\pm\infty \) case can be obtained from the 0 case. (why? explain it by yourself.)
+
+Since \(g'(x)\ne0\), there is a neighborhood of \(0\) in which \(g(x)\ne0\) when \(x\ne0\).
+By Cauchy's mean value theorem, for any \(x\ne 0\) in that range, there is a \(c\) between \(x\) and 0, \st,
+\[\frac{f(x)-f(0)}{g(x)-g(0)}=\frac{f'(c)}{g'(c)}.\]
+
+Take limit \(x\to0\) on both sides, we get the answer.
+
+\section{Remainder term for Taylor series} % 13
+
+\[\sup_x R_k\bigg(\frac{1}{1-x}\bigg) =\sup_x  \sum_{i=k+1}^\infty x^i=\sup_x x^{k+1}\sum_{i=0}^\infty x^i=\sup_x \frac{x^{k+1}}{1-x}=\frac{a^{k+1}}{1-a}\le\varepsilon.\]
+
+We have \(k\ge \frac{\ln \varepsilon(1-a)}{\ln a}-1\).
+
+\section{Riemann integral} % 14
+
+Choose a partition \(P: 0 = \frac{0\pi}{2n}, \frac{1\pi}{2n}, \dots, \frac{n\pi}{2n}=\frac{\pi}{2}\).
+\[R(f, P) = \sum_{k=0}^{n-1}\sin \frac{k\pi}{2n} = Im\sum_{k=0}^{n-1}\exp \frac{k\pi i}{2n} = \cdots \]
+
+(omitted the rest of the computation, do it by yourself.)
+
+\section{Remainder term for numerical integration} % 15
+
+\subsection{} %15a
+
+(omit)
+
+\subsection{} %15b
+
+By the error analysis, we know there is a number \(\xi\in(-1, 1)\),
+\[error = -\frac{2^3}{12N^2}f''(\xi).\]
+
+First estimate the range of \(f''(x)\), and then estimate the required value of \(N\).
+(Details omitted.)
+
+\subsection{} %15c
+
+Similar to above.
