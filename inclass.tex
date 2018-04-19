@@ -67,12 +67,12 @@ the convergence of the right hand side to 0 implies the convergence of left hand
 \subsection{} %10a
 
 We know that
-\[\lim_{h\to0}\frac{f(x_0+h)-f(x_0)}{h} = 0.\]
+\[\lim_{h\to0}\frac{f(x_0+h)-f(x_0)}{h} = f'(x_0).\]
 
-That is, for any \(\varepsilon>0\), there exists \(1>\delta>0\), \st, for any \(|h|<\delta \),
-\[\bigg|\frac{f(x_0+h)-f(x_0)}{h}\bigg| < \varepsilon,\]
+That is, for any \(\varepsilon>0\), there exists \(0<\delta<\frac{\varepsilon}{|f'(x_0)|+\varepsilon}\), \st, for any \(|h|<\delta \),
+\[\bigg|\frac{f(x_0+h)-f(x_0)}{h} - f'(x_0)\bigg| < \varepsilon,\]
 so,
-\[|f(x_0+h)-f(x_0)|<|h|\varepsilon<\varepsilon.\]
+\[|f(x_0+h)-f(x_0)|<|h|(|f'(x_0)|+\varepsilon)<\varepsilon.\]
 This means that \(f(x)\) is continuous at \(x_0\).
 
 \subsection{} %10b
@@ -101,11 +101,12 @@ there exist some \(c\in(a,b)\), \st,
 
 We prove for the case \(\lim_{x\to c}f(x)=\lim_{x\to c}g(x)=0\). The \(\pm\infty \) case can be obtained from the 0 case. (why? explain it by yourself.)
 
-Since \(g'(x)\ne0\), there is a neighborhood of \(0\) in which \(g(x)\ne0\) when \(x\ne0\).
-By Cauchy's mean value theorem, for any \(x\ne 0\) in that range, there is a \(c\) between \(x\) and 0, \st,
-\[\frac{f(x)-f(0)}{g(x)-g(0)}=\frac{f'(c)}{g'(c)}.\]
+Let \(x\in I\) and \(x\ne c\). Without loss of generality, we consider the case \(x<c\).
+Then \(f\) and \(g\) are continuous on \([x, c]\), and differentiable on \((x, c)\).
+By Cauchy's mean value theorem, there is a \(\xi\in(x, c)\), \st, when \(g(x)\ne0\),
+\[\frac{f(x)-f(c)}{g(x)-g(c)}=\frac{f'(\xi)}{g'(\xi)}.\]
 
-Take limit \(x\to0\) on both sides, we get the answer.
+Take limit \(x\to c\) on both sides, we get the answer.
 
 \section{Remainder term for Taylor series} % 13
 
